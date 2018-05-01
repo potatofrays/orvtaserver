@@ -25,7 +25,7 @@ var vehicleSchema = new Schema({
 var policeReport = new Schema({
 	committed_at: {type: Date, default: Date},
 	reported_at: {type: Date, default: Date.now},
-	updated_at: {type: Date, default: Date.now}
+	updated_at: {type: Date, default: Date.now},
 	accident_type: {type: String},
 	accident_cause: {type: String},
 	police_username:{type: String},
