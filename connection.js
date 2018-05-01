@@ -5,7 +5,7 @@ if(env==='dev') {
 }
 else
 {
-    con='mongodb://orvta:orvtate@m@ds147589.mlab.com:47589/orvta_db';
+    con='mongodb://orvta:orvta@ds031865.mlab.com:31865/orvta_db';
 }
 console.log(con);
 exports.connectionString= con;
