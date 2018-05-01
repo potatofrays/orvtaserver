@@ -140,7 +140,7 @@ module.exports = function(router){
 	router.put('/report/:id', function(req,res){
 		models.Police_Report.findById(req.params.id, function(err, updateReport){
 			updateReport.committed_at = req.body.committed_at;
-			updateReport.reported_at = req.body.committed_at;
+			updateReport.reported_at = req.body.reported_at;
 			updateReport.accident_type = req.body.accident_type;
 			updateReport.accident_cause = req.body.accident_cause;
 			updateReport.police_username = req.body.police_username;

@@ -7,7 +7,7 @@ var peopleInvolvedSchema = new Schema({
 	people_involved_name : {type: String},
 	people_involved_gender : {type: String},
 	people_involved_citizenship : {type: String},
-	people_involved_status: {type: String}, 
+	people_involved_status: {type: String},
 	people_involved_type: {type: String},//walkin
 	people_involved_violation:{type:String}
 });
@@ -18,7 +18,7 @@ var vehicleSchema = new Schema({
 	vehicle_type : {type: String},
 	vehicle_brand: {type: String},
 	vehicle_model : {type: String}
-	
+
 });
 
 //police_report Schema
