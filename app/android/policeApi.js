@@ -1,4 +1,4 @@
-var Police_User = require('../models/user'); 
+var Police_User = require('../models/user');
 var mongoose = require('mongoose');
 var models = require('../models/police_reports');
 var Account_Reset = require('../models/accountReset');
@@ -21,9 +21,13 @@ module.exports = function(router){
 					        if (!validPassword) {
 					            res.json({ success: false, message: 'Could not authenticate password' }); // Password does not match password in database
 					        } else {
-					        	Police_User.findOne({police_username: req.params.username}, function(err, username){
-					          		return res.json({ success: true, username: username.police_username, police_id: username.id, police_station: username.police_station}); // Return token in JSON object to controller
-					       		});
+										Police_User.findOne({police_username: req.params.username},{ police_permission: 'user'}, function(err, username){
+												if (username.police_permission !== 'user'){
+													 res.json({ success: false, message: 'You must be a police user to log in' }); // Password was not provided
+												} else {
+													return res.json({ success: true, username: username.police_username, police_id: username.id, police_station: username.police_station}); // Return token in JSON object to controller
+												}
+						       		});
 					        }
 					}
 				}
