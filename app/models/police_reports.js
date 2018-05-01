@@ -25,7 +25,6 @@ var vehicleSchema = new Schema({
 var policeReport = new Schema({
 	committed_at: {type: Date},
 	reported_at: {type: Date, default: Date.now},
-	updated_at: {type: Date, default: Date.now},
 	accident_type: {type: String},
 	accident_cause: {type: String},
 	police_username:{type: String},
@@ -41,18 +40,6 @@ var policeReport = new Schema({
 });
 // Indexes this schema in geoJSON format (critical for running proximity searches)
 policeReport.index({location_coordinates: '2dsphere'});
-
-// Date and Time User Created
-policeReport.pre('save', function(next){
-   now = new Date();
-    if (!this.reported_at) {
-        this.reported_at = now;
-    } else {
-      this.updated_at = now;
-    }
-    next();
-});
-
 
 
 var Police_Report = mongoose.model('Police_Report', policeReport);
