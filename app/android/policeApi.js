@@ -40,7 +40,6 @@ module.exports = function(router){
 	router.post('/report', function(req,res){
 		var addReport = new models.Police_Report();
 			addReport.committed_at = req.body.committed_at;
-			addReport.reported_at = req.body.reported_at;
 			addReport.accident_type = req.body.accident_type;
 			addReport.accident_cause = req.body.accident_cause;
 			addReport.police_username = req.body.police_username;
@@ -139,7 +138,6 @@ module.exports = function(router){
 	router.put('/report/:id', function(req,res){
 		models.Police_Report.findById(req.params.id, function(err, updateReport){
 			updateReport.committed_at = req.body.committed_at;
-			updateReport.reported_at = req.body.reported_at;
 			updateReport.accident_type = req.body.accident_type;
 			updateReport.accident_cause = req.body.accident_cause;
 			updateReport.police_username = req.body.police_username;
