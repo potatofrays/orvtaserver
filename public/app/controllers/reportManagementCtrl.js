@@ -354,7 +354,7 @@ angular.module('reportManagementController', ['reportServices'])
             }
         });
     }
-    
+
 
     getCitizenReports(); // Invoke function to get reports from databases
 
