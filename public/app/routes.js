@@ -121,6 +121,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
         authenticated: true,
         police_permission: ['main', 'station']
     })
+    // Route: Edit a People Involve
+    .when('/resetRequestManagement', {
+        templateUrl: 'app/views/pages/users/resetRequestManagement.html',
+        controller: 'resetRequestManagementCtrl',
+        controllerAs: 'reset',
+        authenticated: true,
+        police_permission: ['main', 'station']
+    })
     .otherwise({ redirectTo: '/' }); // If user tries to access any other route, redirect to home page
 
     $locationProvider.html5Mode({ enabled: true, requireBase: false }); // Required to remove AngularJS hash from URL (no base is required in index file)

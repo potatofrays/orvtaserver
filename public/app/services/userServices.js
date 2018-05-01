@@ -63,7 +63,10 @@ angular.module('userServices', [])
     userFactory.deleteUser = function(police_username) {
         return $http.delete('/api/management/' + police_username);
     };
-
+    //get user to edit
+    userFactory.getReset = function(){
+        return $http.get('/api/resetRequestManagement/');
+    };
 
     return userFactory; // Return userFactory object
 });

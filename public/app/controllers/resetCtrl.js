@@ -33,7 +33,6 @@ angular.module('resetController', ['userServices'])
         }
     };
 })
-
 // Controller: passwordCtrl is used to send a password reset link to the user
 .controller('passwordCtrl', function(User, $scope) {
 
@@ -68,7 +67,6 @@ angular.module('resetController', ['userServices'])
         }
     };
 })
-
 // Controller resetCtrl is used to save change user's password
 .controller('resetCtrl', function(User, $routeParams, $scope, $timeout, $location) {
 
@@ -125,4 +123,80 @@ angular.module('resetController', ['userServices'])
             app.errorMsg = 'Please ensure form is filled out properly'; // Let user know form is not valid
         }
     };
+})
+.controller('resetRequestManagementCtrl', function(User, $routeParams, $scope, $timeout, $location) {
+
+    app = this;
+    app.hide = true; // Hide form until token can be verified to be valid
+
+    function getReset(){
+    User.getReset().then(function(data){
+       if (data.data.success) {
+              // Check which permissions the logged in report has
+              if (data.data.police_permission === 'main' || data.data.police_permission === 'station') {
+                  app.request = data.data.request; // Assign reports from database to variable
+                  app.loading = false; // Stop loading icon
+                  app.accessDenied = false; // Show table
+                  // Check if logged in report is an admin or moderator
+                  if (data.data.police_permission === 'main') {
+                    app.editReset = true;
+                  } else if (data.data.police_permission === 'station') {
+                    app.editReset = true;
+                  }
+              } else {
+                  app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options
+                  app.loading = false; // Stop loading icon
+              }
+          } else {
+              app.errorMsg = data.data.message; // Set error message
+              app.loading = false; // Stop loading icon
+            }
+    });
+  }
+  getReset();
+  // Function: Show more results on page
+  app.showMore = function(number) {
+      app.showMoreError = false; // Clear error message
+      // Run functio only if a valid number above zero
+      if (number > 0) {
+          app.limit = number; // Change ng-repeat filter to number requested by report
+      } else {
+          app.showMoreError = 'Please enter a valid number'; // Return error if number not valid
+      }
+  };
+
+  // Function: Show all results on page
+  app.showAll = function() {
+      app.limit = undefined; // Clear ng-repeat limit
+      app.showMoreError = false; // Clear error message
+  };
+
+
+  // Function: Perform a basic search function
+  app.search = function(searchKeyword, number) {
+      // Check if a search keyword was provided
+      if (searchKeyword) {
+          // Check if the search keyword actually exists
+          if (searchKeyword.length > 0) {
+              app.limit = 0; // Reset the limit number while processing
+              $scope.searchFilter = searchKeyword; // Set the search filter to the word provided by the report
+              app.limit = number; // Set the number displayed to the number entered by the report
+          } else {
+              $scope.searchFilter = undefined; // Remove any keywords from filter
+              app.limit = 0; // Reset search limit
+          }
+      } else {
+          $scope.searchFilter = undefined; // Reset search limit
+          app.limit = 0; // Set search limit to zero
+      }
+  };
+
+  // Function: Clear all fields
+  app.clear = function() {
+      $scope.number = 'Clear'; // Set the filter box to 'Clear'
+      app.limit = 0; // Clear all results
+      $scope.searchKeyword = undefined; // Clear the search word
+      $scope.searchFilter = undefined; // Clear the search filter
+      app.showMoreError = false; // Clear any errors
+  };
 });

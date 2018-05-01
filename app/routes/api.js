@@ -1,20 +1,12 @@
 var police_user = require('../models/user'); // Import User Model
 var models = require('../models/police_reports'); // Import Report Model
+var reset = require('../models/accountReset');
 var jwt = require('jsonwebtoken'); // Import JWT Package
 var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
 module.exports = function(router) {
-
-    // Start Sendgrid Configuration Settings (Use only if using sendgrid)
-    // var options = {
-    //     auth: {
-    //         api_user: 'dbrian332', // Sendgrid username
-    //         api_key: 'PAssword123!@#' // Sendgrid password
-    //     }
-    // };
-
     // Nodemailer options (use with g-mail or SMTP)
     var client = nodemailer.createTransport({
         service: 'Zoho',
@@ -86,7 +78,6 @@ module.exports = function(router) {
             });
         }
     });
-
     // Route to check if username chosen on registration page is taken
     router.post('/checkusername', function(req, res) {
         police_user.findOne({ police_username: req.body.police_username }).select('police_username').exec(function(err, user) {
@@ -118,7 +109,6 @@ module.exports = function(router) {
             }
         });
     });
-
     // Route to check if e-mail chosen on registration page is taken
     router.post('/checkemail', function(req, res) {
         police_user.findOne({ police_email: req.body.police_email }).select('police_email').exec(function(err, user) {
@@ -150,7 +140,6 @@ module.exports = function(router) {
             }
         });
     });
-
     // Route for user logins
     router.post('/authenticate', function(req, res) {
         var loginUser = (req.body.police_username); // Ensure username is checked in lowercase against database
@@ -263,8 +252,8 @@ module.exports = function(router) {
                                 from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
                                 to: user.police_email,
                                 subject: 'Reset Password Request',
-                                text: 'Hello ' + user.police_name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://orvtiaweb.herokuapp.com/reset/' + user.resettoken,
-                                html: 'Hello<strong> ' + user.police_name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://orvtiaweb.herokuapp.com/reset/' + user.resettoken + '">http://orvtiaweb.herokuapp.com/reset/</a>'
+                                text: 'Hello ' + user.police_name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://orvtawebserver.herokuapp.com/reset/' + user.resettoken,
+                                html: 'Hello<strong> ' + user.police_name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://orvtawebserver.herokuapp.com/reset/' + user.resettoken + '">http://orvtawebserver.herokuapp.com/reset/</a>'
                             };
                             // Function to send e-mail to the user
                             client.sendMail(email, function(err, info) {
@@ -373,7 +362,6 @@ module.exports = function(router) {
             }
         });
     });
-
     // Middleware for Routes that checks for token - Place all routes after this route that require the user to already be logged in
     router.use(function(req, res, next) {
         var token = req.body.token || req.body.query || req.headers['x-access-token']; // Check for token in body, URL, or headers
@@ -7676,6 +7664,78 @@ module.exports = function(router) {
             }
         });
     });
+    router.get('/resetRequestManagement', function(req, res){
+      reset.find({}, function(err, request) {
+          if (err) {
+              // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+              var email = {
+                  from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                  to: 'orvtiadeveloper@zoho.com',
+                  subject: 'Error Logged',
+                  text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                  html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+              };
+              // Function to send e-mail to myself
+              client.sendMail(email, function(err, info) {
+                  if (err) {
+                      console.log(err); // If error with sending e-mail, log to console/terminal
+                  } else {
+                      console.log(info); // Log success message to console if sent
+                      console.log(user.email); // Display e-mail that it was sent to
+                  }
+              });
+              res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+          } else {
+              police_user.findOne({ police_username: req.decoded.police_username }, function(err, mainUser) {
+                  if (err) {
+                      // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+                      var email = {
+                          from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                          to: 'orvtiadeveloper@zoho.com',
+                          subject: 'Error Logged',
+                          text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                          html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                      };
+                      // Function to send e-mail to myself
+                      client.sendMail(email, function(err, info) {
+                          if (err) {
+                              console.log(err); // If error with sending e-mail, log to console/terminal
+                          } else {
+                              console.log(info); // Log success message to console if sent
+                              console.log(user.email); // Display e-mail that it was sent to
+                          }
+                      });
+                      res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+                  } else {
+                      // Check if logged in report was found in database
+                      if (!mainUser) {
+                          res.json({ success: false, message: 'No user found' }); // Return error
+                      } else {
+                          // Check if user has editing/deleting privileges
+                          if (mainUser.police_permission === 'main') {
+                              // Check if users were retrieved from database
+                              if (!request) {
+                                  res.json({ success: false, message: 'No report found' }); // Return error
+                              } else {
+                                  res.json({ success: true, request: request, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
+                              }
+                          } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
+                              if (!request) {
+                                  res.json({ success: false, message: 'No report found' }); // Return error
+                              } else {
+                                reset.find({ station: req.decoded.police_station }, function(err, request) {
+                                  res.json({ success: true, request: request, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
+                                });
+                              }
+                          } else {
+                              res.json({ success: false, message: 'Insufficient Permissions' }); // Return access error
+                          }
+                      }
+                  }
+              });
+          }
+      });
+  });
 
     return router; // Return the router object to server
 };
