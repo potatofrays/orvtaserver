@@ -11,7 +11,7 @@
 <div class="container-fluid">
   <div class="panel panel-primary">
   	<div class="panel-heading">
-  		<center><h3><strong>Citizen Report Management</strong></h3></center><br>
+  		<center><h3><strong>Citizen Report Management ({{main.police_station}})</strong></h3></center><br>
   	</div>
   </div>
 
@@ -53,15 +53,15 @@
       <th><strong>Action</strong></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "creport in citizenReportManagement.police_reports | filter: searchFilter | orderBy: 'citizen_reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
-      <td>{{ creport.address_thoroughfare }}</td>
-      <td>{{ creport.address_municipality }}</td>
-      <td>{{ creport.address_province }}</td>
-      <td>{{ creport.citizen_reported_at | date:"MMM d, y '-' h: mma "}}</td>
-      <td>{{ creport.report_credibility }}</td>
+		<tr ng-repeat = "report in citizenReportManagement.police_reports | filter: searchFilter | orderBy: 'citizen_reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+      <td>{{ report.address_thoroughfare }}</td>
+      <td>{{ report.address_municipality }}</td>
+      <td>{{ report.address_province }}</td>
+      <td>{{ report.citizen_reported_at | date:"MMM d, y '-' h: mma "}}</td>
+      <td>{{ report.report_credibility }}</td>
 			<td>
-        <a href="/editCitizenReport/{{ creport._id }}">
-          <button type="button" class="btn btn-grey btn-sm">Update</button>
+        <a href="/editReport/{{ report._id }}">
+          <button type="button" class="btn btn-grey btn-sm" on-click="show()">Update</button>
         </a>
       </td>
 		</tr>

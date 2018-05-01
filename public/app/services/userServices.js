@@ -64,7 +64,7 @@ angular.module('userServices', [])
         return $http.delete('/api/management/' + police_username);
     };
     //get user to edit
-    userFactory.getReset = function(){
+    userFactory.getRequests = function(){
         return $http.get('/api/resetRequestManagement/');
     };
 

@@ -135,7 +135,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                     app.isLoggedIn = false; // Variable to deactivate ng-show on index
                     Auth.logout();
                     app.isLoggedIn = false;
-                    $location.path('/dashboard');
+                    $location.path('/');
                 } else {
                     app.isLoggedIn = true; // Variable to activate ng-show on index
                     app.police_username = data.data.police_username; // Get the user name for use in index
@@ -145,11 +145,17 @@ angular.module('mainController', ['authServices', 'userServices'])
                     app.police_station = data.data.police_station;
                     app.police_permission = data.data.police_permission;
                     User.getPermission().then(function(data) {
-                        if (data.data.police_permission === 'main' || data.data.police_permission === 'station') {
+                        if (data.data.police_permission === 'main') {
                             app.authorized = true; // Set user's current permission to allow management
                             app.loadme = true; // Show main HTML now that data is obtained in AngularJS
+                              app.requestAccess = false;
+                        } else if (data.data.police_permission === 'station'){
+                            app.authorized = true; // Set user's current permission to allow management
+                            app.loadme = true; // Show main HTML now that data is obtained in AngularJS
+                            app.requestAccess = true;
                         } else {
                             app.authorized = false;
+                            app.requestAccess = false;
                             app.loadme = true; // Show main HTML now that data is obtained in AngularJS
                         }
                     });
@@ -182,7 +188,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                 app.successMsg = data.data.message; // Create Success Message then redirect
                 // Redirect to home page after two milliseconds (2 seconds)
                 $timeout(function() {
-                    $location.path('/dashboard'); // Redirect to home
+                    $location.path('/'); // Redirect to home
                     app.loginData = ''; // Clear login form
                     app.successMsg = false; // CLear success message
                     app.disabled = false; // Enable form on submission

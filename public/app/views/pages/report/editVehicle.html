@@ -1,29 +1,41 @@
 <link rel="stylesheet" href="assets/css/compiled.min.css" type="text/css" >
 <link rel="stylesheet" href="assets/css/style2.css" type="text/css" >
-
+<style>
+.left{
+  float:left;
+  width: 550px;
+  height: 100%;
+  margin-left: 10px;
+}
+.right{
+    float:right;
+    width: 550px;
+    height: 100%;
+    margin-right:: 10px;
+}
+</style>
 <div class="container-fluid">
-
-<h3><strong>EDIT REPORTS</strong></h3>
-<a href="/reportManagement">
-  <strong>REPORT MANAGEMENT</strong>
-</a>
-  <strong>/</strong>&nbsp;
-<a style="color: grey;" href="#">
-  <strong>EDIT</strong>
+<a href="/reportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
+<h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
 </a><br><br>
-<div class="show-hide-message" ng-show="editVehicle.successMsg">
- <div class="alert alert-success center-block">{{editVehicle.successMsg}}</div>
-</div>
-<div class="show-hide-message" ng-show="editVehicle.errorMsg">
-	<div class="alert alert-danger center-block">{{ editVehicle.errorMsg }}</div>
+<div align="center">
+  <div class="show-hide-message" ng-show="editVehicle.successMsg">
+   <div class="alert alert-success center-block">{{editVehicle.successMsg}}</div>
+  </div>
+  <div class="show-hide-message" ng-show="editVehicle.errorMsg">
+  	<div class="alert alert-danger center-block">{{ editVehicle.errorMsg }}</div>
+  </div>
 </div>
 <div class="md-form form-md">
   <form name= "editVehicle.formData" ng-submit="editVehicle.updateVehicle(addPlateNumber, editVehicle.formData.vehicle_platenumber.$valid, addBrand, editVehicle.formData.vehicle_brand.$valid, addVehicleType, editVehicle.formData.vehicle_type.$valid, addModel, editVehicle.formData.vehicle_model.$valid)">
-    <input class="form-control col-5" type="hidden" ng-model="showId"  placeholder=" ID" style="padding-left: 10px;">
-    <input class="form-control col-5" title='Vehicle Plate Number' type=" text" ng-model="addPlateNumber" placeholder="Plate Number" style="padding-left: 10px;">
-    <input class="form-control col-5" title='Vehicle Brand' type=" text" ng-model="addBrand" placeholder="Brand" style="padding-left: 10px;">
-    <input class="form-control col-5" title='Vehicle Model' type=" text" ng-model="addModel" placeholder="Model" style="padding-left: 10px;">
-    <select class="browser-default form-control col-5" title='Vehicle Type' ng-model="addVehicleType">
+    <div class="left">
+    <input class="form-control col-lg" type="hidden" ng-model="showId"  placeholder=" ID" style="padding-left: 10px;">
+    <input class="form-control col-lg" title='Vehicle Plate Number' type=" text" ng-model="addPlateNumber" placeholder="Plate Number" style="padding-left: 10px;">
+    <input class="form-control col-lg" title='Vehicle Brand' type=" text" ng-model="addBrand" placeholder="Brand" style="padding-left: 10px;">
+    </div>
+    <div class="right">
+    <input class="form-control col-lg" title='Vehicle Model' type=" text" ng-model="addModel" placeholder="Model" style="padding-left: 10px;">
+    <select class="browser-default form-control col-lg" title='Vehicle Type' ng-model="addVehicleType">
       <option value="" disabled selected>Vehicle Type</option>
       <option value="Bus">Bus</option>
       <option value="Bicycle">Bicycle</option>
@@ -34,7 +46,8 @@
       <option value="Truck">Truck</option>
       <option value="Van">Van</option>
     </select>
-      <button type="submit" class="btn btn-sm btn-elegant"> SAVE CHANGES</button>
+    </div>
+    <button type="submit" class="btn btn-md btn-elegant" style="float: right;"> SAVE CHANGES</button>
     </form>
 </div>
 </div>

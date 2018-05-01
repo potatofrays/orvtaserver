@@ -1,0 +1,191 @@
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
+<style>
+#map{
+  height: 1005px;
+  width: 650px;
+  float: left;
+  overflow: hidden;
+}
+.containerForm{
+  float: right;
+  height: auto;
+  padding-left: 29px;
+  padding-right: 29px;
+  width:470px;
+  background-color: #F5F5F5;
+
+}
+</style>
+
+<div class="containerForm" ><br>
+<a href="/reportManagement" style="float: right; padding-left: 50%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to Reports</a><br><hr>
+     <form name ="addForm"  novalidate><br>
+
+         <div class="md-form form-sm">
+           <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
+           <input type="text" class="form-control" placeholder="Please click anywhere in the map before adding a report!" id="verified" ng-model="formData.htmlverified" readonly>
+         </div>
+
+         <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+         <div class="md-form form-sm">
+           <input type="text" class="form-control" placeholder="Thoroughfare"  id="Thoroughfare" ng-model="formData.address_thoroughfare">
+           <input type="text" class="form-control" id="Municipality" placeholder="Municipality" value="{{main.police_station}}" ng-model="formData.address_municipality" readonly>
+           <input type="text" class="form-control" id='Province' placeholder="Province"  ng-model="formData.address_province" readonly>
+           <input type="text" class="form-control" id='Username' placeholder="On Duty"  ng-model="formData.police_username" value="{{main.police_username}}" readonly>
+
+           <!--get element by id in addCtrl-->
+            <center>
+              <a href="#" id="btn" style="font-family: Courier New"><i class="fa fa-hand-o-right" aria-hidden="true" ></i> Click to Get Lat-Long</a>
+            </center>
+         </div>
+         <div class="md-form form-sm">
+              <p style="color: blue; font-size: 12px;">Longitude:</p>
+             <input type="text" class="form-control" id="latitude"  ng-model="formData.latitude" readonly>
+         </div>
+         <div class="md-form form-sm">
+               <p style="color: red; font-size: 12px;">Latitude:</p>
+             <input type="text" class="form-control" id="longitude"  ng-model="formData.longitude" readonly>
+         </div>
+
+         <div class="md-form">
+            <p style="color: grey; font-size: 12px;">Date and Time Transpired:</p>
+             <input type="datetime-local" class="form control" ng-model="formData.committed_at">
+         </div>
+
+         <select class="browser-default form-control" id="cause" ng-model="formData.cause">
+              <option value="" disabled selected>Select Accident Cause</option>
+              <option value="Distracted Driving"> Distracted Driving</option>
+              <option value="Speeding"> Speeding</option>
+              <option value="Drunk Driving">Drunk Driving</option>
+              <option value="Reckless Driving">Reckless Driving</option>
+              <option value="Rain">Rain</option>
+              <option value="Running Red Lights">Running Red Lights</option>
+              <option value="Teenage Drivers">Teenage Drivers</option>
+              <option value="Resign Defect">Resign Defect</option>
+              <option value="Teenage Drivers">Teenage Drivers</option>
+              <option value="Resign Drivers">Resign Drivers</option>
+              <option value="Unsafe lane Changes">Unsafe lane Changes</option>
+              <option value="Wrong-Way Driving">Wrong-Way Driving</option>
+              <option value="Improper Turns">Improper Turns</option>
+              <option value="Tailgaiting">Tailgaiting</option>
+              <option value="Driving Under Influence of Drugs">Driving Under Influence of Drugs</option>
+              <option value="Road Rage">Road Rage</option>
+              <option value="Tires Blowouts">Tires Blowouts</option>
+              <option value="Deadly Curves">Deadly Curves</option>
+              <option value="Animal Crossings">Animal Crossings</option>
+              <option value="Street Racing">Street Racing</option>
+          </select>
+          <select class="browser-default form-control" id="type" ng-model="formData.type">
+              <option value="" disabled selected>Select Accident Type</option>
+              <option value="Rear-End Collision">Rear-End Collision</option>
+    					<option value="Side/Roadside Collision">Side/Roadside Collision</option>
+    					<option value="Rollover">Rollover</option>
+    					<option value="Head-On Collision">Head-On Collision</option>
+    					<option value="High Speeding Collision">   High Speeding Collision</option>
+    					<option value="High Speeding Fixed Object Crashes">High Speeding Fixed Object Crashes</option>
+    					<option value="Teenage Drivers">High speeding crashes with pedestrians</option>
+    					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
+    					<option value="Stationary Collision">Stationary Collision</option>
+          </select>
+         <!--
+        <div class="md-form">
+           <label>Police On Duty:</label>
+           <input ng-model="formData.police_username" class="form-control" id="policereporter" value="{{main.police_username}}" type="text" readonly>
+        </div>
+        -->
+        <div class="md-form">
+         <!--Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.-->
+
+         <button type="submit" class="btn btn-elegant btn-sm" ng-click="createReport()" ng-disabled="addForm.$invalid">Click to save</button>
+       </div>
+       <hr>
+        <h6 ng-show="add.clickView">Add More Details to Report:</h6>
+        <a ng-show="add.clickView" href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add People Invovled</a>
+        <div class="modal fade" id="modalPeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+              <div class="modal-dialog cascading-modal " role="document">
+             <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header bg-dark white-text">
+                        <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> PEOPLE INVOLVE</h4>
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name= "addForm.formData">
+
+                          <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;" readonly>
+                          <input class="form-control" type=" text" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
+                          <input class="form-control" type=" text" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
+                          <input class="form-control" type=" text" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+                          <select class="browser-default form-control" ng-model="addGender">
+                          <option value="" disabled selected>Select Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                      </select>
+                          <select class="browser-default form-control" ng-model="addViolation">
+                          <option value="" disabled selected>Select Violation</option>
+                          <option value="Negligence">Negligence</option>
+                          <option value="Recklessness or wanton conduct">Recklessness or wanton conduct</option>
+                          <option value="Intentional Misconduct">Intentional Misconduct</option>
+                          <option value="Strict Liability">Strict Liability (Regardless or Fault)</option>
+                      </select>
+                        <select class="browser-default form-control" ng-model="addStatus">
+                          <option value="" disabled selected>Select Status</option>
+                          <option value="Unharmed">Unharmed</option>
+                          <option value="Injured">Injured</option>
+                          <option value="Hospitalized">Hospitalized</option>
+                          <option value="Dead">Dead</option>
+                      </select>
+                      <select class="browser-default form-control" ng-model="addType">
+                          <option value="" disabled selected>Select Type</option>
+                          <option value="Suspect">Suspect</option>
+                          <option value="Victim">Victim</option>
+                      </select>
+                      <button type="submit" class="btn btn-md btn-elegant" ng-click="addPeople()">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a ng-show="add.clickView" href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add Vehicle</a>
+        <div class="modal fade" id="modalVehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+              <div class="modal-dialog cascading-modal " role="document">
+             <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header bg-dark white-text">
+                        <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> VEHICLE DETAILS</h4>
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name= "addForm.formData">
+
+                          <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;" readonly>
+                          <select class="browser-default form-control" ng-model="addVehicleType">
+                              <option value="" disabled selected>Select Vehicle Type</option>
+                              <option value="Bus">Bus</option>
+                              <option value="Bicycle">Bicycle</option>
+                              <option value="Car">Car</option>
+                              <option value="Jeep">Jeep</option>
+                              <option value="Motorcycle">Motorcycle</option>
+                              <option value="Tricycle">Tricycle</option>
+                              <option value="Truck">Truck</option>
+                              <option value="Van">Van</option>
+                          </select>
+                          <input class="form-control" type=" text" ng-model="addPlatenumber" placeholder=" Plate Number" style="padding-left: 10px;">
+                          <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
+                          <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
+                          <button type="submit" class="btn btn-md btn-elegant" ng-click="addVehicle()">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-info mb-1 btn-grey btn-sm" ng-show="add.clickView" onclick="javascript:window.location.reload()">Add New Report</button>
+     </form>

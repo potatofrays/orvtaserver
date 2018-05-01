@@ -1,6 +1,6 @@
 var police_user = require('../models/user'); // Import User Model
 var models = require('../models/police_reports'); // Import Report Model
-var reset = require('../models/accountReset');
+var account_reset = require('../models/accountReset');
 var jwt = require('jsonwebtoken'); // Import JWT Package
 var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
@@ -6603,7 +6603,7 @@ module.exports = function(router) {
                          res.json({ success: false, message: 'No user found' }); // Return error
                      } else {
                          // Check if user has editing/deleting privileges
-                         if (mainUser.police_permission === 'main') {
+                         if (mainUser.police_permission === 'main' && mainUser.police_station === 'Lingayen') {
                              // Check if users were retrieved from database
                              if (!police_reports) {
                                  res.json({ success: false, message: 'No report found' }); // Return error
@@ -6614,7 +6614,7 @@ module.exports = function(router) {
                              if (!police_reports) {
                                  res.json({ success: false, message: 'No report found' }); // Return error
                              } else {
-                                 models.Police_Report.find({address_municipality: req.decoded.police_station, report_credibility: 'Factual'})
+                                 models.Police_Report.find({address_municipality: req.decoded.police_station, $and: [{report_credibility: { $ne: 'Fraud'}}, {report_credibility: { $ne: 'Pending'}}]})
                                  .populate({path:"people_involved_id", model:"People_Involved"})
                                  .populate({path:"vehicle_id", model:"Vehicle"})
                                  .exec(function(err,police_reports){
@@ -6657,6 +6657,40 @@ module.exports = function(router) {
           report.address_thoroughfare = req.body.address_thoroughfare;
           report.address_municipality = req.body.address_municipality;
           report.address_province = req.body.address_province;
+          report.save(function(err){
+            if (err) {
+                 res.json(500, err);
+             } else {
+                res.json({success: true, message: 'Updated', report: report});
+             }
+           });
+          }
+       });
+      }
+    });
+    router.get('/editReport/:id', function(req, res){
+      models.Police_Report.findById(req.params.id, function(err,report){
+          if(err){
+              res.json(500,err);
+          }else{
+              res.json({success: true, report: report});
+          }
+      });
+    });
+    router.put('/editReport', function(req,res){
+      if(req.body.accident_type || req.body.accident_cause || req.body.address_thoroughfare
+      || req.body.address_municipality || req.body.address_province || req.body.report_credibility){
+      models.Police_Report.findById(req.body._id, function(err, report){
+        if (err) {
+          res.json(500, err);
+        } else {
+          report.committed_at = req.body.committed_at;
+          report.accident_type = req.body.accident_type;
+          report.accident_cause = req.body.accident_cause;
+          report.address_thoroughfare = req.body.address_thoroughfare;
+          report.address_municipality = req.body.address_municipality;
+          report.address_province = req.body.address_province;
+          report.report_credibility = req.body.report_credibility;
           report.save(function(err){
             if (err) {
                  res.json(500, err);
@@ -6823,7 +6857,7 @@ module.exports = function(router) {
                             res.json({ success: false, message: 'No user found' }); // Return error
                         } else {
                             // Check if user has editing/deleting privileges
-                            if (mainUser.police_permission === 'main') {
+                            if (mainUser.police_permission === 'main' && mainUser.police_station === 'Lingayen') {
                                 // Check if users were retrieved from database
                                 if (!police_reports) {
                                     res.json({ success: false, message: 'No report found' }); // Return error
@@ -6834,7 +6868,7 @@ module.exports = function(router) {
                                 if (!police_reports) {
                                     res.json({ success: false, message: 'No report found' }); // Return error
                                 } else {
-                                  models.Police_Report.find({ address_municipality: req.decoded.police_station, report_credibility: 'PENDING', report_credibility: 'Fraud' }, function(err, police_reports) {
+                                  models.Police_Report.find({ address_municipality: req.decoded.police_station, $or: [{report_credibility: 'Fraud'}, {report_credibility: 'Pending'}] }, function(err, police_reports) {
                                     res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
                                   });
                                 }
@@ -7664,78 +7698,78 @@ module.exports = function(router) {
             }
         });
     });
-    router.get('/resetRequestManagement', function(req, res){
-      reset.find({}, function(err, request) {
-          if (err) {
-              // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
-              var email = {
-                  from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
-                  to: 'orvtiadeveloper@zoho.com',
-                  subject: 'Error Logged',
-                  text: 'The following error has been reported in the MEAN Stack Application: ' + err,
-                  html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
-              };
-              // Function to send e-mail to myself
-              client.sendMail(email, function(err, info) {
-                  if (err) {
-                      console.log(err); // If error with sending e-mail, log to console/terminal
-                  } else {
-                      console.log(info); // Log success message to console if sent
-                      console.log(user.email); // Display e-mail that it was sent to
-                  }
-              });
-              res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
-          } else {
-              police_user.findOne({ police_username: req.decoded.police_username }, function(err, mainUser) {
-                  if (err) {
-                      // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
-                      var email = {
-                          from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
-                          to: 'orvtiadeveloper@zoho.com',
-                          subject: 'Error Logged',
-                          text: 'The following error has been reported in the MEAN Stack Application: ' + err,
-                          html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
-                      };
-                      // Function to send e-mail to myself
-                      client.sendMail(email, function(err, info) {
-                          if (err) {
-                              console.log(err); // If error with sending e-mail, log to console/terminal
-                          } else {
-                              console.log(info); // Log success message to console if sent
-                              console.log(user.email); // Display e-mail that it was sent to
-                          }
-                      });
-                      res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
-                  } else {
-                      // Check if logged in report was found in database
-                      if (!mainUser) {
-                          res.json({ success: false, message: 'No user found' }); // Return error
-                      } else {
-                          // Check if user has editing/deleting privileges
-                          if (mainUser.police_permission === 'main') {
-                              // Check if users were retrieved from database
-                              if (!request) {
-                                  res.json({ success: false, message: 'No report found' }); // Return error
-                              } else {
-                                  res.json({ success: true, request: request, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
-                              }
-                          } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
-                              if (!request) {
-                                  res.json({ success: false, message: 'No report found' }); // Return error
-                              } else {
-                                reset.find({ station: req.decoded.police_station }, function(err, request) {
-                                  res.json({ success: true, request: request, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
-                                });
-                              }
-                          } else {
-                              res.json({ success: false, message: 'Insufficient Permissions' }); // Return access error
-                          }
-                      }
-                  }
-              });
-          }
-      });
-  });
-
+    // Route to get all report for management page
+    router.get('/resetRequestManagement', function(req, res) {
+        account_reset.find({}, function(err, account_resets) {
+            if (err) {
+                // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+                var email = {
+                    from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                    to: 'orvtiadeveloper@zoho.com',
+                    subject: 'Error Logged',
+                    text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                    html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                };
+                // Function to send e-mail to myself
+                client.sendMail(email, function(err, info) {
+                    if (err) {
+                        console.log(err); // If error with sending e-mail, log to console/terminal
+                    } else {
+                        console.log(info); // Log success message to console if sent
+                        console.log(user.email); // Display e-mail that it was sent to
+                    }
+                });
+                res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+            } else {
+                police_user.findOne({ police_username: req.decoded.police_username }, function(err, mainUser) {
+                    if (err) {
+                        // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+                        var email = {
+                            from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                            to: 'orvtiadeveloper@zoho.com',
+                            subject: 'Error Logged',
+                            text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                            html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                        };
+                        // Function to send e-mail to myself
+                        client.sendMail(email, function(err, info) {
+                            if (err) {
+                                console.log(err); // If error with sending e-mail, log to console/terminal
+                            } else {
+                                console.log(info); // Log success message to console if sent
+                                console.log(user.email); // Display e-mail that it was sent to
+                            }
+                        });
+                        res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+                    } else {
+                        // Check if logged in report was found in database
+                        if (!mainUser) {
+                            res.json({ success: false, message: 'No user found' }); // Return error
+                        } else {
+                            // Check if user has editing/deleting privileges
+                            if (mainUser.police_permission === 'main' && mainUser.police_station === 'Lingayen') {
+                                // Check if users were retrieved from database
+                                if (!account_resets) {
+                                    res.json({ success: false, message: 'No report found' }); // Return error
+                                } else {
+                                    res.json({ success: true, account_resets: account_resets, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
+                                }
+                            } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
+                                if (!account_resets) {
+                                    res.json({ success: false, message: 'No report found' }); // Return error
+                                } else {
+                                  account_reset.find({ user_station: req.decoded.police_station }, function(err, account_resets) {
+                                    res.json({ success: true, account_resets: account_resets, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
+                                  });
+                                }
+                            } else {
+                                res.json({ success: false, message: 'Insufficient Permissions' }); // Return access error
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
     return router; // Return the router object to server
 };

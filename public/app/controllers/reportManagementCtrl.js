@@ -106,13 +106,14 @@ angular.module('reportManagementController', ['reportServices'])
             $scope.editThoroughfare = data.data.report.address_thoroughfare;
             $scope.editMunicipality = data.data.report.address_municipality;
             $scope.editProvince = data.data.report.address_province;
+            $scope.editCredibility = data.data.report.report_credibility;
             $scope.showId = data.data.report._id;
             $scope.showIdPeople = data.data.report._id;
             $scope.showIdVehicle = data.data.report._id;
         }
     });
     //function for button Save Changes
-    app.updateReport = function(valid, editCommittedAt, editAccidentType, editDate, editAccidentCause, editThoroughfare, editMunicipality, editProvince){
+    app.updateReport = function(valid, editCommittedAt, editAccidentType, editDate, editAccidentCause, editThoroughfare, editMunicipality, editProvince, editCredibility){
         if(valid){
             var reportObject = {};
             reportObject._id = $scope.showId;
@@ -122,6 +123,7 @@ angular.module('reportManagementController', ['reportServices'])
             reportObject.address_thoroughfare = $scope.editThoroughfare;
             reportObject.address_municipality = $scope.editMunicipality;
             reportObject.address_province = $scope.editProvince;
+            reportObject.report_credibility = $scope.editCredibility;
         //userObject - to validate first the field to be updated then use route
         // to use the route created for editting
         Report.reportChanges(reportObject).then(function(data){
@@ -352,6 +354,7 @@ angular.module('reportManagementController', ['reportServices'])
             }
         });
     }
+    
 
     getCitizenReports(); // Invoke function to get reports from databases
 

@@ -8,6 +8,7 @@ module.exports = function(router){
 			citizenreport.address_thoroughfare = req.body.address_thoroughfare;
 			citizenreport.address_municipality = req.body.address_municipality;
 			citizenreport.address_province = req.body.address_province;
+			citizenReport.citizen_reported_at = req.body.citizen_reported_at;
 			citizenreport.report_credibility = "Pending";
 			citizenreport.save(function(err, report){
 			if(err){

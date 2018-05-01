@@ -25,6 +25,7 @@
     <script src="app/controllers/managementCtrl.js"></script>
     <script src="app/controllers/reportManagementCtrl.js"></script>
     <script src="app/controllers/addCtrl.js"></script>
+    <script src="app/controllers/resetRequestCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
@@ -74,7 +75,7 @@
           <!-- Side navigation links -->
           <li>
               <ul class="collapsible collapsible-accordion" style="margin-top: 85px">
-                <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/dashboard"><i class=" fa fa-dashboard"></i>Dashboard</a>
+                <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/"><i class=" fa fa-dashboard"></i>Dashboard</a>
                   </li>
                   <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn && main.authorized" href="/management"><i class="fa fa-user"></i>Police User Management</a>
                   </li>
@@ -119,10 +120,10 @@
       </div>
       <ul class="nav navbar-nav nav-flex-icons ml-auto">
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn" href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> RESET</span></a>
+              <a class="nav-link" ng-show="main.isLoggedIn && main.requestAccess" href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> RESET</span></a>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" ng-show="main.isLoggedIn" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" ng-show="main.isLoggedIn && main.requestAccess" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-elegant" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="/resetpassword" ng-show="main.isLoggedIn"><i class="fa fa-lock"></i>    Password</a>
@@ -130,7 +131,7 @@
               </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn" href="/resetRequestManagement"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block"></span></a>
+              <a class="nav-link" ng-show="main.isLoggedIn && main.requestAccess" href="/resetRequestManagement"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block"></span></a>
           </li>
           <li class="nav-item">
               <a class="nav-link" ng-show="main.isLoggedIn" href="/profile"><i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block"><span title="Profile" style="color: yellow; font-size: 13px;"> {{main.police_username}}</span></a>
@@ -161,7 +162,6 @@
     <!-- end of JQuery -->
   <main role="main">
       <div class="container-fluid">
-
         <div id="map"></div>
         <div ng-view></div>
       </div>

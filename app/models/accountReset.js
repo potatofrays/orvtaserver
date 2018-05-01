@@ -5,8 +5,8 @@ var accountResetSchema = new Schema({
 	account : {type: String},
 	resetType : {type: String},
 	resetStatus: {type: String},
+	user_station: { type: String},
 	reset_created: { type: Date, default: Date.now},
-	station: { type: String },
 	reset_updated: {type: Date, default: Date.now}
 });
 
@@ -22,4 +22,4 @@ accountResetSchema.pre('save', function(next){
 });
 
 
- module.exports = mongoose.model('Account_Reset', accountResetSchema);
+ module.exports = mongoose.model('account_reset', accountResetSchema);

@@ -8,7 +8,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
     // Route: Home
         .when('/', {
         templateUrl: 'app/views/pages/home.html',
-        authenticated: false
+        authenticated: true
     })
 
     // Route: About Us (for testing purposes)
@@ -104,6 +104,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
         authenticated: true,
         police_permission: ['main', 'station']
     })
+    // Route: Edit a User
+    .when('/editReport/:id', {
+        templateUrl: 'app/views/pages/report/editReport.html',
+        controller: 'editReportCtrl',
+        controllerAs: 'editReport',
+        authenticated: true,
+        police_permission: ['main', 'station']
+    })
     // Route: Edit a People Involve
     .when('/editPeopleInvolved/:id', {
         templateUrl: 'app/views/pages/report/editPeopleInvolved.html',
@@ -124,10 +132,16 @@ var app = angular.module('appRoutes', ['ngRoute'])
     // Route: Edit a People Involve
     .when('/resetRequestManagement', {
         templateUrl: 'app/views/pages/users/resetRequestManagement.html',
-        controller: 'resetRequestManagementCtrl',
-        controllerAs: 'reset',
-        authenticated: true,
-        police_permission: ['main', 'station']
+        controller: 'resetRequestCtrl',
+        controllerAs: 'resetRequestManagement',
+        authenticated: true
+    })
+    // Route: User Registration
+    .when('/addReport', {
+        templateUrl: 'app/views/pages/addReport.html',
+        controller: 'addCtrl',
+        controllerAs: 'add',
+        authenticated: true
     })
     .otherwise({ redirectTo: '/' }); // If user tries to access any other route, redirect to home page
 
@@ -147,7 +161,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                 // Check if authentication is required, then if permission is required
                 if (!Auth.isLoggedIn()) {
                     event.preventDefault(); // If not logged in, prevent accessing route
-                    $location.path('/'); // Redirect to home instead
+                    $location.path('/login'); // Redirect to home instead
                 } else if (next.$$route.police_permission) {
                     // Function: Get current user's permission to see if authorized on route
                     User.getPermission().then(function(data) {
@@ -155,7 +169,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                         if (next.$$route.police_permission[0] !== data.data.police_permission) {
                             if (next.$$route.police_permission[1] !== data.data.police_permission) {
                                 event.preventDefault(); // If at least one role does not match, prevent accessing route
-                                $location.path('/dashboard'); // Redirect to dashboard instead
+                                $location.path('/'); // Redirect to dashboard instead
                             }
                         }
                     });
@@ -164,7 +178,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                 // If authentication is not required, make sure is not logged in
                 if (Auth.isLoggedIn()) {
                     event.preventDefault(); // If user is logged in, prevent accessing route
-                    $location.path('/dashboard'); // Redirect to profile instead
+                    $location.path('/'); // Redirect to profile instead
                 }
             }
         }

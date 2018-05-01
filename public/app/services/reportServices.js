@@ -15,6 +15,14 @@ angular.module('reportServices', [])
    reportFactory.reportChanges = function(id){
        return $http.put('/api/editReport2', id);
    }
+   //get info
+  reportFactory.getReports = function(id){
+      return $http.get('/api/editReport/' +id);
+  }
+  //edit
+  reportFactory.reportChanges = function(id){
+      return $http.put('/api/editReport', id);
+  }
     // Get people involved to then edit
     reportFactory.getPeopleInvolved = function(id) {
         return $http.get('/api/editPeopleInvolved/' + id);
