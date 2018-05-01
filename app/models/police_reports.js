@@ -41,6 +41,18 @@ var policeReport = new Schema({
 // Indexes this schema in geoJSON format (critical for running proximity searches)
 policeReport.index({location_coordinates: '2dsphere'});
 
+// Date and Time User Created
+policeReport.pre('save', function(next){
+   now = new Date();
+    if (!this.reported_at) {
+        this.reported_at = now;
+    } else {
+      this.reported_at = now;
+    }
+    next();
+});
+
+
 
 var Police_Report = mongoose.model('Police_Report', policeReport);
 var People_Involved = mongoose.model('People_Involved', peopleInvolvedSchema);
