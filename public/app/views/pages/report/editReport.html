@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- Heading -->
+<div class=" text-center">
+      <br>
+      <p class="h5 text-center mb-4">ORVTIA WEB SERVER (EDIT REPORT)</p>
+</div>
+<!-- Heading -->
+
+<br>
+<a href="/reportManagement">
+  <strong>WALK IN REPORTS</strong></label>
+</a>
+<strong>/</strong>&nbsp;
+<a style="color: grey;" href="#">
+<strong>EDIT</strong></label>
+</a>
+<br>
+<br>
+<div class="container-fluid" >
+  <div class="show-hide-message center-block" ng-show="editReport.successMsg">
+   <div class="alert alert-success center-block">{{editReport.successMsg}}</div>
+  </div>
+  <div class="show-hide-message center-block" ng-show="editReport.errorMsg">
+      <div class="alert alert-danger">{{ editReport.errorMsg }}</div>
+  </div>
+  <div class="md-form form-sm">
+    <form name="updateForm" ng-submit="editReport.updateNew(newAccidentType, newAccidentCause, newCommitted)">
+        <div class="md-form">
+          <select name="accident_type" ng-model="newAccidentType" class="browser-default">
+            <option value="" disabled selected>Accident Type</option>
+            <option value="Rear-End Collision">Rear-End Collision</option>
+            <option value="Side/Roadside Collision">Side/Roadside Collision</option>
+            <option value="Rollover">Rollover</option>
+            <option value="Head-On Collision">Head-On Collision</option>
+            <option value="High Speeding Collision">High Speeding Collision</option>
+            <option value="High Speeding Fixed Object Crashes">High Speeding Fixed Object Crashes</option>
+            <option value="Teenage Drivers">High speeding crashes with pedestrians</option>
+            <option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
+            <option value="Stationary Collision">Stationary Collision</option>
+          </select><br>
+        </div>
+        <div class="md-form">
+          <input ng-model="newCommitted" name="committed_at" type="datetime"><br><br>
+        </div>
+        <div class="md-form">
+          <select name="accident_cause" ng-model="newAccidentCause" class="browser-default">
+            <option value="" disabled selected>Select Cause of Accident</option>
+            <option value="Distracted Driving">Distracted Driving</option>
+            <option value="Speeding">Speeding</option>
+            <option value="Drunk Driving">Drunk Driving</option>
+            <option value="Reckless Driving">Reckless Driving</option>
+            <option value="Rain">Rain</option>
+            <option value="Running Red Lights">Running Red Lights</option>
+            <option value="Teenage Drivers">Teenage Drivers</option>
+            <option value="Resign Defect">Resign Defect</option>
+            <option value="Teenage Drivers">Teenage Drivers</option>
+            <option value="Resign Drivers">Resign Drivers</option>
+            <option value="Unsafe lane Changes">Unsafe lane Changes</option>
+            <option value="Wrong-Way Driving">Wrong-Way Driving</option>
+            <option value="Improper Turns">Improper Turns</option>
+            <option value="Tailgaiting">Tailgaiting</option>
+            <option value="Driving Under Influence of Drugs">Driving Under Influence of Drugs</option>
+            <option value="Road Rage">Road Rage</option>
+            <option value="Tires Blowouts">Tires Blowouts</option>
+            <option value="Deadly Curves">Deadly Curves</option>
+            <option value="Animal Crossings">Animal Crossings</option>
+            <option value="Street Racing">Street Racing</option>
+          </select><br>
+        </div>
+        <button class="btn btn-blue-grey btn-sm" type="submit">Update</button>
+    </form>
+  </div>
+</div>

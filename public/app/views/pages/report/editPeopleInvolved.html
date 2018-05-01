@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="assets/css/compiled.min.css" type="text/css" >
+<link rel="stylesheet" href="assets/css/style2.css" type="text/css" >
+
+<div class="container-fluid">
+<a href="/reportManagement" style="float: left; padding-left: 450px;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
+<h3>EDIT REPORTS</h3>
+<div class="show-hide-message" ng-show="editPeopleInvolved.successMsg">
+ <div class="alert alert-success center-block">{{editPeopleInvolved.successMsg}}</div>
+</div>
+<div class="show-hide-message" ng-show="editPeopleInvolved.errorMsg">
+	<div class="alert alert-danger center-block">{{ editPeopleInvolved.errorMsg }}</div>
+</div>
+<div class="md-form form-md">
+  <form name= "editPeopleInvolved.formData" ng-submit="editPeopleInvolved.updatePeople(addName, editPeopleInvolved.formData.people_involved_name.$valid, addAge, editPeopleInvolved.formData.people_involved_age.$valid, addCitizenship, editPeopleInvolved.formData.people_involved_citizenship.$valid, addGender,editPeopleInvolved.formData.people_involved_gender.$valid, addViolation, editPeopleInvolved.formData.people_involved_violation.$valid,addStatus, editPeopleInvolved.formData.people_involved_status.$valid,addType,editPeopleInvolved.formData.people_involved_type.$valid)">
+    <input type="hidden" class="form-control col-5" type=" text" ng-model="showId" style="padding-left: 15px;">
+    <input class="form-control col-5" type=" text" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
+    <input class="form-control col-5" type=" text" title='Age' ng-model="addAge" placeholder="Age" style="padding-left: 10px;">
+    <input class="form-control col-5" type=" text" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+    <select class="browser-default form-control col-5" title='Gender' ng-model="addGender">
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <select class="browser-default form-control col-5" title='Select Violation' ng-model="addViolation">
+      <option value="" disabled selected>Select Violation</option>
+      <option value="Negligence">Negligence</option>
+      <option value="Recklessness or wanton conduct">Recklessness or wanton conduct</option>
+      <option value="Intentional Misconduct">Intentional Misconduct</option>
+      <option value="Strict Liability">Strict Liability (Regardless or Fault)</option>
+    </select>
+    <select class="browser-default form-control col-5" title='Select Status' ng-model="addStatus">
+      <option value="" disabled selected>Select Status</option>
+      <option value="Unharmed">Unharmed</option>
+      <option value="Injured">Injured</option>
+      <option value="Hospitalized">Hospitalized</option>
+      <option value="Dead">Dead</option>
+    </select>
+    <select class="browser-default form-control col-5" title='Select Type' ng-model="addType">
+      <option value="" disabled selected>Select Type</option>
+      <option value="Suspect">Suspect</option>
+      <option value="Victim">Victim</option>
+    </select>
+    <button type="submit" class="btn btn-md btn-elegant">Save</button>
+  </form>
+</div>
+</div>
