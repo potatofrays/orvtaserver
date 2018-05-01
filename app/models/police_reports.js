@@ -23,8 +23,9 @@ var vehicleSchema = new Schema({
 
 //police_report Schema
 var policeReport = new Schema({
-	committed_at: {type: Date},
+	committed_at: {type: Date, default: Date},
 	reported_at: {type: Date, default: Date.now},
+	updated_at: {type: Date, default: Date.now}
 	accident_type: {type: String},
 	accident_cause: {type: String},
 	police_username:{type: String},
@@ -47,7 +48,7 @@ policeReport.pre('save', function(next){
     if (!this.reported_at) {
         this.reported_at = now;
     } else {
-      this.reported_at = now;
+      this.updated_at = now;
     }
     next();
 });
