@@ -156,6 +156,51 @@ angular.module('reportManagementController', ['reportServices'])
         }, 2000);
       }
     }
+    //function for button Save Changes
+    app.updateCitizenReport = function(valid, editCommittedAt, editAccidentType, editDate, editAccidentCause, editThoroughfare, editMunicipality, editProvince, editCredibility){
+        if(valid){
+            var reportObject = {};
+            reportObject._id = $scope.showId;
+            reportObject.committed_at = $scope.editCommittedAt;
+            reportObject.accident_type = $scope.editAccidentType;
+            reportObject.accident_cause = $scope.editAccidentCause;
+            reportObject.address_thoroughfare = $scope.editThoroughfare;
+            reportObject.address_municipality = $scope.editMunicipality;
+            reportObject.address_province = $scope.editProvince;
+            reportObject.report_credibility = $scope.editCredibility;
+            reportObject.police_username = document.getElementById('username').value;
+        //userObject - to validate first the field to be updated then use route
+        // to use the route created for editting
+        Report.citizenReportChanges(reportObject).then(function(data){
+          if (data.data.success) {
+            $scope.alert = 'alert alert-success'; // Set class for message
+            app.successMsg = data.data.message; // Set success message
+            // Function: After two seconds, clear and re-enable
+            $timeout(function() {
+                app.successMsg = false; // Clear success message
+                app.disabled = false; // Enable form for editing
+            }, 2000);
+          } else {
+              $scope.alert = 'alert alert-danger'; // Set class for message
+              app.errorMsg = data.data.message; // Clear any error messages
+
+              // Function: After two seconds, clear and re-enable
+              $timeout(function() {
+                  app.errorMsg = false; // Clear success message
+                  app.disabled = false; // Enable form for editing
+              }, 2000);
+          }
+        });
+      } else {
+        $scope.alert = 'alert alert-danger'; // Set class for message
+        app.errorMsg = 'Please ensure form is filled out properly'; // Set error message
+        app.disabled = false; // Enable form for editing
+        $timeout(function() {
+            app.errorMsg = false; // Clear success message
+            app.disabled = false; // Enable form for editing
+        }, 2000);
+      }
+    }
 
     app.addPeople = function(valid,showIdPeople, addName, addAge, addCitizenship, addGender, addViolation, addStatus, addType){
         if(valid){

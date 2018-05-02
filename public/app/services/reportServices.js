@@ -20,7 +20,7 @@ angular.module('reportServices', [])
       return $http.get('/api/editReport/' +id);
   }
   //edit
-  reportFactory.reportChanges = function(id){
+  reportFactory.citizenReportChanges = function(id){
       return $http.put('/api/editReport', id);
   }
     // Get people involved to then edit
