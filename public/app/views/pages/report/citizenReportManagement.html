@@ -57,7 +57,7 @@
       <td>{{ report.address_thoroughfare }}</td>
       <td>{{ report.address_municipality }}</td>
       <td>{{ report.address_province }}</td>
-      <td>{{ report.reported_at | date:"MMM d, y '-' h: mma "}}</td>
+      <td>{{ report.reported_at | date:'MMM d y h: mma'}}</td>
       <td>{{ report.report_credibility }}</td>
 			<td>
         <a href="/editReport/{{ report._id }}">

@@ -99,7 +99,7 @@
             </div>
             <div class="modal-body">
                 <form name= "editReport.formData">
-                  <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
+                  <input class="form-control" type=" hidden" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
                   <div class="md-form">
                   <input class="form-control" type=" text" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
                   <ul ng-show="(!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.pattern) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.minlength) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.maxlength)"
@@ -160,7 +160,7 @@
         </div>
         <div class="modal-body">
           <form name= "editReport.formData">
-            <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
+            <input class="form-control" type=" hidden" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
             <div class="md-form">
             <input class="form-control" type=" text" ng-model="addPlateNumber" name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" placeholder=" Plate Number" style="padding-left: 10px;">
             <ul ng-show="(!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.pattern) || (!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
