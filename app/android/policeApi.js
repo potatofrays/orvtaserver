@@ -171,7 +171,7 @@ module.exports = function(router){
 
 	//display all pending
 	router.get('/pending/:station', function(req, res){
-		models.Police_User.find({police_station: req.params.station}, function(err, user){
+		Police_User.find({police_station: req.params.station}, function(err, user){
 			if(err){
 				res.json(500, err);
 			}else{
