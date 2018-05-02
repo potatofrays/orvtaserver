@@ -57,7 +57,7 @@
 		</tr>
 	</thead>
 		<tr ng-repeat = "report in reportManagement.police_reports | filter: searchFilter | orderBy: 'reported_at': true " >
-			<td style="color: black;"><b>{{report.committed_at | date: "fullDate"}}</b></td>
+			<td style="color: black;"><b>{{report.committed_at | date: "medium"}}</b></td>
       <td style="color: red;">{{report.reported_at | date:"MMM.d.y '-' h: mma "}}</td>
       <td>{{report.accident_type}}</td>
       <td>{{report.accident_cause}}</td>
