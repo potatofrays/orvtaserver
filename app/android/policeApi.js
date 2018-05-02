@@ -157,6 +157,8 @@ module.exports = function(router){
 		var addRequest = new Account_Reset();
 		addRequest.account = req.body.account;
 		addRequest.resetType =req.body.resetType;
+		addRequest.user_station = req.body.user_station;
+		addRequest.reset_status = 'Pending';
 		addRequest.save(function(err){
 			if (err) {
 				res.json(500,err);
