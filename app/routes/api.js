@@ -6679,7 +6679,7 @@ module.exports = function(router) {
     });
     router.put('/editReport', function(req,res){
       if(req.body.accident_type || req.body.accident_cause || req.body.address_thoroughfare
-      || req.body.address_municipality || req.body.address_province || req.body.report_credibility){
+      || req.body.address_municipality || req.body.address_province || req.body.report_credibility || req.body.police_username){
       models.Police_Report.findById(req.body._id, function(err, report){
         if (err) {
           res.json(500, err);
@@ -6691,6 +6691,7 @@ module.exports = function(router) {
           report.address_municipality = req.body.address_municipality;
           report.address_province = req.body.address_province;
           report.report_credibility = req.body.report_credibility;
+          report.police_username = req.body.police_username;
           report.save(function(err){
             if (err) {
                  res.json(500, err);

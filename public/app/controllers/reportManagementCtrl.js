@@ -124,6 +124,7 @@ angular.module('reportManagementController', ['reportServices'])
             reportObject.address_municipality = $scope.editMunicipality;
             reportObject.address_province = $scope.editProvince;
             reportObject.report_credibility = $scope.editCredibility;
+            reportObject.police_username = document.getElementById('username').value
         //userObject - to validate first the field to be updated then use route
         // to use the route created for editting
         Report.reportChanges(reportObject).then(function(data){

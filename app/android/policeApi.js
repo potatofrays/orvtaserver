@@ -155,8 +155,10 @@ module.exports = function(router){
 	//send reset request
 	router.post('/request', function(req,res){
 		var addRequest = new Account_Reset();
-		addRequest.account = req.body.account;
-		addRequest.resetType =req.body.resetType;
+		addRequest.forgotPassword = req.body.forgotPassword;
+		addRequest.forgotUsername =req.body.forgotUsername;
+		addRequest.resetPassword = req.body.resetPassword;
+		addRequest.requestUsername = req.body.requestUsername;
 		addRequest.user_station = req.body.user_station;
 		addRequest.reset_status = 'Pending';
 		addRequest.save(function(err){

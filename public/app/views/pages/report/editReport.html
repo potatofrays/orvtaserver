@@ -66,19 +66,21 @@
 					<option value="Deadly Curves">Deadly Curves</option>
 					<option value="Animal Crossings">Animal Crossings</option>
 					<option value="Street Racing">Street Racing</option>
-			  </select><br>
+			  </select>
           <select class="browser-default form-control col-lg"  title='Report Credibility' ng-model="editCredibility" style="padding-left: 20px;">
   					<option value="" disabled selected>Report Credibility</option>
   					<option value="Factual">Factual</option>
   					<option value="Fraud"> Fraud</option>
             <option value="Pending">  Pending</option>
   			  </select>
+          <input type="text" id="username" title='Police Informant' class="form-control col-lg" value="{{main.police_username}}" style="padding-left: 10px;">
             <a href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New; color: grey"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add New People Involved</a><br>
         </div>
         <div class="right">
         <input class="form-control col-lg"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
   			<input class="form-control col-lg"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;">
   			<input class="form-control col-lg"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
+        <input type="text" id="onDuty" title='On Duty' class="form-control col-lg" value="{{main.police_permission}}" style="padding-left: 10px;">
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
         </div>
         <button class="btn btn-elegant btn-md"  type="submit" style="float: right;">Save Changes</button>
