@@ -6691,7 +6691,7 @@ module.exports = function(router) {
           report.address_municipality = req.body.address_municipality;
           report.address_province = req.body.address_province;
           report.report_credibility = req.body.report_credibility;
-          report.police_username = req.body.police_username;
+          report.police_username = document.getElementById('username').value;
           report.save(function(err){
             if (err) {
                  res.json(500, err);

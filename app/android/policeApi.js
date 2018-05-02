@@ -170,12 +170,22 @@ module.exports = function(router){
 	});
 
 	//display all pending
-	router.get('/pending', function(req, res){
-		models.Police_Report.find({report_credibility: 'Pending'},  function(err, pending){
+	router.get('/pending/:station', function(req, res){
+		models.Police_User.find({police_station: req.params.station}, function(err, user){
 			if(err){
 				res.json(500, err);
 			}else{
-				res.json(pending);
+				if(!user){
+					res.json({ success: false, message: 'No User found'});
+				} else {
+					models.Police_Report.find({report_credibility: 'Pending', address_municipality: req.params.station},  function(err, pending){
+						if(err){
+							res.json(500, err);
+						}else{
+							res.json(pending);
+						}
+					});
+				}
 			}
 		});
 	});

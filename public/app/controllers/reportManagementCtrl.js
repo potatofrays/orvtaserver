@@ -124,6 +124,114 @@ angular.module('reportManagementController', ['reportServices'])
             reportObject.address_municipality = $scope.editMunicipality;
             reportObject.address_province = $scope.editProvince;
             reportObject.report_credibility = $scope.editCredibility;
+        //userObject - to validate first the field to be updated then use route
+        // to use the route created for editting
+        Report.reportChanges(reportObject).then(function(data){
+          if (data.data.success) {
+            $scope.alert = 'alert alert-success'; // Set class for message
+            app.successMsg = data.data.message; // Set success message
+            // Function: After two seconds, clear and re-enable
+            $timeout(function() {
+                app.successMsg = false; // Clear success message
+                app.disabled = false; // Enable form for editing
+            }, 2000);
+          } else {
+              $scope.alert = 'alert alert-danger'; // Set class for message
+              app.errorMsg = data.data.message; // Clear any error messages
+
+              // Function: After two seconds, clear and re-enable
+              $timeout(function() {
+                  app.errorMsg = false; // Clear success message
+                  app.disabled = false; // Enable form for editing
+              }, 2000);
+          }
+        });
+      } else {
+        $scope.alert = 'alert alert-danger'; // Set class for message
+        app.errorMsg = 'Please ensure form is filled out properly'; // Set error message
+        app.disabled = false; // Enable form for editing
+        $timeout(function() {
+            app.errorMsg = false; // Clear success message
+            app.disabled = false; // Enable form for editing
+        }, 2000);
+      }
+    }
+
+    app.addPeople = function(valid,showIdPeople, addName, addAge, addCitizenship, addGender, addViolation, addStatus, addType){
+        if(valid){
+            var peopleObject ={};
+            peopleObject._id = $scope.showId;
+            peopleObject.people_involved_name = $scope.addName;
+            peopleObject.people_involved_age = $scope.addAge;
+            peopleObject.people_involved_citizenship = $scope.addCitizenship;
+            peopleObject.people_involved_gender = $scope.addGender;
+            peopleObject.people_involved_violation = $scope.addViolation;
+            peopleObject.people_involved_status = $scope.addStatus;
+            peopleObject.people_involved_type = $scope.addType;
+
+        Report.savePeople(peopleObject).then(function(data){
+            if(data.data.success){
+                $scope.addName = "";
+                $scope.addAge = "";
+                $scope.addCitizenship = "";
+                $scope.addGender = "";
+                $scope.addViolation = "";
+                $scope.addStatus = "";
+                $scope.addType = "";
+            }
+        });
+      }
+    }
+
+    app.addVehicle = function(valid, showIdVehicle, addPlateNumber, addBrand, addVehicleType, addModel){
+        if(valid){
+            var vehicleObject ={};
+            vehicleObject._id = $scope.showId;
+            vehicleObject.vehicle_platenumber = $scope.addPlateNumber;
+            vehicleObject.vehicle_brand = $scope.addBrand;
+            vehicleObject.vehicle_type = $scope.addVehicleType;
+            vehicleObject.vehicle_model = $scope.addModel;
+
+        Report.saveVehicle(vehicleObject).then(function(data){
+            if(data.data.success){
+                $scope.addPlateNumber = "";
+                $scope.addBrand = "";
+                $scope.addVehicleType = "";
+                $scope.addModel = "";
+            }
+        });
+      }
+    }
+})
+.controller('editCitizenReportCtrl', function($scope, $routeParams, Report, $timeout) {
+    var app = this;
+    //get all data and display to form
+    Report.getReports($routeParams.id).then(function(data){
+        if(data.data.success){
+            $scope.editCommittedAt = data.data.report.committed_at;
+            $scope.editAccidentType = data.data.report.accident_type;
+            $scope.editAccidentCause = data.data.report.accident_cause;
+            $scope.editThoroughfare = data.data.report.address_thoroughfare;
+            $scope.editMunicipality = data.data.report.address_municipality;
+            $scope.editProvince = data.data.report.address_province;
+            $scope.editCredibility = data.data.report.report_credibility;
+            $scope.showId = data.data.report._id;
+            $scope.showIdPeople = data.data.report._id;
+            $scope.showIdVehicle = data.data.report._id;
+        }
+    });
+    //function for button Save Changes
+    app.updateReport = function(valid, editCommittedAt, editAccidentType, editDate, editAccidentCause, editThoroughfare, editMunicipality, editProvince, editCredibility){
+        if(valid){
+            var reportObject = {};
+            reportObject._id = $scope.showId;
+            reportObject.committed_at = $scope.editCommittedAt;
+            reportObject.accident_type = $scope.editAccidentType;
+            reportObject.accident_cause = $scope.editAccidentCause;
+            reportObject.address_thoroughfare = $scope.editThoroughfare;
+            reportObject.address_municipality = $scope.editMunicipality;
+            reportObject.address_province = $scope.editProvince;
+            reportObject.report_credibility = $scope.editCredibility;
             reportObject.police_username = document.getElementById('username').value;
         //userObject - to validate first the field to be updated then use route
         // to use the route created for editting
