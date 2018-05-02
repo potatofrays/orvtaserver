@@ -39,7 +39,6 @@ var policeReport = new Schema({
     //audio_id
 });
 
-moment().format('MMMM Do YYYY, h:mm:ss a');
 // Indexes this schema in geoJSON format (critical for running proximity searches)
 policeReport.index({location_coordinates: '2dsphere'});
 
