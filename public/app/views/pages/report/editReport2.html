@@ -139,7 +139,14 @@
         <div class="modal-body">
           <form name= "editReport.formData">
             <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
-            <input class="form-control" type=" text" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
+            <div class="md-form">
+            <input class="form-control" type=" text" name="vehicle_platenumber" ng-pattern="/^[A-Z0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
+            <ul ng-show="(!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.pattern) || (!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+               <li>Only upper case letters and numbers</li>
+               <li>Must not contain special characters</li>
+               <li>Must be at least 7 characters but no more than 8</li>
+             </ul>
+            </div>
             <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
             <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
             <select class="browser-default form-control" ng-model="addVehicleType">

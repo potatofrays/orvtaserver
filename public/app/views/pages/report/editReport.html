@@ -101,7 +101,9 @@
                 <form name= "editReport.formData">
                   <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
                   <input class="form-control" type=" text" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
+                  <div>
                   <input class="form-control" type=" text" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
+                </div>
                   <input class="form-control" type=" text" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
                   <select class="browser-default form-control" ng-model="addGender">
                   <option value="" disabled selected>Select Gender</option>
@@ -127,7 +129,7 @@
                   <option value="Suspect">Suspect</option>
                   <option value="Victim">Victim</option>
               </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addPeople(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
+              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addPeopleInvolved(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
                 </form>
             </div>
         </div>
@@ -147,7 +149,14 @@
         <div class="modal-body">
           <form name= "editReport.formData">
             <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
+            <div class="md-form">
             <input class="form-control" type=" text" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
+            <ul ng-show="(!addForm.formData.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.pattern) || (!addForm.formData.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+               <li>Only upper case letters and numbers</li>
+               <li>Must not contain special characters</li>
+               <li>Must be at least 7 characters but no more than 8</li>
+             </ul>
+            </div>
             <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
             <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
             <select class="browser-default form-control" ng-model="addVehicleType">
@@ -161,7 +170,7 @@
               <option value="Truck">Truck</option>
               <option value="Van">Van</option>
             </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">
+              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicleDetails(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">
             </form>
         </div>
       </div>
