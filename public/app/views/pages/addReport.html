@@ -17,6 +17,8 @@
 
 }
 </style>
+<link rel="stylesheet" href="angularjs-datetime-picker.css" />
+<script src="angularjs-datetime-picker.js"></script>
 
 <div class="containerForm" ><br>
 <a href="/reportManagement" style="float: right; padding-left: 50%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to Reports</a><br><hr>
@@ -50,7 +52,7 @@
 
          <div class="md-form">
             <p style="color: grey; font-size: 12px;">Date and Time Transpired:</p>
-             <input type="datetime-local" class="form control" ng-model="formData.committed_at">
+             <input datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="formData.committed_at">
          </div>
 
          <select class="browser-default form-control" id="cause" ng-model="formData.cause">
@@ -177,7 +179,7 @@
                               <option value="Truck">Truck</option>
                               <option value="Van">Van</option>
                           </select>
-                          <input class="form-control" type=" text" ng-model="addPlatenumber" placeholder=" Plate Number" style="padding-left: 10px;">
+                          <input class="form-control" type=" text" ng-pattern="^[A-Z0-9]{3}?" ng-model="addPlatenumber" placeholder=" Plate Number" style="padding-left: 10px;">
                           <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
                           <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
                           <button type="submit" class="btn btn-md btn-elegant" ng-click="addVehicle()">Save</button>
