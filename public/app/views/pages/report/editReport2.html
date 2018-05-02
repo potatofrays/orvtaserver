@@ -14,6 +14,8 @@
     margin-right:: 10px;
 }
 </style>
+<link rel="stylesheet" href="angularjs-datetime-picker.css" />
+<script src="angularjs-datetime-picker.js"></script>
 <div class="container-fluid">
   <a href="/reportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
@@ -43,7 +45,7 @@
 					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
 					<option value="Stationary Collision">Stationary Collision</option>
 			  </select>
-          <input class="form-control col-lg" title='Date and Time Transpired' type="datetime" ng-model="editCommittedAt" style="padding-left: 10px;" />
+          <input class="form-control col-lg" title='Date and Time Transpired' datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;" />
 			  <select class="browser-default form-control col-lg"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
 					<option value="" disabled selected> Cause of Accident</option>
 					<option value="Distracted Driving"> Distracted Driving</option>
