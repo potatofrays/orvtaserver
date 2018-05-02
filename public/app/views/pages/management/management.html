@@ -304,8 +304,8 @@
       <td>{{ person.police_address}}</td>
       <td style="color: blue;">{{ person.police_station }}</td>
       <td style="color: red;">{{ person.police_permission }}</td>
-      <td>{{ person.police_createdAt | date:'MMM-dd-yyyy H-m' }}</td>
-      <td>{{ person.police_updatedAt | date: 'MMM-dd-yyyy H-m' }}</td><hr>
+      <td>{{ person.police_createdAt | date:'longDate-shortTime' }}</td>
+      <td>{{ person.police_updatedAt | date: 'longDate-shortTime' }}</td><hr>
 			<td>
 				<a href="/edit2/{{ person._id }}">
 					<button type="button" ng-show="management.editAccess" class="btn btn-red btn-sm">Edit</button>
