@@ -119,8 +119,22 @@
                         <form name= "addForm.formData">
 
                           <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;" readonly>
-                          <input class="form-control" type=" text" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
-                          <input class="form-control" type=" text" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
+                          <div class="md-form">
+                          <input class="form-control" type=" text"  ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
+                          <ul ng-show="(!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.pattern) || (!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.minlength) || (!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.maxlength)"
+                          class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
+                              <li>Must have a space in between first and last name</li>
+                              <li>Must not contain any special characters</li>
+                              <li>Must not contain any numbers</li>
+                              <li>Must be at least 3 characters but no more than 20</li>
+                          </ul>
+                          </div>
+                          <div class="md-form">
+                          <input class="form-control" type=" text" name="people-involved_age" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-minlength="1" ng-maxlength="3" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
+                          <ul ng-show="(!addForm.formData.people_involved_age.$pristine && addForm.formData.people_involved_age.$error.pattern) || (!addForm.formData.people_involved_age.$pristine && addForm.formData.people_involved_age.$error.minlength) || (!addForm.formData.people_involved_age.$pristine && addForm.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+                            <li>1-200 age limit</li>
+                         </ul>
+                          </div>
                           <input class="form-control" type=" text" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
                           <select class="browser-default form-control" ng-model="addGender">
                           <option value="" disabled selected>Select Gender</option>
@@ -180,7 +194,7 @@
                               <option value="Van">Van</option>
                           </select>
                           <div class="md-form">
-                          <input class="form-control" name="vehicle_platenumber" type=" text" ng-pattern="/^[A-Z0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlatenumber" placeholder=" Plate Number" style="padding-left: 10px;">
+                          <input class="form-control" name="vehicle_platenumber" type=" text" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlatenumber" placeholder=" Plate Number" style="padding-left: 10px;">
                           <ul ng-show="(!addForm.formData.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.pattern) || (!addForm.formData.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && addForm.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
                              <li>Only upper case letters and numbers</li>
                              <li>Must not contain special characters</li>

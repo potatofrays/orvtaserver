@@ -38,7 +38,7 @@
     <div class="alert alert-danger center-block">{{ reportManagement.showMoreError}}</div>
   </div>
   <div class="md-form" ng-show="searchFilter !== undefined">
-  	<p><strong>Total results: </strong>{{ (reportManagement.police_reports | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (reportManagement.citizen_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
+  	<p><strong>Total results: </strong>{{ (reportManagement.police_reports | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (reportManagement.police_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
   </div>
 
   <!-- Table reportManagement -->

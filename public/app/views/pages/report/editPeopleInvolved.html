@@ -30,8 +30,22 @@
   <form name= "editPeopleInvolved.formData" ng-submit="editPeopleInvolved.updatePeople(addName, editPeopleInvolved.formData.people_involved_name.$valid, addAge, editPeopleInvolved.formData.people_involved_age.$valid, addCitizenship, editPeopleInvolved.formData.people_involved_citizenship.$valid, addGender,editPeopleInvolved.formData.people_involved_gender.$valid, addViolation, editPeopleInvolved.formData.people_involved_violation.$valid,addStatus, editPeopleInvolved.formData.people_involved_status.$valid,addType,editPeopleInvolved.formData.people_involved_type.$valid)">
   <div class="left">
     <input type="hidden" class="form-control col-lg" type=" text" ng-model="showId" style="padding-left: 10px;">
-    <input class="form-control col-lg" type=" text" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
-    <input class="form-control col-lg" type=" text" title='Age' ng-model="addAge" placeholder="Age" style="padding-left: 10px;">
+    <div class="md-form">
+    <input class="form-control col-lg" type=" text" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
+    <ul ng-show="(!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.pattern) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.minlength) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.maxlength)"
+    class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
+        <li>Must have a space in between first and last name</li>
+        <li>Must not contain any special characters</li>
+        <li>Must not contain any numbers</li>
+        <li>Must be at least 3 characters but no more than 20</li>
+    </ul>
+    </div>
+    <div class="md-form">
+    <input class="form-control col-lg" type=" text" title='Age' ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" style="padding-left: 10px;">
+    <ul ng-show="(!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.pattern) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.minlength) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+       <li>1-200 age limit</li>
+   </ul>
+    </div>
     <input class="form-control col-lg" type=" text" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
     <select class="browser-default form-control col-lg" title='Gender' ng-model="addGender">
       <option value="" disabled selected>Select Gender</option>

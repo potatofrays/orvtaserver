@@ -74,8 +74,9 @@
   			<input class="form-control col-lg"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;">
   			<input class="form-control col-lg"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
+
+        <br><button class="btn btn-elegant btn-md"  type="submit" style="float: right;">Save Changes</button>
         </div>
-        <button class="btn btn-elegant btn-md"  type="submit" style="float: right;">Save Changes</button>
 		</form>
   </div>
   <div ng-controller=" editReportCtrl as editReport" class="modal fade" id="modalPeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
@@ -93,7 +94,12 @@
                 <form name= "editReport.formData">
                   <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
                   <input class="form-control" type=" text" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
-                  <input class="form-control" type=" text" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
+                  <div class="md-form">
+                  <input class="form-control" type=" text" ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" style="padding-left: 10px;">
+                  <ul ng-show="(!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.pattern) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.minlength) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+                     <li>1-200 age limit</li>
+                 </ul>
+                </div>
                   <input class="form-control" type=" text" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
                   <select class="browser-default form-control" ng-model="addGender">
                   <option value="" disabled selected>Select Gender</option>
@@ -140,7 +146,7 @@
           <form name= "editReport.formData">
             <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
             <div class="md-form">
-            <input class="form-control" type=" text" name="vehicle_platenumber" ng-pattern="/^[A-Z0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
+            <input class="form-control" type=" text" name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
             <ul ng-show="(!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.pattern) || (!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
                <li>Only upper case letters and numbers</li>
                <li>Must not contain special characters</li>
@@ -160,7 +166,7 @@
               <option value="Truck">Truck</option>
               <option value="Van">Van</option>
             </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">
+              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
             </form>
         </div>
       </div>
