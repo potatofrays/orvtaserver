@@ -43,7 +43,7 @@
 					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
 					<option value="Stationary Collision">Stationary Collision</option>
 			  </select>
-          <input class="form-control col-lg" autocomplete="off" ng-attern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" title='Date and Time Transpired' type="datetime-local" ng-model="editCommittedAt">
+          <input class="form-control col-lg" autocomplete="on" title='Date and Time Transpired' type="datetime-local" ng-model="editCommittedAt" required>
 			  <select class="browser-default form-control col-lg"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
 					<option value="" disabled selected> Cause of Accident</option>
 					<option value="Distracted Driving"> Distracted Driving</option>
