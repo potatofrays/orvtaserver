@@ -23,7 +23,7 @@ var vehicleSchema = new Schema({
 
 //police_report Schema
 var policeReport = new Schema({
-	committed_at: {type: Date, default: Date.new},
+	committed_at: {type: Date},
 	reported_at: {type: Date, default: Date.now},
 	accident_type: {type: String},
 	accident_cause: {type: String},
@@ -38,7 +38,6 @@ var policeReport = new Schema({
     //image_id
     //audio_id
 });
-new Date(Date.now()).toISOString()
 // Indexes this schema in geoJSON format (critical for running proximity searches)
 policeReport.index({location_coordinates: '2dsphere'});
 
