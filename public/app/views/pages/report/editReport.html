@@ -124,7 +124,13 @@
                      <li>1-200 age limit</li>
                  </ul>
                   </div>
-                  <input class="form-control" type=" text" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+                  <div class="md-form">
+                  <input class="form-control" type=" text" name="people_involved_citizenship" ng-pattern="/^[A-Z ]*$/" ng-minlength="10" ng-maxlength="15" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+                  <ul ng-show="(!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.pattern) || (!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+                     <li>Must not contain special characters and numbers</li>
+                     <li>Must be at least 10 characters but no more than 15</li>
+                   </ul>
+                 </div>
                   <select class="browser-default form-control" ng-model="addGender">
                     <option value="" disabled selected>Select Gender</option>
                     <option value="Male">Male</option>
