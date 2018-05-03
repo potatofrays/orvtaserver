@@ -165,7 +165,7 @@ module.exports = function(router){
 			if (err) {
 				res.json(500,err);
 			}
-				res.json({success: true});
+				res.json({success: true, message: 'New Reset Request'});
 		});
 	});
 
