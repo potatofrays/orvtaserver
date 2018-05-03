@@ -21,7 +21,7 @@ module.exports = function(router){
 					        if (!validPassword) {
 					            res.json({ success: false, message: 'Could not authenticate password' }); // Password does not match password in database
 					        } else {
-										Police_User.findOne({police_username: req.params.username},{ police_permission: 'user'}, function(err, username){
+										Police_User.findOne({police_username: req.params.username}, function(err, username){
 												if (username.police_permission !== 'user'){
 													 res.json({ success: false, message: 'You must be a police user to log in' }); // Password was not provided
 												} else {
