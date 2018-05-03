@@ -171,8 +171,6 @@ module.exports = function(router) {
                     // Check if user does exist, then compare password provided by user
                     if (!req.body.police_password){
                       res.json({ success: false, message: 'No password provided' }); // Password and Station was not provided
-                    } else if (!req.body.police_username){
-                        res.json({ success: false, message: 'No Username provided' }); // Password and Station was not provided
                     } else {
                         var validPassword = user.comparePassword(req.body.police_password); // Check if password matches password provided by user
                         if (!validPassword) {
@@ -180,6 +178,8 @@ module.exports = function(router) {
                         } else {
                           if (user.police_permission === 'user'){
                               res.json({ success: false, message: 'You must be an admin to login.' }); // Password does not match password in database
+                          } else if (user.police_permission === 'main' && user.police_station !== 'Lingayen'){
+                                res.json({ success: false, message: 'Your station must be Lingayen.' }); // Password does not match password in database
                           } else {
                             var token = jwt.sign({ police_name: user.police_name, police_username: user.police_username, police_email: user.police_email, police_station: user.police_station, police_permission: user.police_permission  }, secret, { expiresIn: '24h' }); // Logged in: Give user token
                             res.json({ success: true, message: 'User authenticated', token: token }); // Return token in JSON object to controller
