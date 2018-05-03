@@ -22,10 +22,8 @@
             <input type="text" ng-model="searchKeyword" id="formSearch" class="form-control">
             <label for="formSearch">Search</label>
           </div>
-           <button class="btn btn-info mb-1 btn-red btn-sm" ng-click="citizenReportManagement.search(searchKeyword, number);">Search <i class="fa fa-check ml-1"></i></button>
-          <button class="btn btn-info mb-1 btn-grey btn-sm" ng-click="citizenReportManagement.clear();">Clear <i class="fa fa-check ml-1"></i></button>
-          <a href="/dashboard">
-          <button type="button" ng-show="citizenReportManagement.createRepotBtn" class="btn btn-elegant btn-sm" style="float: right;">CREATE REPORT </i></button></a>
+           <button class="btn btn-info mb-1 btn-red btn-sm px-2" ng-click="citizenReportManagement.search(searchKeyword, number);">Search <i class="fa fa-check ml-1"></i></button>
+          <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-click="citizenReportManagement.clear();">Clear <i class="fa fa-check ml-1"></i></button>
         </div>
 
   <!--alert-->
@@ -61,7 +59,7 @@
       <td>{{ report.report_credibility }}</td>
 			<td>
         <a href="/editReport/{{ report._id }}">
-          <button type="button" class="btn btn-grey btn-sm" on-click="show()">Update</button>
+          <button type="button" class="btn btn-grey btn-sm px-2" title='Update Citizen Report' on-click="show()">Update</button>
         </a>
       </td>
 		</tr>

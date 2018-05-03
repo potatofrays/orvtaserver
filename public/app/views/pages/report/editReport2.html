@@ -75,7 +75,7 @@
   			<input class="form-control col-lg"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
 
-        <br><button class="btn btn-elegant btn-md"  type="submit" style="float: right;">Save Changes</button>
+        <br><button class="btn btn-elegant btn-md px-2"  type="submit" style="float: right;">Save Changes</button>
         </div>
 		</form>
   </div>
@@ -125,7 +125,7 @@
                   <option value="Suspect">Suspect</option>
                   <option value="Victim">Victim</option>
               </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addPeople(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addPeople(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
                 </form>
             </div>
         </div>
@@ -166,7 +166,7 @@
               <option value="Truck">Truck</option>
               <option value="Van">Van</option>
             </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
             </form>
         </div>
       </div>

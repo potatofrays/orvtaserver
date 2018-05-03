@@ -22,10 +22,10 @@
             <input type="text" ng-model="searchKeyword" id="formSearch" class="form-control">
             <label for="formSearch">Search</label>
           </div>
-           <button class="btn btn-info mb-1 btn-red btn-sm" ng-click="reportManagement.search(searchKeyword, number);">Search <i class="fa fa-check ml-1"></i></button>
-          <button class="btn btn-info mb-1 btn-grey btn-sm" ng-click="reportManagement.clear();">Clear <i class="fa fa-check ml-1"></i></button>
+           <button class="btn btn-info mb-1 btn-red btn-sm px-2" ng-click="reportManagement.search(searchKeyword, number);" title='Search Police Reports'>Search <i class="fa fa-check ml-1"></i></button>
+          <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-click="reportManagement.clear();" title='Clear'>Clear <i class="fa fa-check ml-1"></i></button>
           <a href="/addReport">
-         <button type="button"  class="btn btn-elegant btn-sm"  style="float: right;">CREATE REPORT </i></button></a>
+         <button type="button" ng-show="reportManagement.createReportBtn" title='Add Walk In Rport' class="btn btn-elegant btn-sm px-2"  style="float: right;">CREATE REPORT </i></button></a>
         </div>
 
   <!--alert-->
@@ -68,7 +68,7 @@
       <td>{{report.police_username}}</td>
 			<td>
         <a href="/editReport2/{{ report._id }}">
-					<button type="button" ng-show="reportManagement.generateReportAccess" class="btn btn-grey btn-sm">Update</button>
+					<button type="button" ng-show="reportManagement.generateReportAccess" class="btn btn-grey btn-sm px-2" title='Update Police Report'>Update</button>
 				</a>
         <a href="#">
           <label ng-show="reportManagement.viewAccess"><strong><b>VIEW ONLY</b></strong></label>

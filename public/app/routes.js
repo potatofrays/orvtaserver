@@ -8,7 +8,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
     // Route: Home
         .when('/', {
         templateUrl: 'app/views/pages/home.html',
-        authenticated: true
+        authenticated: false
     })
 
     // Route: About Us (for testing purposes)
@@ -161,7 +161,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                 // Check if authentication is required, then if permission is required
                 if (!Auth.isLoggedIn()) {
                     event.preventDefault(); // If not logged in, prevent accessing route
-                    $location.path('/login'); // Redirect to home instead
+                    $location.path('/'); // Redirect to home instead
                 } else if (next.$$route.police_permission) {
                     // Function: Get current user's permission to see if authorized on route
                     User.getPermission().then(function(data) {
@@ -169,7 +169,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                         if (next.$$route.police_permission[0] !== data.data.police_permission) {
                             if (next.$$route.police_permission[1] !== data.data.police_permission) {
                                 event.preventDefault(); // If at least one role does not match, prevent accessing route
-                                $location.path('/'); // Redirect to dashboard instead
+                                $location.path('/dashboard'); // Redirect to dashboard instead
                             }
                         }
                     });
@@ -178,7 +178,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                 // If authentication is not required, make sure is not logged in
                 if (Auth.isLoggedIn()) {
                     event.preventDefault(); // If user is logged in, prevent accessing route
-                    $location.path('/'); // Redirect to profile instead
+                    $location.path('/dashboard'); // Redirect to profile instead
                 }
             }
         }

@@ -10,7 +10,6 @@ angular.module('reportManagementController', ['reportServices'])
     app.editReportAccess = false; // Clear access on load
     app.limit = 3; // Set a default limit to ng-repeat
     app.searchLimit = 0; // Set the default search page results limit to zero
-    app.viewLoginBtn = false;
 
       function getFind(){
       Report.getFind().then(function(data){
@@ -22,19 +21,18 @@ angular.module('reportManagementController', ['reportServices'])
                     app.accessDenied = false; // Show table
                     // Check if logged in report is an admin or moderator
                     if (data.data.police_permission === 'main') {
-                      app.addWalkInAccess = false;
                       app.permissionAccess = true;
                       app.stationAccess = true;
                       app.mainAccess = true
                       app.viewAccess = true;
+                      app.createReportBtn = false;
                     } else if (data.data.police_permission === 'station') {
-                      app.addWalkInAccess = true;
                       app.editReportAccess = true; // Show edit button
                       app.permissionAccess = false;
                       app.viewAccess = false;
                       app.userAccess = true;
-                      app.viewLoginBtn = false;
                       app.generateReportAccess = true;
+                      app.createReportBtn = true;
                     }
                 } else {
                     app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options
@@ -168,10 +166,10 @@ angular.module('reportManagementController', ['reportServices'])
             reportObject.address_municipality = $scope.editMunicipality;
             reportObject.address_province = $scope.editProvince;
             reportObject.report_credibility = $scope.editCredibility;
-            reportObject.police_username - document.getElementById('username').value;
+            reportObject.police_username = document.getElementById('username').value;
         //userObject - to validate first the field to be updated then use route
         // to use the route created for editting
-        Report.citizeneportChanges(reportObject).then(function(data){
+        Report.citizenReportChanges(reportObject).then(function(data){
           if (data.data.success) {
             $scope.alert = 'alert alert-success'; // Set class for message
             app.successMsg = data.data.message; // Set success message

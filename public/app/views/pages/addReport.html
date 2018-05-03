@@ -99,7 +99,7 @@
         <div class="md-form">
          <!--Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.-->
 
-         <button type="submit" class="btn btn-elegant btn-sm" ng-click="createReport()" ng-disabled="addForm.$invalid">Click to save</button>
+         <button type="submit" class="btn btn-elegant btn-sm pc-2" ng-click="createReport()" ng-disabled="addForm.$invalid">Click to save</button>
        </div>
        <hr>
         <h6 ng-show="add.clickView">Add More Details to Report:</h6>
@@ -210,5 +210,5 @@
             </div>
         </div>
         <br>
-        <button class="btn btn-info mb-1 btn-grey btn-sm" ng-show="add.clickView" onclick="javascript:window.location.reload()">Add New Report</button>
+        <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-show="add.clickView" onclick="javascript:window.location.reload()">Add New Report</button>
      </form>

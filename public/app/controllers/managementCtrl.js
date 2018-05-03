@@ -2648,16 +2648,18 @@ angular.module('managementController', [])
 
     // Function: Delete a user
     app.deleteUser = function(police_username) {
-        // Run function to delete a user
-        User.deleteUser(police_username).then(function(data) {
-            // Check if able to delete user
-            if (data.data.success) {
-                getUsers(); // Reset users on page
-            } else {
-                app.showMoreError = data.data.message; // Set error message
-            }
-        });
-    };
+       if (confirm('Are you sure you want to delete this?')) {
+         // Run function to delete a user
+         User.deleteUser(police_username).then(function(data) {
+             // Check if able to delete user
+             if (data.data.success) {
+                 getUsers(); // Reset users on page
+             } else {
+                 app.showMoreError = data.data.message; // Set error message
+             }
+         });
+       }
+     };
 
     // Function: Perform a basic search function
     app.search = function(searchKeyword, number) {

@@ -15,7 +15,8 @@
 }
 </style>
 <div class="container-fluid">
-  <a href="/citizenReportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
+  <a href="/citizenReportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Citizen Reports</a><br>
+  <a href="/reportMeportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Citizen Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
   <div align="center">
     <div class="show-hide-message" ng-show="editReport.successMsg">
@@ -83,7 +84,7 @@
         <input type="text" id="onDuty" title='On Duty' class="form-control col-lg" value="{{main.police_permission}}" style="padding-left: 10px;">
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
         </div>
-        <button class="btn btn-elegant btn-md"  type="submit" style="float: right;">Save Changes</button>
+        <button class="btn btn-elegant btn-md px-2"  type="submit" style="float: right;">Save Changes</button>
 		</form>
   </div>
   <div ng-controller=" editReportCtrl as editReport" class="modal fade" id="modalPeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
@@ -141,7 +142,7 @@
                       <option value="Suspect">Suspect</option>
                       <option value="Victim">Victim</option>
                   </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addPeopleInvolved(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addPeopleInvolved(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
                 </form>
             </div>
         </div>
@@ -182,7 +183,7 @@
               <option value="Truck">Truck</option>
               <option value="Van">Van</option>
             </select>
-              <button type="submit" class="btn btn-md btn-elegant" ng-click="editReport.addVehicleDetails(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addVehicleDetails(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
             </form>
         </div>
       </div>

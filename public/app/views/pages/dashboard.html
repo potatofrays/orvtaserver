@@ -31,6 +31,7 @@
 .legend .notawesome { background-color: #FFFF33; }
 
 </style>
+
 <div class="jumbotron text-center float-left ">
 <div align="center">
   <ul class="legend">
@@ -42,7 +43,8 @@
 </div>
 </div>
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center" >
+    <button type="button" class="btn btn-blue-grey btn-md" data-toggle="modal" ng-show="addReport.addWalkInAccess" data-target="#modalAddReport">Add Walk-In Report  &nbsp;<i class="fa fa-plus-circle prefix fa-md"></i></button>
     <div class="modal fade" id="modalAddReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog cascading-modal" role="document">
          <!--Content-->
@@ -63,47 +65,32 @@
                  </div>
                  <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                  <div class="md-form form-sm">
-                   <select name="accidentType" id="accidentType" ng-model="formData.accident_type" class="browser-default">
-                     <option value="" disabled selected>Accident Type</option>
-                     <option value="Rear-End Collision">Rear-End Collision</option>
-                     <option value="Side/Roadside Collision">Side/Roadside Collision</option>
-                     <option value="Rollover">Rollover</option>
-                     <option value="Head-On Collision">Head-On Collision</option>
-                     <option value="High Speeding Collision">High Speeding Collision</option>
-                     <option value="High Speeding Fixed Object Crashes">High Speeding Fixed Object Crashes</option>
-                     <option value="Teenage Drivers">High speeding crashes with pedestrians</option>
-                     <option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
-                     <option value="Stationary Collision">Stationary Collision</option>
-                   </select>
+                     <label for="informant">Informant</label>
+                     <input type="text" class="form-control" id="informant" ng-model="formData.informant" required>
                  </div>
                  <div class="md-form form-sm">
-                   <select name="accidentCause" id="accidentCause" ng-model="formData.accident_cause"  class="browser-default">
-                     <option value="" disabled selected>Cause of Accident</option>
-                     <option value="Distracted Driving">Distracted Driving</option>
-                     <option value="Speeding">Speeding</option>
-                     <option value="Drunk Driving">Drunk Driving</option>
-                     <option value="Reckless Driving">Reckless Driving</option>
-                     <option value="Rain">Rain</option>
-                     <option value="Running Red Lights">Running Red Lights</option>
-                     <option value="Teenage Drivers">Teenage Drivers</option>
-                     <option value="Resign Defect">Resign Defect</option>
-                     <option value="Teenage Drivers">Teenage Drivers</option>
-                     <option value="Resign Drivers">Resign Drivers</option>
-                     <option value="Unsafe lane Changes">Unsafe lane Changes</option>
-                     <option value="Wrong-Way Driving">Wrong-Way Driving</option>
-                     <option value="Improper Turns">Improper Turns</option>
-                     <option value="Tailgaiting">Tailgaiting</option>
-                     <option value="Driving Under Influence of Drugs">Driving Under Influence of Drugs</option>
-                     <option value="Road Rage">Road Rage</option>
-                     <option value="Tires Blowouts">Tires Blowouts</option>
-                     <option value="Deadly Curves">Deadly Curves</option>
-                     <option value="Animal Crossings">Animal Crossings</option>
-                     <option value="Street Racing">Street Racing</option>
-                   </select>
+                   <label for="statement">Statement</label>
+                   <input type="text" class="form-control" id="statement" ng-model="formData.statement" required>
                  </div>
                  <div class="md-form form-sm">
-                   <label for="address">Thoroughfare</label>
-                   <input type="text" class="form-control" id="address" ng-model="formData.location_thoroughfare">
+                     <label for="accidentType">Accident Type</label>
+                     <input type="text" class="form-control" id="accidentType" ng-model="formData.accidentType" required>
+                 </div>
+                   <div class="md-form form-sm">
+                     <label for="vehicleType">Vehicle Type</label>
+                     <input type="text" class="form-control" id="vehicleType" ng-model="formData.vehicleType" required>
+                 </div>
+                 <div class="md-form form-sm">
+                     <label for="plateNum">Plate Number</label>
+                     <input type="text" class="form-control" id="plateNum" ng-model="formData.plateNum" required>
+                 </div>
+                 <div class="md-form form-sm">
+                     <label for="accidentCause">Cause of Accident</label>
+                     <input type="text" class="form-control" id="accidentCause" ng-model="formData.accidentCause" required>
+                 </div>
+                 <div class="md-form form-sm">
+                   <label for="address">Address</label>
+                   <input type="text" class="form-control" id="address" ng-model="formData.address">
                    <button id="btn" class="btn btn-blue-grey btn-sm">Get Lat-Long</button>
                  </div>
                  <div class="md-form form-sm">
@@ -116,56 +103,29 @@
                  </div>
                  <div class="md-form">
                    <p>Time and Date of Accident:</p>
-                   <input ng-model="formData.committed_at" class="form-control" type="datetime-local" required>
+                   <input ng-model="formData.dateTimeOccured"  class="form-control" type="datetime-local" required>
                  </div>
                  <div class="md-form">
                     <label>Station:</label>
-                    <input ng-model="formData.location_municipality" class="form-control" id="station" type="text" value="{{main.police_station}}" readonly>
+                    <input ng-model="formData.station" class="form-control" id="station" type="text" value="{{main.policestation}}" readonly>
                 </div>
                 <div class="md-form">
                    <label>Police On Duty:</label>
-                   <input ng-model="formData.police_username" class="form-control" id="policereporter" value="{{main.police_username}}" type="text" readonly>
-                </div>
+                   <input ng-model="formData.policereporter" class="form-control" id="policereporter" value="{{main.username}}" type="text" readonly>
+                <div class="md-form">
                  <div class="md-form form-sm">
                    <span><button ng-click="refreshLoc()" class="btn btn-elegant btn-md"><span class="fa fa-refresh"></span></button></span>
+                 </div>
                  <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
                  <button type="submit" class="btn btn-elegant btn-sm" ng-click="createReport()" ng-disabled="addForm.$invalid">Submit</button>
-               </div>
              </form>
           </div>
              <!--Footer-->
              <div class="modal-footer">
                  <button type="button" class="btn btn-mdb btn-sm btn-grey waves-effect ml-auto" data-dismiss="modal"><i class="fa fa-close"></i>  &nbsp;Close</button>
              </div>
-           </div>
+         </div>
          <!--/.Content-->
-       </div>
-    </div>
+     </div>
   </div>
-<div class="container-fluid" style="float: left;">
-  <br>
-  <table class="table table-hover table-bordered table-responsive table-sm">
-  <thead  class="blue-grey lighten-4">
-    <tr>
-      <th><b>Vehicle Accident Type</b></th>
-      <th><b>Total Accident</b></th>
-    </tr>
-  </thead>
-    <tr>
-      <td>Traffic Collision</td>
-      <td>40</td>
-    </tr>
-  </table>
-  <table class="table table-hover table-bordered table-responsive">
-  <thead  class="blue-grey lighten-4">
-    <tr>
-      <th><b>Vehicle Commonly Involved</b></th>
-      <th><b>Total</b></th>
-    </tr>
-  </thead>
-    <tr>
-      <td>Bus</td>
-      <td>40</td>
-    </tr>
-  </table>
 </div>
