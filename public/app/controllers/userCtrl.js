@@ -1,5 +1,4 @@
 angular.module('userControllers', ['userServices'])
-
 // Controller: regCtrl is used for users to register an account
 .controller('regCtrl', function($http, $location, $timeout, User, $scope) {
     var app = this;
