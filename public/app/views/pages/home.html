@@ -18,7 +18,8 @@
   padding-left: 20px;
   padding-right: 20px;
   width: 370px;
-  background-color: #eaebed;
+  background-color:	#d9d9d9;
+
   padding-top: 28px;
   position: relative;
 }
@@ -34,25 +35,23 @@
 <div class="containerForm jumbotron" ng-controller="mainCtrl as main">
   &nbsp;&nbsp;&nbsp;<img src="assets/img/orvtia_logo.png" style="height: 200px; width: 300px;"class="img-fluid flex-center">
   <h4 style="font-family: Courier New; font-size: 20px;">LOGIN</h4>
-  <br>
+
   <!--alert-->
   <div class= "jumbotron text-center" ng-show="main.loading">
     <span class="glyphicon glyphicon-repeat spinner"></span>
     <p>Loading....</p>
   </div>
-  <div align="center">
-  <div class="show-hide-message center-block"  ng-show="main.successMsg">
-    <div class="alert alert-success center-block tdtd" style=" font-family: Courier New; font-size: 12px;">{{ main.successMsg }}</div>
+  <div class="md-form container text-center">
+  <div class="show-hide-message"  ng-show="main.successMsg">
+    <div class="alert alert-success tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 200px; height: 50px;">{{ main.successMsg }}</div>
   </div>
   <div class="show-hide-message" ng-show="main.errorMsg">
-    <div class="alert alert-danger" style=" font-family: Courier New; font-size: 12px; width: 100px; height: 90px;">{{ main.errorMsg }}</div>
+    <div class="alert alert-danger tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 200px; height: 50px;">{{ main.errorMsg }}</div>
   </div>
 </div>
-  <br>
   <form class="form-signin" ng-submit="main.doLogin(loginData);">
-
       <div class="md-form">
-          <input type=" text" placeholder="Username" class="form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username" style="padding-left:10px;">
+          <input type="text" placeholder="Username" class="md-form form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username">
       </div>
       <div class="md-form">
           <input type="password" placeholder="Password" class="md-form form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">
