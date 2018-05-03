@@ -21,8 +21,8 @@
 }
 </style>
 <div class="container-fluid">
-  <a href="/citizenReportManagement" style="float: right; color: grey; padding-left: 70%;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Citizen Reports</a><br>
-  <a href="/reportManagement" style="float: right; padding-left: 70%;color: grey; " class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Reports</a><br>
+  <a href="/citizenReportManagement" style="float: right; color: grey; padding-left: 70%;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>&nbsp;All Citizen Reports</a><br>
+  <a href="/reportManagement" style="float: right; padding-left: 70%;color: grey; " class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>&nbsp;All Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
   <div align="center">
     <div class="show-hide-message" ng-show="editReport.successMsg">
@@ -37,7 +37,7 @@
     <br>
   	<form name="editReport.formData" ng-submit="editReport.updateCitizenReport(editCommittedAt, editReport.formData.committed_at, editAccidentType, editReport.formData.accident_type.$valid, editAccidentCause, editReport.formData.accident_cause.$valid, editThoroughfare, editReport.formData.address_thoroughfare.$valid, editMunicipality, editReport.formData.address_municipality.$valid, editProvince, editReport.formData.address_province.$valid)">
       <div class="left">
-        <input type="hidden" class="form-control col-lg tdtd" type=" text" ng-model="showId">
+        <input type="hidden" ng-model="showId" readonly>
 			  <select class="browser-default form-control col-lg tdtd" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;">
 					<option value="" disabled selected>Accident Type</option>
 					<option value="Rear-End Collision">Rear-End Collision</option>
@@ -50,7 +50,6 @@
 					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
 					<option value="Stationary Collision">Stationary Collision</option>
 			  </select>
-          <input class="form-control col-lg tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
 			  <select class="browser-default form-control col-lg tdtd"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
 					<option value="" disabled selected> Cause of Accident</option>
 					<option value="Distracted Driving"> Distracted Driving</option>
@@ -80,14 +79,15 @@
   					<option value="Fraud"> Fraud</option>
             <option value="Pending">  Pending</option>
   			  </select>
-          <input type="text" id="username" title='Police Informant' class="form-control col-lg tdtd" value="{{main.police_username}}" style="padding-left: 10px;">
+          <input type=" text" id="username" title='Police Informant' class="form-control col-lg tdtd" value="{{main.police_username}}" style="padding-left: 10px;" readonly>
+            <input class="form-control col-lg tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
             <a href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New; color: grey"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add New People Involved</a><br>
         </div>
         <div class="right">
         <input class="form-control col-lg tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
-  			<input class="form-control col-lg tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;">
-  			<input class="form-control col-lg tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
-        <input type="text" id="onDuty" title='On Duty' class="form-control col-lg tdtd" value="{{main.police_permission}}" style="padding-left: 10px;">
+  			<input class="form-control col-lg tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;" readonly>
+  			<input class="form-control col-lg tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;" readonly>
+        <input type=" text" id="onDuty" title='On Duty' class="form-control col-lg tdtd" value="{{main.police_permission}}" style="padding-left: 10px;" readonly>
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
         </div>
 
@@ -101,61 +101,61 @@
             <!--Header-->
             <div class="modal-header bg-dark white-text">
                 <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> PEOPLE INVOLVE</h4>
-                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form name= "editReport.formData">
-                  <input class="form-control" type=" hidden" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
-                  <div class="md-form">
-                  <input class="form-control" type=" text" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
-                  <ul ng-show="(!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.pattern) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.minlength) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.maxlength)"
-                  class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                      <li>Must have a space in between first and last name</li>
-                      <li>Must not contain any special characters</li>
-                      <li>Must not contain any numbers</li>
-                      <li>Must be at least 3 characters but no more than 20</li>
-                  </ul>
-                  </div>
-                  <div class="md-form">
-                  <input class="form-control" type=" text" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" placeholder=" Age" style="padding-left: 10px;">
-                  <ul ng-show="(!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.pattern) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.minlength) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-                     <li>1-200 age limit</li>
-                 </ul>
-                  </div>
-                  <div class="md-form">
-                  <input class="form-control" type=" text" name="people_involved_citizenship" ng-pattern="/^[A-Z ]*$/" ng-minlength="10" ng-maxlength="15" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
-                  <ul ng-show="(!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.pattern) || (!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-                     <li>Must not contain special characters and numbers</li>
-                     <li>Must be at least 10 characters but no more than 15</li>
-                   </ul>
-                 </div>
-                  <select class="browser-default form-control" ng-model="addGender">
-                    <option value="" disabled selected>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                  <select class="browser-default form-control" ng-model="addViolation">
-                    <option value="" disabled selected>Select Violation</option>
-                    <option value="Negligence">Negligence</option>
-                    <option value="Recklessness or wanton conduct">Recklessness or wanton conduct</option>
-                    <option value="Intentional Misconduct">Intentional Misconduct</option>
-                    <option value="Strict Liability">Strict Liability (Regardless or Fault)</option>
-                  </select>
-                  <select class="browser-default form-control" ng-model="addStatus">
-                    <option value="" disabled selected>Select Status</option>
-                    <option value="Unharmed">Unharmed</option>
-                    <option value="Injured">Injured</option>
-                    <option value="Hospitalized">Hospitalized</option>
-                    <option value="Dead">Dead</option>
-                  </select>
-                  <select class="browser-default form-control" ng-model="addType">
-                      <option value="" disabled selected>Select Type</option>
-                      <option value="Suspect">Suspect</option>
-                      <option value="Victim">Victim</option>
-                  </select>
-              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addPeopleInvolved(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
+              <form name= "editReport.formData">
+                <input type="hidden" ng-model="showIdPeople" readonly>
+                <div class="md-form">
+                <input class="form-control" type=" text" ng-model="addName" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' placeholder=" Name" style="padding-left: 10px;">
+                <ul ng-show="(!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.pattern) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.minlength) || (!editReport.formData.people_involved_name.$pristine && editReport.formData.people_involved_name.$error.maxlength)"
+                class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
+                    <li>Must have a space in between first and last name</li>
+                    <li>Must not contain any special characters</li>
+                    <li>Must not contain any numbers</li>
+                    <li>Must be at least 3 characters but no more than 20</li>
+                </ul>
+              </div>
+                <div class="md-form">
+                <input class="form-control" type=" text" ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" style="padding-left: 10px;">
+                <ul ng-show="(!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.pattern) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.minlength) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+                   <li>1-200 age limit</li>
+               </ul>
+              </div>
+              <div class="md-form">
+              <input class="form-control" type=" text" name="people_involved_citizenship" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="5" ng-maxlength="15" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+              <ul ng-show="(!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.pattern) || (!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+                 <li>Must not contain special characters and numbers</li>
+                 <li>Must be at least 10 characters but no more than 15</li>
+               </ul>
+             </div>
+              <select class="browser-default form-control" ng-model="addGender">
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+              </select>
+              <select class="browser-default form-control" ng-model="addViolation">
+                  <option value="" disabled selected>Select Violation</option>
+                  <option value="Negligence">Negligence</option>
+                  <option value="Recklessness or wanton conduct">Recklessness or wanton conduct</option>
+                  <option value="Intentional Misconduct">Intentional Misconduct</option>
+                  <option value="Strict Liability">Strict Liability (Regardless or Fault)</option>
+              </select>
+                <select class="browser-default form-control" ng-model="addStatus">
+                  <option value="" disabled selected>Select Status</option>
+                  <option value="Unharmed">Unharmed</option>
+                  <option value="Injured">Injured</option>
+                  <option value="Hospitalized">Hospitalized</option>
+                  <option value="Dead">Dead</option>
+              </select>
+              <select class="browser-default form-control" ng-model="addType">
+                  <option value="" disabled selected>Select Type</option>
+                  <option value="Suspect">Suspect</option>
+                  <option value="Victim">Victim</option>
+              </select>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addPeople(addName, editReport.formData.people_involved_name.$valid, addAge, editReport.formData.people_involved_age.$valid,addCitizenship, editReport.formData.people_involved_citizenship.$valid,addGender,editReport.formData.people_involved_gender.$valid,addViolation,editReport.formData.people_involved_violation.$valid,addStatus, editReport.formData.people_involved_status.$valid,addType,editReport.formData.people_involved_type.$valid)">Save</button>
                 </form>
             </div>
         </div>
@@ -168,15 +168,15 @@
         <!--Header-->
         <div class="modal-header bg-dark white-text">
             <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> VEHICLE DETAILS</h4>
-            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">
+            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
           <form name= "editReport.formData">
-            <input class="form-control" type=" hidden" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
+            <input type="hidden" ng-model="showIdVehicle" readonly>
             <div class="md-form">
-            <input class="form-control" type=" text" ng-model="addPlateNumber" name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" placeholder=" Plate Number" style="padding-left: 10px;">
+            <input class="form-control" type=" text" name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
             <ul ng-show="(!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.pattern) || (!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
                <li>Only upper case letters and numbers</li>
                <li>Must not contain special characters</li>
@@ -185,18 +185,18 @@
             </div>
             <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
             <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
-            <select class="browser-default form-control" ng-model="addVehicleType">
-              <option value="" disabled selected>Vehicle Type</option>
-              <option value="Bus">Bus</option>
-              <option value="Bicycle">Bicycle</option>
-              <option value="Car">Car</option>
-              <option value="Jeep">Jeep</option>
-              <option value="Motorcycle">Motorcycle</option>
-              <option value="Tricycle">Tricycle</option>
-              <option value="Truck">Truck</option>
-              <option value="Van">Van</option>
-            </select>
-              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addVehicleDetails(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
+            <input list="vehicleTypes" name="vehicleType" ng-model="addVehicleType" class="form-control">
+             <datalist id="vehicleTypes">
+               <option value="Bus">Bus</option>
+               <option value="Bicycle">Bicycle</option>
+               <option value="Car">Car</option>
+               <option value="Jeep">Jeep</option>
+               <option value="Motorcycle">Motorcycle</option>
+               <option value="Tricycle">Tricycle</option>
+               <option value="Truck">Truck</option>
+               <option value="Van">Van</option>
+             </datalist>
+              <button type="submit" class="btn btn-md btn-elegant px-2" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid)">SAVE</button>
             </form>
         </div>
       </div>

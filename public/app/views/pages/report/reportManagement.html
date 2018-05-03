@@ -44,7 +44,7 @@
     <div class="alert alert-danger center-block">{{ reportManagement.showMoreError}}</div>
   </div>
   <div class="md-form" ng-show="searchFilter !== undefined">
-  	<p><strong>Total results: </strong>{{ (reportManagement.police_reports | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (reportManagement.police_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
+  	<p><strong>Total results: </strong>{{ (reportManagement.police_reports | filter: searchKeyword).length  }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (reportManagement.police_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
   </div>
 
   <!-- Table reportManagement -->
@@ -63,9 +63,9 @@
       <th class="thth"><strong>Action</strong></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "report in reportManagement.police_reports | filter: searchFilter | orderBy: 'reported_at': true " >
-			<td class="tdtd" style="color: black;"><b>{{report.committed_at | date: 'MMM d y h: mma ' : 'UTC'}}</b></td>
-      <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM d y h: mma'}}</strong></td>
+		<tr ng-repeat = "report in reportManagement.police_reports | filter: searchKeyword | orderBy: 'reported_at': true | date: 'MMM-d-y h: mma'" >
+			<td class="tdtd" style="color: black;"><b>{{report.committed_at | date: 'MMM-d-y h: mma ' : 'UTC'}}</b></td>
+      <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM-d-y h: mma'}}</strong></td>
       <td class="tdtd">{{report.accident_type}}</td>
       <td class="tdtd">{{report.accident_cause}}</td>
       <td class="tdtd"><p ng-repeat="people in report.people_involved_id">

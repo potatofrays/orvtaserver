@@ -41,7 +41,7 @@
     <div class="alert alert-danger center-block">{{ resetRequestManagement.showMoreError}}</div>
   </div>
   <div class="md-form" ng-show="searchFilter !== undefined">
-    <p><strong>Total results: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter | limitTo: resetRequestManagement.limit).length  }}</p>
+    <p><strong>Total results: </strong>{{ (resetRequestManagement.account_resets | filter: searchKeyword).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter | limitTo: resetRequestManagement.limit).length  }}</p>
   </div>
   <!-- Table Management -->
 	<table class="table table-hover table-bordered table-sm">
@@ -56,7 +56,7 @@
       <th class="thth"><b>DELETE</b></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "acc in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+		<tr ng-repeat = "acc in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true" ng-class-odd ="'odd'" ng-class-even="'even'">
 			<td class="tdtd">{{ acc.account}}</td>
 			<td class="tdtd">{{ acc.resetType }}</td>
       <td class="tdtd">{{ acc.station }}</td>

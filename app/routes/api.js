@@ -507,10 +507,13 @@ module.exports = function(router) {
                             // Check if user has editing/deleting privileges
                             if (mainUser.police_permission === 'main' && mainUser.police_station === "Lingayen") {
                                 // Check if users were retrieved from database
-                                if (!police_users) {
-                                    res.json({ success: false, message: 'Users not found' }); // Return error
-                                } else {
-                                    res.json({ success: true, police_users: police_users, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
+                              if (!police_users) {
+                                  res.json({ success: false, message: 'Users not found' }); // Return error
+                              } else {
+                                police_user.find({ police_permission: { $ne: 'main'}}, function(err, police_users){
+
+                                    res.json({ success: true, police_users: police_users, police_permission: mainUser.police_permission, police_station: mainUser.police_station }); // Return
+                                  });
                                 }
                             } else if (mainUser.police_permission === 'station'){
                               // Check if users were retrieved from database
@@ -6626,7 +6629,7 @@ module.exports = function(router) {
                                  .exec(function(err,police_reports){
                                  if (err) {
                                           res.json(500,err);
-                                  }else{
+                                  } else {
                                      res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
                                  }
                              });

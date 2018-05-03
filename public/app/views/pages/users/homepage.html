@@ -3,24 +3,21 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
 <style>
 #map{
-  height: 600px;
-  width: 755px;
+  height: 580px;
+  width: 760px;
   float: left;
-  margin-left: 7px;
-  position:absolute;
-  padding-left: 10px;
-  padding-right: 10px;
+  overflow: hidden;
 }
 .containerForm{
   float: right;
-  height: 600px;
-  margin-left: 20px;
+  height: 580px;
+  margin-left: 5px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 370px;
-  background-color: #eaebed;
-  padding-top: 28px;
-  position: relative;
+  width: 340px;
+  background-color: #F5F5F5;
+  padding-top: 40px;
+
 }
 .tdtd{
   font-family: Lato ;
@@ -32,8 +29,7 @@
 
 <div class=" container-fluid text-center">
 <div class="containerForm jumbotron" ng-controller="mainCtrl as main">
-  &nbsp;&nbsp;&nbsp;<img src="assets/img/orvtia_logo.png" style="height: 200px; width: 300px;"class="img-fluid flex-center">
-  <h4 style="font-family: Courier New; font-size: 20px;">LOGIN</h4>
+  <h4><b>ORVTA WEB SERVER<br>(LOGIN)</b></h4>
   <br>
   <!--alert-->
   <div class= "jumbotron text-center" ng-show="main.loading">
@@ -42,17 +38,17 @@
   </div>
   <div align="center">
   <div class="show-hide-message center-block"  ng-show="main.successMsg">
-    <div class="alert alert-success center-block tdtd" style=" font-family: Courier New; font-size: 12px;">{{ main.successMsg }}</div>
+    <div class="alert alert-success center-block tdtd" style=" font-family: Courier New; font-size: 11px;">{{ main.successMsg }}</div>
   </div>
   <div class="show-hide-message" ng-show="main.errorMsg">
-    <div class="alert alert-danger" style=" font-family: Courier New; font-size: 12px; width: 100px; height: 90px;">{{ main.errorMsg }}</div>
+    <div class="alert alert-danger" style=" font-family: Courier New; font-size: 11px; width: 100px; height: 80px;">{{ main.errorMsg }}</div>
   </div>
 </div>
   <br>
   <form class="form-signin" ng-submit="main.doLogin(loginData);">
 
       <div class="md-form">
-          <input type=" text" placeholder="Username" class="form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username" style="padding-left:10px;">
+          <input type=" text" placeholder="Username" class="form-control col-lg' tdtd " name="police_username" ng-model="main.loginData.police_username" style="padding-left:10px;">
       </div>
       <div class="md-form">
           <input type="password" placeholder="Password" class="md-form form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">

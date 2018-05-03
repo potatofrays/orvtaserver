@@ -25,7 +25,7 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
         $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
 
         // Display message confirming that the coordinates verified.
-        $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
+        $scope.formData.htmlverified = "Please click anywhere in the map before adding a report!";
 
         gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
 

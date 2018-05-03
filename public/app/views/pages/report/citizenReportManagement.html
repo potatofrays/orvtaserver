@@ -42,7 +42,7 @@
     <div class="alert alert-danger center-block">{{ citizenReportManagement.showMoreError}}</div>
   </div>
   <div class="md-form" ng-show="searchFilter !== undefined">
-  	<p><strong>Total results: </strong>{{ (citizenReportManagement.citizen_reports | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (citizenReportManagement.citizen_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
+  	<p><strong>Total results: </strong>{{ (citizenReportManagement.citizen_reports | filter: searchKeyword).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (citizenReportManagement.citizen_reports | filter: searchFilter | limitTo: reportManagement.limit).length  }}</p>
   </div>
 
   <!-- Table reportManagement -->
@@ -57,7 +57,7 @@
       <th class="thth"><strong>Action</strong></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "report in citizenReportManagement.police_reports | filter: searchFilter | orderBy: 'citizen_reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+		<tr ng-repeat = "report in citizenReportManagement.police_reports | filter: searchKeyword | orderBy: 'citizen_reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
       <td class="tdtd">{{ report.address_thoroughfare }}</td>
       <td class="tdtd">{{ report.address_municipality }}</td>
       <td class="tdtd">{{ report.address_province }}</td>

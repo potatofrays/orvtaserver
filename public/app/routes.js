@@ -143,7 +143,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
         controllerAs: 'add',
         authenticated: true
     })
-    .otherwise({ redirectTo: '/' }); // If user tries to access any other route, redirect to home page
+    .otherwise({ redirectTo: '/dashboard' }); // If user tries to access any other route, redirect to home page
 
     $locationProvider.html5Mode({ enabled: true, requireBase: false }); // Required to remove AngularJS hash from URL (no base is required in index file)
 });
@@ -175,7 +175,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                     });
                 }
             } else if (next.$$route.authenticated === false) {
-              
+
             }
         }
     });

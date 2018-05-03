@@ -22,7 +22,7 @@
 </style>
 
 <div class="container-fluid">
-  <a href="/reportManagement" style="float: right; padding-left: 70%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
+  <a href="/reportManagement" style="float: right; padding-left: 70%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>&nbsp;Back to Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:45px; color: red;">
 <div align="center">
   <div class="show-hide-message" ng-show="editPeopleInvolved.successMsg">
@@ -35,7 +35,7 @@
 <div class="md-form form-md">
   <form name= "editPeopleInvolved.formData" ng-submit="editPeopleInvolved.updatePeople(addName, editPeopleInvolved.formData.people_involved_name.$valid, addAge, editPeopleInvolved.formData.people_involved_age.$valid, addCitizenship, editPeopleInvolved.formData.people_involved_citizenship.$valid, addGender,editPeopleInvolved.formData.people_involved_gender.$valid, addViolation, editPeopleInvolved.formData.people_involved_violation.$valid,addStatus, editPeopleInvolved.formData.people_involved_status.$valid,addType,editPeopleInvolved.formData.people_involved_type.$valid)">
   <div class="left">
-    <input type="hidden" class="form-control col-lg tdtd" type=" text" ng-model="showId" style="padding-left: 10px;">
+    <input type="hidden" ng-model="showId" style="padding-left: 10px;" readonly>
     <div class="md-form">
     <input class="form-control col-lg tdtd" type=" text" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.pattern) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.minlength) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.maxlength)"
@@ -52,7 +52,13 @@
        <li>1-200 age limit</li>
    </ul>
     </div>
-    <input class="form-control col-lg tdtd" type=" text" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+    <div class="md-form">
+    <input class="form-control col-lg tdtd" type=" text" name="people_involved_citizenship" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="5" ng-maxlength="15" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+    <ul ng-show="(!editPeopleInvolved.formData.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.pattern) || (!editPeopleInvolved.formData.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
+       <li>Must not contain special characters and numbers</li>
+       <li>Must be at least 10 characters but no more than 15</li>
+     </ul>
+   </div>
     <select class="browser-default form-control col-lg tdtd" title='Gender' ng-model="addGender">
       <option value="" disabled selected>Select Gender</option>
       <option value="Male">Male</option>

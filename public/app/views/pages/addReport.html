@@ -2,18 +2,20 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
 <style>
 #map{
-  height: 1050px;
-  width: 650px;
+  height: 900px;
+  width: 700px;
   float: left;
-  overflow: hidden;
+  overflow:hidden;
+  position: absolute;
 }
 .containerForm{
   float: right;
-  height: 1050;
+  height: 900px;
   padding-left: 29px;
   padding-right: 29px;
-  width:470px;
+  width:450px;
   background-color: #F5F5F5;
+  position: relative;
 
 }
 .tdtd{
@@ -27,20 +29,20 @@
 <script src="angularjs-datetime-picker.js"></script>
 
 <div class="containerForm" ><br>
-<a href="/reportManagement" style="float: right; padding-left: 50%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to Reports</a><br><hr>
+<a href="/reportManagement" style="float: right; padding-left: 50%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>  Back to Reports</a><br><hr>
      <form name ="addForm"  novalidate><br>
 
          <div class="md-form form-sm">
            <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
-           <input type="text" class="form-control" placeholder="Please click anywhere in the map before adding a report!" id="verified" ng-model="formData.htmlverified" readonly>
+           <input type="text" id="verified" ng-model="formData.htmlverified" readonly>
          </div>
 
-         <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+         <!--text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
          <div class="md-form form-sm">
-           <input type="text" class="form-control" placeholder="Thoroughfare"  id="Thoroughfare" ng-model="formData.address_thoroughfare">
-           <input type="text" class="form-control" id="Municipality" placeholder="Municipality" value="{{main.police_station}}" ng-model="formData.address_municipality" >
-           <input type="text" class="form-control" id='Province' placeholder="Province"  ng-model="formData.address_province" readonly>
-           <input type="text" class="form-control" id='Username' placeholder="On Duty"  ng-model="formData.police_username" value="{{main.police_username}}" readonly>
+           <input type=" text" class="form-control" placeholder="Thoroughfare"  id="Thoroughfare" ng-model="formData.address_thoroughfare" style="padding-left: 10px;">
+           <input type=" text" class="form-control" id="Municipality" placeholder="Municipality" value="{{main.police_station}}" ng-model="formData.address_municipality" style="padding-left: 10px;">
+           <input type=" text" class="form-control" id='Province' placeholder="Province"  ng-model="formData.address_province" style="padding-left: 10px;" readonly>
+           <input type=" text" class="form-control" id='Username' placeholder="On Duty"  ng-model="formData.police_username" value="{{main.police_username}}" style="padding-left: 10px;" readonly>
 
            <!--get element by id in addCtrl-->
             <center>
@@ -49,19 +51,19 @@
          </div>
          <div class="md-form form-sm">
               <p style="color: blue; font-size: 12px;">Longitude:</p>
-             <input type="text" class="form-control" id="latitude"  ng-model="formData.latitude" readonly>
+             <input type=" text" class="form-control" id="latitude"  ng-model="formData.latitude" style="padding-left: 10px;" readonly>
          </div>
          <div class="md-form form-sm">
                <p style="color: red; font-size: 12px;">Latitude:</p>
-             <input type="text" class="form-control" id="longitude"  ng-model="formData.longitude" readonly>
+             <input type=" text" class="form-control" id="longitude"  ng-model="formData.longitude" style="padding-left: 10px;" readonly>
          </div>
 
          <div class="md-form">
             <p style="color: grey; font-size: 12px;">Date and Time Transpired:</p>
-             <input datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="formData.committed_at">
+             <input datetime-picker hour="12" minute='59' class="form-control "placeholder="Click to Enter Date/Time" date-format="yyyy-MM-dd HH:mm:ss" ng-model="formData.committed_at" style="padding-left: 10px;">
          </div>
 
-         <select class="browser-default form-control" id="cause" ng-model="formData.cause">
+         <select class="browser-default form-control" id="cause" ng-model="formData.cause" style="padding-left: 10px;">
               <option value="" disabled selected>Select Accident Cause</option>
               <option value="Distracted Driving"> Distracted Driving</option>
               <option value="Speeding"> Speeding</option>
@@ -84,7 +86,7 @@
               <option value="Animal Crossings">Animal Crossings</option>
               <option value="Street Racing">Street Racing</option>
           </select>
-          <select class="browser-default form-control" id="type" ng-model="formData.type">
+          <select class="browser-default form-control" id="type" ng-model="formData.type" style="padding-left: 10px;">
               <option value="" disabled selected>Select Accident Type</option>
               <option value="Rear-End Collision">Rear-End Collision</option>
     					<option value="Side/Roadside Collision">Side/Roadside Collision</option>
@@ -99,7 +101,7 @@
          <!--
         <div class="md-form">
            <label>Police On Duty:</label>
-           <input ng-model="formData.police_username" class="form-control" id="policereporter" value="{{main.police_username}}" type="text" readonly>
+           <input ng-model="formData.police_username" class="form-control" id="policereporter" value="{{main.police_username}}" type=" text" readonly>
         </div>
         -->
         <div>
@@ -125,7 +127,7 @@
                     <div class="modal-body">
                         <form name= "addForm.formData">
 
-                          <input class="form-control" type=" text" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;" readonly>
+                          <input class="form-control" type="hidden" ng-model="showIdPeople" style="padding-left: 10px;" readonly>
                           <div class="md-form">
                           <input class="form-control" type=" text"  ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
                           <ul ng-show="(!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.pattern) || (!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.minlength) || (!addform.formData.people_involved_name.$pristine && addform.formData.people_involved_name.$error.maxlength)"
@@ -188,7 +190,7 @@
                     <div class="modal-body">
                         <form name= "addForm.formData">
 
-                          <input class="form-control" type=" text" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;" readonly>
+                          <input type="hidden" ng-model="showIdVehicle" style="padding-left: 10px;" readonly>
                           <select class="browser-default form-control" ng-model="addVehicleType">
                               <option value="" disabled selected>Select Vehicle Type</option>
                               <option value="Bus">Bus</option>
