@@ -86,13 +86,13 @@
             <!--Header-->
             <div class="modal-header bg-dark white-text">
                 <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> PEOPLE INVOLVE</h4>
-                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form name= "editReport.formData">
-                  <input class="form-control" type=" hidden" ng-model="showIdPeople"  placeholder=" ID" style="padding-left: 10px;">
+                  <input type=" hidden" ng-model="showIdPeople">
                   <input class="form-control" type=" text" ng-model="addName" placeholder=" Name" style="padding-left: 10px;">
                   <div class="md-form">
                   <input class="form-control" type=" text" ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" style="padding-left: 10px;">
@@ -138,13 +138,13 @@
         <!--Header-->
         <div class="modal-header bg-dark white-text">
             <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> VEHICLE DETAILS</h4>
-            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">
+            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
           <form name= "editReport.formData">
-            <input class="form-control" type=" hidden" ng-model="showIdVehicle"  placeholder=" ID" style="padding-left: 10px;">
+            <input type=" hidden" ng-model="showIdVehicle">
             <div class="md-form">
             <input class="form-control" type=" text" name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber" placeholder=" Plate Number" style="padding-left: 10px;">
             <ul ng-show="(!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.pattern) || (!editReport.formData.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editReport.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
