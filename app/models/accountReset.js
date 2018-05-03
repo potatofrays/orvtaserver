@@ -2,13 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var accountResetSchema = new Schema({
-	forgotUsername : {type: String},
-	forgotPassword : {type: String},
-	resetPassword : {type: String},
-	requestUsername : {type: String},
-	resetStatus: {type: String},
-	user_station: { type: String},
-	reset_created: { type: Date, default: Date.now},
+	station : {type: String},
+	account : {type: String},
+	resetType : {type: String},
+	reset_created: {type: Date, default: Date.now},
 	reset_updated: {type: Date, default: Date.now}
 });
 
@@ -16,7 +13,7 @@ var accountResetSchema = new Schema({
 accountResetSchema.pre('save', function(next){
    now = new Date();
     if (!this.reset_created) {
-        this.reset_created = now;
+        this.police_createdAt = now;
     } else {
       this.reset_updated = now;
     }
@@ -24,4 +21,4 @@ accountResetSchema.pre('save', function(next){
 });
 
 
- module.exports = mongoose.model('account_reset', accountResetSchema);
+ module.exports = mongoose.model('Account_Reset', accountResetSchema);

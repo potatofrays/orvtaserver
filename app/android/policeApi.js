@@ -152,22 +152,32 @@ module.exports = function(router){
 	});
 
 
-	//send reset request
-	router.post('/request', function(req,res){
-		var addRequest = new Account_Reset();
-		addRequest.forgotPassword = req.body.forgotPassword;
-		addRequest.forgotUsername =req.body.forgotUsername;
-		addRequest.resetPassword = req.body.resetPassword;
-		addRequest.requestUsername = req.body.requestUsername;
-		addRequest.user_station = req.body.user_station;
-		addRequest.reset_status = 'Pending';
-		addRequest.save(function(err){
-			if (err) {
-				res.json(500,err);
-			}
-				res.json({success: true, message: 'New Reset Request'});
+	router.post('/forgotusername', function(req,res){
+			var addRequest = new Account_Reset();
+			addRequest.station = req.body.station;
+			addRequest.account = req.body.email;//user  || email
+			addRequest.resetType = "Forgot Username";// forgot username || password
+			addRequest.save(function(err){
+				if (err) {
+					res.json(500,err);
+				}
+					res.json({success: true});
+			});
 		});
-	});
+		
+		router.post('/forgotpassword', function(req,res){
+			var addRequest = new Account_Reset();
+			addRequest.station = req.body.station;
+			addRequest.account = req.body.username;//user  || email
+			addRequest.resetType = "Forgot Password";// forgot username || password
+			addRequest.save(function(err){
+				if (err) {
+					res.json(500,err);
+				}
+					res.json({success: true});
+			});
+		});
+
 
 	//display all pending
 	router.get('/pending/:station', function(req, res){
