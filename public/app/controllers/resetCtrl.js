@@ -34,7 +34,7 @@ angular.module('resetController', ['userServices'])
     };
 })
 // Controller: passwordCtrl is used to send a password reset link to the user
-.controller('passwordCtrl', function(User, $scope) {
+.controller('passwordCtrl', function(User, $scope, $timeout) {
 
     app = this;
 
@@ -53,10 +53,18 @@ angular.module('resetController', ['userServices'])
                 if (data.data.success) {
                     $scope.alert = 'alert alert-success'; // Set success message class
                     app.successMsg = data.data.message; // Grab success message from JSON object
+                    $timeout(function() {
+                        app.successMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
                 } else {
                     $scope.alert = 'alert alert-danger'; // Set success message class
                     app.disabled = false; // Enable form to allow user to resubmit
                     app.errorMsg = data.data.message; // Grab error message from JSON object
+                    $timeout(function() {
+                        app.errorMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
                 }
             });
         } else {
@@ -64,6 +72,10 @@ angular.module('resetController', ['userServices'])
             app.loading = false; // Stop loading icon
             $scope.alert = 'alert alert-danger'; // Set success message class
             app.errorMsg = 'Please enter a valid username'; // Let user know form is not valid
+            $timeout(function() {
+                app.errorMsg = false; // Clear success message
+                app.disabled = false; // Enable form for editing
+            }, 2000);
         }
     };
 })

@@ -2,14 +2,14 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
 <style>
 #map{
-  height: 1005px;
+  height: 1050px;
   width: 650px;
   float: left;
   overflow: hidden;
 }
 .containerForm{
   float: right;
-  height: auto;
+  height: 1050;
   padding-left: 29px;
   padding-right: 29px;
   width:470px;
@@ -96,10 +96,11 @@
            <input ng-model="formData.police_username" class="form-control" id="policereporter" value="{{main.police_username}}" type="text" readonly>
         </div>
         -->
-        <div class="md-form">
+        <div>
          <!--Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.-->
 
          <button type="submit" class="btn btn-elegant btn-sm pc-2" ng-click="createReport()" ng-disabled="addForm.$invalid">Click to save</button>
+       <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-show="add.clickView" onclick="javascript:window.location.reload()" title='Add New Report'><i class="fa fa-plus-square prefix" aria-hidden="true"></i></button>
        </div>
        <hr>
         <h6 ng-show="add.clickView">Add More Details to Report:</h6>
@@ -210,5 +211,4 @@
             </div>
         </div>
         <br>
-        <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-show="add.clickView" onclick="javascript:window.location.reload()">Add New Report</button>
      </form>

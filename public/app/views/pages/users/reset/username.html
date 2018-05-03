@@ -6,12 +6,13 @@
       <div ng-class="alert">{{ username.successMsg || username.errorMsg }}</div>
   </div>
   <form class="form-signin" name="userForm" ng-submit="username.sendUsername(userData, userForm.$valid);" novalidate>
-      <p class="h5 text-center mb-4">FORGOT USERNAME</p>
+      <p class="h3 text-center mb-4"><b>FORGOT USERNAME</b></p><br>
 
       <div class="md-form">
-          <i class="fa fa-envelope prefix grey-text"></i>
-          <input type="text" id="defaultForm-uname"  ng-disabled="username.disabled" class="form-control" name="police_email" ng-model="username.userData.police_email" required>
-          <label for="defaultForm-uname">E-mail</label>
+        <div align="center">
+          <input type="text" id="defaultForm-uname"  ng-disabled="username.disabled" class="form-control col-8" name="police_email" ng-model="username.userData.police_email" required>
+          <label class="col-5" for="defaultForm-uname col-5">E-mail</label>
+        </div>
       </div>
       <div class="text-center">
           <button class="btn btn-md btn-elegant" type="submit"><i class="fa fa-home prefix"></i>SUBMIT</button>
