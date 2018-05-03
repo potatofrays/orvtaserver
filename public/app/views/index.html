@@ -94,16 +94,6 @@
                           </ul>
                       </div>
                   </li>
-                  <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn"><i class="fa fa-folder-o"></i> Generated Reports<i class="fa fa-angle-down rotate-icon"></i></a>
-                      <div class="collapsible-body">
-                          <ul>
-                              <li><a ng-show="main.isLoggedIn && main.authorized" href="/reportManagement" class="waves-effect">Police Reports</a>
-                              </li>
-                              <li><a ng-show="main.isLoggedIn && main.authorized" href="/citizenReportManagement" class="waves-effect">Citizen Reports</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </li>
                   <li><a class="collapsible-header waves-effect arrow-r" href="/about" ng-show="main.isLoggedIn && main.authorized" href=""><i class="fa fa-info-circle"></i>About Us</a>
                   </li>
               </ul>
@@ -121,20 +111,28 @@
       </div>
       <!-- Breadcrumb-->
       <div class="breadcrumb-dn mr-auto" ng-show="main.isLoggedIn">
-          <p>ORVTA WEB SERVER</p>
+          <p style="font-family: Rockwell; font-size: 15px;">ORVTA |  &nbsp;<i class="fa fa-home"></i> {{main.police_station}} Police Station</p>
       </div>
       <ul class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="https://accounts.zoho.com/login?" ng-show="main.isLoggedIn && main.requestAccess" href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> ZOHO</span></a>
+          <a class="nav-link" style="font-family: Rockwell; font-size: 15px;" href="https://accounts.zoho.com/login?" title='Create Zoho Mail' ng-show="main.isLoggedIn && main.requestAccess" href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> ZOHO</span></a>
         </li>
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn && main.requestAccess" href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> RESET</span></a>
+              <a class="nav-link" style="font-family: Rockwell; font-size: 15px;" ng-show="main.isLoggedIn && main.requestAccess" title='RESET' href="#"<span class="clearfix d-none d-sm-inline-block"><span style="color: white; font-size: 14px;"> RESET</span></a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" ng-show="main.isLoggedIn && main.requestAccess" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-elegant" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/resetpassword" ng-show="main.isLoggedIn"><i class="fa fa-lock"></i>    Password</a>
+                  <a class="dropdown-item" href="/resetusername" ng-show="main.isLoggedIn"><i class="fa fa-user"></i>    Username</a>
+              </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn && main.requestAccess" href="/resetRequestManagement"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block"></span></a>
+              <a class="nav-link" ng-show="main.isLoggedIn && main.requestAccess" title='Account Reset Request' href="/resetRequestManagement"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block"></span></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn" href="/profile"><i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block"><span title="Profile" style="color: yellow; font-size: 13px;"> {{main.police_username}}</span></a>
+              <a class="nav-link" ng-show="main.isLoggedIn" href="/profile"><i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block"><span title="Profile" style="color: yellow; font-family: Lato; font-size: 14px;"> {{main.police_username}}</span></a>
           </li>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" ng-show="main.isLoggedIn" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

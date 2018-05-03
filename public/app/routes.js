@@ -175,10 +175,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
                     });
                 }
             } else if (next.$$route.authenticated === false) {
-                // If authentication is not required, make sure is not logged in
-                if (Auth.isLoggedIn()) {
-                  
-                }
+              
             }
         }
     });

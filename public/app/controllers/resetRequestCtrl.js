@@ -101,4 +101,146 @@ angular.module('resetRequestController', ['userServices'])
       app.showMoreError = false; // Clear any errors
   };
 
+      // Function to send reset link to e-mail associated with username
+      app.sendPassword = function(resetData, valid) {
+          app.errorMsg = false; // Clear errorMsg
+          app.loading = true; // Start loading icon
+          app.disabled = true; // Disable form while processing
+
+          // Check if form is valid
+          if (valid) {
+              // Runs function to send reset link to e-mail associated with username
+              User.sendPassword(app.resetData).then(function(data) {
+                  app.loading = false; // Stop loading icon
+                  // Check if reset link was sent
+                  if (data.data.success) {
+                      $scope.alert = 'alert alert-success'; // Set success message class
+                      app.successMsg = data.data.message; // Grab success message from JSON object
+                      $timeout(function() {
+                          app.successMsg = false; // Clear success message
+                          app.disabled = false; // Enable form for editing
+                      }, 2000);
+                  } else {
+                      $scope.alert = 'alert alert-danger'; // Set success message class
+                      app.disabled = false; // Enable form to allow user to resubmit
+                      app.errorMsg = data.data.message; // Grab error message from JSON object
+                      $timeout(function() {
+                          app.errorMsg = false; // Clear success message
+                          app.disabled = false; // Enable form for editing
+                      }, 2000);
+                  }
+              });
+          } else {
+              app.disabled = false; // Enable form to allow user to resubmit
+              app.loading = false; // Stop loading icon
+              $scope.alert = 'alert alert-danger'; // Set success message class
+              app.errorMsg = 'Please enter a valid username'; // Let user know form is not valid
+              $timeout(function() {
+                  app.errorMsg = false; // Clear success message
+                  app.disabled = false; // Enable form for editing
+              }, 2000);
+          }
+      };
+      // Function to send username to e-mail provided
+      app.sendUsername = function(userData, valid) {
+          app.errorMsg = false; // Clear errorMsg when user submits
+          app.loading = true; // Start loading icon while processing
+          app.disabled = true; // Disable form while processing
+
+          // Only perform function if form is valid
+          if (valid) {
+              // Runs function to send username to e-mail provided
+              User.sendUsername(app.userData.police_email).then(function(data) {
+                  app.loading = false; // Stop loading icon
+                  // Check if username was sent successfully to e-mail
+                  if (data.data.success) {
+                      $scope.alert = 'alert alert-success'; // Set success message class
+                      app.successMsg = data.data.message; // If success, grab message from JSON object
+                  } else {
+                      app.disabled = false; // Enable form to allow user to retry
+                      $scope.alert = 'alert alert-danger'; // Set alert class
+                      app.errorMsg = data.data.message; // If error, grab message from JSON object
+                  }
+              });
+          } else {
+              app.disabled = false; // Enable form to allow user to retry
+              app.loading = false; // Stop loading icon
+              $scope.alert = 'alert alert-danger'; // Set alert class
+              app.errorMsg = 'Please enter a valid e-mail'; // Let user know form is not valid
+          }
+      };
+
+})
+.controller('requestCtrl', function(User, $scope, $timeout) {
+
+    app = this;
+
+    // Function to send reset link to e-mail associated with username
+    app.sendPassword = function(resetData, valid) {
+        app.errorMsg = false; // Clear errorMsg
+        app.loading = true; // Start loading icon
+        app.disabled = true; // Disable form while processing
+
+        // Check if form is valid
+        if (valid) {
+            // Runs function to send reset link to e-mail associated with username
+            User.sendPassword(app.resetData).then(function(data) {
+                app.loading = false; // Stop loading icon
+                // Check if reset link was sent
+                if (data.data.success) {
+                    $scope.alert = 'alert alert-success'; // Set success message class
+                    app.successMsg = data.data.message; // Grab success message from JSON object
+                    $timeout(function() {
+                        app.successMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
+                } else {
+                    $scope.alert = 'alert alert-danger'; // Set success message class
+                    app.disabled = false; // Enable form to allow user to resubmit
+                    app.errorMsg = data.data.message; // Grab error message from JSON object
+                    $timeout(function() {
+                        app.errorMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
+                }
+            });
+        } else {
+            app.disabled = false; // Enable form to allow user to resubmit
+            app.loading = false; // Stop loading icon
+            $scope.alert = 'alert alert-danger'; // Set success message class
+            app.errorMsg = 'Please enter a valid username'; // Let user know form is not valid
+            $timeout(function() {
+                app.errorMsg = false; // Clear success message
+                app.disabled = false; // Enable form for editing
+            }, 2000);
+        }
+    };
+    // Function to send username to e-mail provided
+    app.sendUsername = function(userData, valid) {
+        app.errorMsg = false; // Clear errorMsg when user submits
+        app.loading = true; // Start loading icon while processing
+        app.disabled = true; // Disable form while processing
+
+        // Only perform function if form is valid
+        if (valid) {
+            // Runs function to send username to e-mail provided
+            User.sendUsername(app.userData.police_email).then(function(data) {
+                app.loading = false; // Stop loading icon
+                // Check if username was sent successfully to e-mail
+                if (data.data.success) {
+                    $scope.alert = 'alert alert-success'; // Set success message class
+                    app.successMsg = data.data.message; // If success, grab message from JSON object
+                } else {
+                    app.disabled = false; // Enable form to allow user to retry
+                    $scope.alert = 'alert alert-danger'; // Set alert class
+                    app.errorMsg = data.data.message; // If error, grab message from JSON object
+                }
+            });
+        } else {
+            app.disabled = false; // Enable form to allow user to retry
+            app.loading = false; // Stop loading icon
+            $scope.alert = 'alert alert-danger'; // Set alert class
+            app.errorMsg = 'Please enter a valid e-mail'; // Let user know form is not valid
+        }
+    };
 });

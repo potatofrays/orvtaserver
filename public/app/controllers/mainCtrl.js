@@ -201,11 +201,19 @@ angular.module('mainController', ['authServices', 'userServices'])
                     app.loading = false; // Stop bootstrap loading icon
                     $scope.alert = 'alert alert-danger'; // Set ng class
                     app.errorMsg = data.data.message; // Return error message to login page
+                    $timeout(function() {
+                        app.errorMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
                 } else {
                     app.loading = false; // Stop bootstrap loading icon
                     app.disabled = false; // Enable form
                     $scope.alert = 'alert alert-danger'; // Set ng class
                     app.errorMsg = data.data.message; // Return error message to login page
+                    $timeout(function() {
+                        app.errorMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
                 }
             }
         });

@@ -13,10 +13,16 @@
     height: 100%;
     margin-right:: 10px;
 }
+.tdtd{
+  font-family: Lato ;
+}
+.thth{
+  font-family: Josefin Slab;
+}
 </style>
 
 <div class="container-fluid">
-  <a href="/reportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
+  <a href="/reportManagement" style="float: right; padding-left: 70%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:45px; color: red;">
 <div align="center">
   <div class="show-hide-message" ng-show="editPeopleInvolved.successMsg">
@@ -29,9 +35,9 @@
 <div class="md-form form-md">
   <form name= "editPeopleInvolved.formData" ng-submit="editPeopleInvolved.updatePeople(addName, editPeopleInvolved.formData.people_involved_name.$valid, addAge, editPeopleInvolved.formData.people_involved_age.$valid, addCitizenship, editPeopleInvolved.formData.people_involved_citizenship.$valid, addGender,editPeopleInvolved.formData.people_involved_gender.$valid, addViolation, editPeopleInvolved.formData.people_involved_violation.$valid,addStatus, editPeopleInvolved.formData.people_involved_status.$valid,addType,editPeopleInvolved.formData.people_involved_type.$valid)">
   <div class="left">
-    <input type="hidden" class="form-control col-lg" type=" text" ng-model="showId" style="padding-left: 10px;">
+    <input type="hidden" class="form-control col-lg tdtd" type=" text" ng-model="showId" style="padding-left: 10px;">
     <div class="md-form">
-    <input class="form-control col-lg" type=" text" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
+    <input class="form-control col-lg tdtd" type=" text" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.pattern) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.minlength) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.maxlength)"
     class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
         <li>Must have a space in between first and last name</li>
@@ -41,34 +47,34 @@
     </ul>
     </div>
     <div class="md-form">
-    <input class="form-control col-lg" type=" text" title='Age' ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" style="padding-left: 10px;">
+    <input class="form-control col-lg tdtd" type=" text" title='Age' ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.pattern) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.minlength) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
        <li>1-200 age limit</li>
    </ul>
     </div>
-    <input class="form-control col-lg" type=" text" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
-    <select class="browser-default form-control col-lg" title='Gender' ng-model="addGender">
+    <input class="form-control col-lg tdtd" type=" text" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+    <select class="browser-default form-control col-lg tdtd" title='Gender' ng-model="addGender">
       <option value="" disabled selected>Select Gender</option>
       <option value="Male">Male</option>
       <option value="Female">Female</option>
     </select>
   </div>
   <div class="right">
-    <select class="browser-default form-control col-lg" title='Select Violation' ng-model="addViolation">
+    <select class="browser-default form-control col-lg tdtd" title='Select Violation' ng-model="addViolation">
       <option value="" disabled selected>Select Violation</option>
       <option value="Negligence">Negligence</option>
       <option value="Recklessness or wanton conduct">Recklessness or wanton conduct</option>
       <option value="Intentional Misconduct">Intentional Misconduct</option>
       <option value="Strict Liability">Strict Liability (Regardless or Fault)</option>
     </select>
-    <select class="browser-default form-control col-lg" title='Select Status' ng-model="addStatus">
+    <select class="browser-default form-control col-lg tdtd" title='Select Status' ng-model="addStatus">
       <option value="" disabled selected>Select Status</option>
       <option value="Unharmed">Unharmed</option>
       <option value="Injured">Injured</option>
       <option value="Hospitalized">Hospitalized</option>
       <option value="Dead">Dead</option>
     </select>
-    <select class="browser-default form-control col-lg" title='Select Type' ng-model="addType">
+    <select class="browser-default form-control col-lg tdtd" title='Select Type' ng-model="addType">
       <option value="" disabled selected>Select Type</option>
       <option value="Suspect">Suspect</option>
       <option value="Victim">Victim</option>

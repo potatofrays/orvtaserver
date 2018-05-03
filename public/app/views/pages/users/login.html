@@ -1,6 +1,14 @@
 <link rel="stylesheet" href="assets/css/logintem.css">
 <link rel="stylesheet" href="assets/css/floating-labels.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+.tdtd{
+  font-family: Lato ;
+}
+.thth{
+  font-family: Josefin Slab;
+}
+</style>
 <div class="container-fluid">
   <!--alert-->
   <div class= "jumbotron text-center" ng-show="main.loading">
@@ -16,21 +24,20 @@
   <!-- Form login -->
 
 <!-- Card -->
-<div class="card card-sm">
-
+<div class="card" >
 <!-- Card body -->
-<div class="card-body card-sm">
+<div class="card-body">
   <form class="form-signin" ng-submit="main.doLogin(loginData);">
       <p class="h5 text-center mb-4">ORVTA WEB SERVER (LOGIN)</p>
 
       <div class="md-form">
           <i class="fa fa-envelope prefix grey-text"></i>
-          <input type="text" id="defaultForm-uname" class="form-control" name="police_username" ng-model="main.loginData.police_username">
+          <input type="text" id="defaultForm-uname" class="form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username">
           <label for="defaultForm-uname">Username</label>
       </div>
       <div class="md-form">
           <i class="fa fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control" name="police_password" ng-model="main.loginData.police_password">
+          <input type="password" id="defaultForm-pass" class="form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">
           <label for="defaultForm-pass">Your password</label>
       </div>
       <div class="text-center">

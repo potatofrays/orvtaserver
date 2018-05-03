@@ -5,13 +5,19 @@
     width:300px;
     float: left;
   }
+  .tdtd{
+    font-family: Lato ;
+  }
+  .thth{
+    font-family: Josefin Slab;
+  }
 </style>
 
 <br><br>
 <div class="container-fluid">
   <div class="panel panel-primary">
   	<div class="panel-heading">
-  		<center><h3><strong>Police Report Management ({{main.police_station}})</strong></h3></center><br>
+  		<center><h2 style="font-family: Courier New;"><strong>POLICE REPORT MANAGEMENT</strong></h2></center><br>
   	</div>
   </div>
 
@@ -45,27 +51,29 @@
 	<table class="table table-hover table-bordered table-sm">
 	<thead class="yellow lighten-4">
 		<tr><strong>
-			<th><strong>Date/Time Transpired</strong></th>
-			<th><strong>Date/Time Reported</strong></th>
-      <th><strong>Accident Type</strong></th>
-      <th><strong>Accident Cause</strong></th>
-      <th><strong>People Involved</strong></th>
-      <th><strong>Vehicle Type</strong></th>
-      <th><strong>Street</strong></th>
-      <th><strong>Police Informant</strong></th>
-      <th><strong>Action</strong></th>
+			<th class="thth"><strong>Date/Time Transpired</strong></th>
+			<th class="thth"><strong>Date/Time Reported</strong></th>
+      <th class="thth"><strong>Accident Type</strong></th>
+      <th class="thth"><strong>Accident Cause</strong></th>
+      <th class="thth"><strong>People Involved</strong></th>
+      <th class="thth"><strong>Vehicle Type</strong></th>
+      <th ng-show="reportManagement.stationView" class="thth"><strong>Station</strong></th>
+      <th class="thth"><strong>Street</strong></th>
+      <th class="thth"><strong>Police Informant</strong></th>
+      <th class="thth"><strong>Action</strong></th>
 		</tr>
 	</thead>
 		<tr ng-repeat = "report in reportManagement.police_reports | filter: searchFilter | orderBy: 'reported_at': true " >
-			<td style="color: black;"><b>{{report.committed_at | date: 'MMM d y h: mma ' : 'UTC'}}</b></td>
-      <td style="color: red;">{{report.reported_at | date: 'MMM d y h: mma'}}</td>
-      <td>{{report.accident_type}}</td>
-      <td>{{report.accident_cause}}</td>
-      <td><p ng-repeat="people in report.people_involved_id">
+			<td class="tdtd" style="color: black;"><b>{{report.committed_at | date: 'MMM d y h: mma ' : 'UTC'}}</b></td>
+      <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM d y h: mma'}}</strong></td>
+      <td class="tdtd">{{report.accident_type}}</td>
+      <td class="tdtd">{{report.accident_cause}}</td>
+      <td class="tdtd"><p ng-repeat="people in report.people_involved_id">
       <a title='Edit people inlvolved' href="/editPeopleInvolved/{{people._id}}">{{people.people_involved_name}}</a><p></td>
-      <td><p ng-repeat="vehicle in report.vehicle_id"><a title='Edit Vehicle Details' href="/editVehicle/{{vehicle._id}}">{{vehicle.vehicle_type}}</strong></a><p><br></td>
-      <td>{{report.address_thoroughfare}}</td>
-      <td>{{report.police_username}}</td>
+      <td class="tdtd"><p ng-repeat="vehicle in report.vehicle_id"><a title='Edit Vehicle Details' href="/editVehicle/{{vehicle._id}}">{{vehicle.vehicle_type}}</strong></a><p><br></td>
+      <td ng-show="reportManagement.stationView" class="tdtd">{{report.address_municipality}}</td>
+      <td class="tdtd">{{report.address_thoroughfare}}</td>
+      <td class="tdtd">{{report.police_username}}</td>
 			<td>
         <a href="/editReport2/{{ report._id }}">
 					<button type="button" ng-show="reportManagement.generateReportAccess" class="btn btn-grey btn-sm px-2" title='Update Police Report'>Update</button>

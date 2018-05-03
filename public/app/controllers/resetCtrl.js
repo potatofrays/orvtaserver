@@ -136,3 +136,4 @@ angular.module('resetController', ['userServices'])
         }
     };
 });
+// Controller: passwordCtrl is used to send a password reset link to the user

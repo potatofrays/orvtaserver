@@ -31,8 +31,8 @@ angular.module('managementController', [])
                     // Check if logged in user is an admin or moderator
 
                     if (data.data.police_permission === 'main') {
-                        app.editAccess = true; // Show edit button
-                        app.deleteUserAccess = true; // Show delete button
+                        app.editAccess = false; // Show edit button
+                        app.deleteUserAccess = false; // Show delete button
                         app.permissionAccess = true;
                         app.stationAccess = true;
                         app.mainAccess = true;
@@ -84,9 +84,7 @@ angular.module('managementController', [])
                         app.Urbiztondo = true;
                         app.Urdaneta = true;
                         app.Villasis = false;
-                        app.editAccess = true; // Show edit button
-                        app.deleteUserAccess = true; // Show delete button
-                        app.permissionAccess = true;
+                        app.viewAccess = true;
                         app.disabledOption = true;
                     } else if (data.data.police_permission === 'station' && data.data.police_station === 'Agno') {
                         app.disabledOption = true;

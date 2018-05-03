@@ -6,13 +6,19 @@
     width:300px;
     float: left;
   }
+  .tdtd{
+    font-family: Lato ;
+  }
+  .thth{
+    font-family: Josefin Slab;
+  }
 </style>
 
 <br>
 <div class="container-fluid">
   <div class="panel panel-primary">
   	<div class="panel-heading">
-  		<center><h3><strong>ACCOUNT RESET REQUEST MANAGEMENT ({{main.police_station}})</strong></h3></center><br>
+  		<center><h2 style="font-family: Courier New;"><strong>ACCOUNT RESET REQUEST MANAGEMENT</strong></h2></center><br>
   	</div>
   </div>
     <div class="md-form form-sm">
@@ -22,9 +28,9 @@
             <input type="text" ng-model="searchKeyword" id="formSearch" class="form-control" >
             <label for="formSearch">Search</label>
           </div>
-          <button title='Search Account Reset' class="btn btn-info mb-1 search btn-red btn-sm" ng-click="resetRequestManagement.search(searchKeyword, number);">Search <i class="fa fa-check ml-1"></i></button>
+          <button title='Search Account Reset' class="btn btn-info mb-1 search btn-red btn-sm px-2" ng-click="resetRequestManagement.search(searchKeyword, number);">Search <i class="fa fa-check ml-1"></i></button>
           <!--Clear-->
-          <button class="btn btn-info mb-1 btn-grey btn-sm" ng-click="resetRequestManagement.clear();">Clear <i class="fa fa-check ml-1"></i></button>
+          <button class="btn btn-info mb-1 btn-grey btn-sm px-2" ng-click="resetRequestManagement.clear();">Clear <i class="fa fa-check ml-1"></i></button>
   <!--alert-->
   <div class= "jumbotron text-center" ng-show="main.loading">
     <span class="glyphicon glyphicon-repeat spinner"></span>
@@ -41,27 +47,24 @@
 	<table class="table table-hover table-bordered table-sm">
   <thead  class="yellow lighten-4">
 		<tr>
-			<th><b>Account Reset Request</b></th>
-			<th><b>Reset Type</th>
-      <th><b>Station</b></th>
-      <th><b>Date/Time of Request</b></th>
-      <th><b>Date/Time Updated</b></th>
-			<th><b>RESET/REQUEST</b></th>
-      <th><b>DELETE</b></th>
+			<th class="thth"><b>Account Reset Request</b></th>
+			<th class="thth"><b>Reset Type</th>
+      <th class="thth"><b>Station</b></th>
+      <th class="thth"><b>Date/Time of Request</b></th>
+      <th class="thth"><b>Date/Time Updated</b></th>
+			<th class="thth"><b>RESET/REQUEST</b></th>
+      <th class="thth"><b>DELETE</b></th>
 		</tr>
 	</thead>
 		<tr ng-repeat = "acc in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
-			<td>{{ acc.account}}</td>
-			<td>{{ acc.resetType }}</td>
-      <td>{{ acc.station }}</td>
-      <td>{{ acc.reset_created | date:"MMM d, y '-' h: mma" }}</td>
-      <td>{{ acc.reset_updated | date:"MMM d, y '-' h: mma " }}</td><hr>
+			<td class="tdtd">{{ acc.account}}</td>
+			<td class="tdtd">{{ acc.resetType }}</td>
+      <td class="tdtd">{{ acc.station }}</td>
+      <td class="tdtd">{{ acc.reset_created | date:"MMM d, y '-' h: mma" }}</td>
+      <td class="tdtd">{{ acc.reset_updated | date:"MMM d, y '-' h: mma " }}</td><hr>
       <td>
-        <a href="/resetusername">
-          <button type="button" ng-show="resetRequestManagement.resetRequestPassword" class="btn btn-red btn-sm px-2">PASSWORD</button>
-        </a>
-        <a href="/resetpassword">
-          <button type="button" ng-show="resetRequestManagement.resetRequestUsername" class="btn btn-grey btn-sm px-2">USERNAME</button></a>
+        <a href="#" ng-show="resetRequestManagement.resetRequestPassword" data-toggle="modal" data-target="#modalReset" style="font-family: Courier New; color: grey"><i class="fa fa-lock" aria-hidden="true" ></i> PASSWORD</a><br>
+        <a href="#" ng-show="resetRequestManagement.resetRequestUsername" data-toggle="modal" data-target="#modalRequest" style="font-family: Courier New; color: grey"><i class="fa fa-user" aria-hidden="true" ></i> USERNAME</a><br>
         <a href="#">
           <p ng-show="resetRequestManagement.viewRequestAccess"><strong><b>VIEW ONLY</b></strong></p>
         </a>
@@ -70,8 +73,71 @@
       <a href="#">
           <button type="button" ng-click="resetRequestManagement.deleteRequest(acc.station);" ng-show="resetRequestManagement.deleteRequestAccess" class="btn btn-grey btn-sm px-2">Delete</button>
       </a>
+      <div ng-controller=" resetRequestCtrl as editRequest" class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog cascading-modal " role="document">
+       <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header bg-dark white-text">
+                <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> FORGOT USERNAME</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" ng-click="resetRequestManagement.deleteRequest(acc.station);">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="show-hide-message center-block" ng-show="editRequest.successMsg || editRequest.errorMsg">
+                  <div ng-class="alert">{{ editRequest.successMsg || editRequest.errorMsg }}</div>
+              </div>
+              <form class="form-signin" name="userForm" ng-submit="editRequest.sendUsername(userData, userForm.$valid);" novalidate>
+
+                  <div class="md-form">
+                    <div align="center">
+                      <input type="text" id="defaultForm-uname"  ng-disabled="editRequest.disabled" class="form-control col-8" name="police_email" ng-model="editRequest.userData.police_email" required>
+                      <label class="col-5" for="defaultForm-uname col-5">E-mail</label>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                      <button class="btn btn-md btn-elegant" type="submit"><i class="fa fa-home prefix"></i>SUBMIT</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-controller=" resetRequestCtrl as editRequest" class="modal fade" id="modalReset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog cascading-modal " role="document">
+       <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header bg-dark white-text">
+                <h4 class="title"><i class="fa fa-plus-square" aria-hidden="true"></i> FORGOT PASSWORD</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" ng-click="resetRequestManagement.deleteRequest(acc.station);">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="show-hide-message center-block" ng-show="editRequest.successMsg || editRequest.errorMsg">
+                  <div ng-class="alert">{{ editRequest.successMsg || editRequest.errorMsg }}</div>
+              </div>
+              <form class="form-signin" name="userForm" id="contactForm" ng-submit="editRequest.sendPassword(resetData, userForm.$valid);" novalidate>
+
+                  <div class="md-form">
+                    <div align="center">
+                      <input type="text" id="defaultForm-uname"  ng-disabled="editRequest.disabled" class="form-control col-8" name="police_username" ng-model="editRequest.resetData.police_username" required>
+                      <label class="col-5" for="defaultForm-uname">Username:</label>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                      <button class="btn btn-md btn-elegant" ng-disabled="editRequest.disabled" type="submit"></i>SUBMIT</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 		</tr>
-	</table>
-  <!-- Table Management -->
+
+</table>
+<!-- Table Management -->
 </div>
 <div>

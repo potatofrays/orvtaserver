@@ -13,10 +13,16 @@
     height: 100%;
     margin-right:: 10px;
 }
+.tdtd{
+  font-family: Lato ;
+}
+.thth{
+  font-family: Josefin Slab;
+}
 </style>
 <div class="container-fluid">
-  <a href="/citizenReportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Citizen Reports</a><br>
-  <a href="/reportManagement" style="float: right; padding-left: 70%;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Reports</a><br>
+  <a href="/citizenReportManagement" style="float: right; color: grey; padding-left: 70%;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Citizen Reports</a><br>
+  <a href="/reportManagement" style="float: right; padding-left: 70%;color: grey; " class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;All Reports</a><br>
   <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
   <div align="center">
     <div class="show-hide-message" ng-show="editReport.successMsg">
@@ -31,8 +37,8 @@
     <br>
   	<form name="editReport.formData" ng-submit="editReport.updateCitizenReport(editCommittedAt, editReport.formData.committed_at, editAccidentType, editReport.formData.accident_type.$valid, editAccidentCause, editReport.formData.accident_cause.$valid, editThoroughfare, editReport.formData.address_thoroughfare.$valid, editMunicipality, editReport.formData.address_municipality.$valid, editProvince, editReport.formData.address_province.$valid)">
       <div class="left">
-        <input type="hidden" class="form-control col-lg" type=" text" ng-model="showId">
-			  <select class="browser-default form-control col-lg" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;">
+        <input type="hidden" class="form-control col-lg tdtd" type=" text" ng-model="showId">
+			  <select class="browser-default form-control col-lg tdtd" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;">
 					<option value="" disabled selected>Accident Type</option>
 					<option value="Rear-End Collision">Rear-End Collision</option>
 					<option value="Side/Roadside Collision">Side/Roadside Collision</option>
@@ -44,8 +50,8 @@
 					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
 					<option value="Stationary Collision">Stationary Collision</option>
 			  </select>
-          <input class="form-control col-lg" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
-			  <select class="browser-default form-control col-lg"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
+          <input class="form-control col-lg tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
+			  <select class="browser-default form-control col-lg tdtd"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
 					<option value="" disabled selected> Cause of Accident</option>
 					<option value="Distracted Driving"> Distracted Driving</option>
 					<option value="Speeding"> Speeding</option>
@@ -68,22 +74,23 @@
 					<option value="Animal Crossings">Animal Crossings</option>
 					<option value="Street Racing">Street Racing</option>
 			  </select>
-          <select class="browser-default form-control col-lg"  title='Report Credibility' ng-model="editCredibility" style="padding-left: 20px;">
+          <select class="browser-default form-control col-lg tdtd"  title='Report Credibility' ng-model="editCredibility" style="padding-left: 20px;">
   					<option value="" disabled selected>Report Credibility</option>
   					<option value="Factual">Factual</option>
   					<option value="Fraud"> Fraud</option>
             <option value="Pending">  Pending</option>
   			  </select>
-          <input type="text" id="username" title='Police Informant' class="form-control col-lg" value="{{main.police_username}}" style="padding-left: 10px;">
+          <input type="text" id="username" title='Police Informant' class="form-control col-lg tdtd" value="{{main.police_username}}" style="padding-left: 10px;">
             <a href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New; color: grey"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add New People Involved</a><br>
         </div>
         <div class="right">
-        <input class="form-control col-lg"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
-  			<input class="form-control col-lg"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;">
-  			<input class="form-control col-lg"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
-        <input type="text" id="onDuty" title='On Duty' class="form-control col-lg" value="{{main.police_permission}}" style="padding-left: 10px;">
+        <input class="form-control col-lg tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
+  			<input class="form-control col-lg tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;">
+  			<input class="form-control col-lg tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;">
+        <input type="text" id="onDuty" title='On Duty' class="form-control col-lg tdtd" value="{{main.police_permission}}" style="padding-left: 10px;">
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
         </div>
+
         <button class="btn btn-elegant btn-md px-2"  type="submit" style="float: right;">Save Changes</button>
 		</form>
   </div>

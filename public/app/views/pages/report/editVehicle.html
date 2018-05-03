@@ -29,20 +29,20 @@
 <div class="md-form form-md">
   <form name= "editVehicle.formData" ng-submit="editVehicle.updateVehicle(addPlateNumber, editVehicle.formData.vehicle_platenumber.$valid, addBrand, editVehicle.formData.vehicle_brand.$valid, addVehicleType, editVehicle.formData.vehicle_type.$valid, addModel, editVehicle.formData.vehicle_model.$valid)">
     <div class="left">
-    <input class="form-control col-lg" type="hidden" ng-model="showId"  placeholder=" ID" style="padding-left: 10px;">
+    <input class="form-control col-lg tdtd" type="hidden" ng-model="showId"  placeholder=" ID" style="padding-left: 10px;">
     <div class="md-form">
-    <input class="form-control col-lg" title='Vehicle Plate Number' name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber"type=" text" ng-model="addPlateNumber" placeholder="Plate Number" style="padding-left: 10px;">
+    <input class="form-control col-lg tdtd" title='Vehicle Plate Number' name="vehicle_platenumber" ng-pattern="/^[A-Z 0-9]*$/" ng-minlength="7" ng-maxlength="8" ng-model="addPlateNumber"type=" text" ng-model="addPlateNumber" placeholder="Plate Number" style="padding-left: 10px;">
     <ul ng-show="(!editVehicle.formData.vehicle_platenumber.$pristine && editVehicle.formData.vehicle_platenumber.$error.pattern) || (!editVehicle.formData.vehicle_platenumber.$pristine && editVehicle.formData.vehicle_platenumber.$error.minlength) || (!editVehicle.vehicle_platenumber.$pristine && editVehicle.formData.vehicle_platenumber.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
        <li>Only upper case letters and numbers</li>
        <li>Must not contain special characters</li>
        <li>Must be at least 7 characters but no more than 8</li>
      </ul>
     </div>
-    <input class="form-control col-lg" title='Vehicle Brand' type=" text" ng-model="addBrand" placeholder="Brand" style="padding-left: 10px;">
+    <input class="form-control col-lg tdtd" title='Vehicle Brand' type=" text" ng-model="addBrand" placeholder="Brand" style="padding-left: 10px;">
     </div>
     <div class="right">
-    <input class="form-control col-lg" title='Vehicle Model' type=" text" ng-model="addModel" placeholder="Model" style="padding-left: 10px;">
-    <select class="browser-default form-control col-lg" title='Vehicle Type' ng-model="addVehicleType">
+    <input class="form-control col-lg tdtd" title='Vehicle Model' type=" text" ng-model="addModel" placeholder="Model" style="padding-left: 10px;">
+    <select class="browser-default form-control col-lg tdtd" title='Vehicle Type' ng-model="addVehicleType">
       <option value="" disabled selected>Vehicle Type</option>
       <option value="Bus">Bus</option>
       <option value="Bicycle">Bicycle</option>
