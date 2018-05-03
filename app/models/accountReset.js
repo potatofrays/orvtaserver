@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var accountResetSchema = new Schema({
-	account : {type: String},
-	resetType : {type: String},
+	forgotUsername : {type: String},
+	forgotPassword : {type: String},
+	resetPassword : {type: String},
+	requestUsername : {type: String},
 	resetStatus: {type: String},
 	user_station: { type: String},
 	reset_created: { type: Date, default: Date.now},

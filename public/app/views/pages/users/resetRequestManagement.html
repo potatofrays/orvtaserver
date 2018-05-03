@@ -51,7 +51,7 @@
 		</tr>
 	</thead>
 		<tr ng-repeat = "account in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
-			<td>{{ account.forgGotUsername}}</td>
+			<td>{{ account.forggotUsername}}</td>
 			<td>{{ account.forgotPassword }}</td>
       <td>{{ account.resetPassword }}</td>
       <td>{{ account.requestUsername }}</td>
