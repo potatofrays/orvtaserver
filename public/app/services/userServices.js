@@ -67,6 +67,10 @@ angular.module('userServices', [])
     userFactory.getRequests = function(){
         return $http.get('/api/resetRequestManagement/');
     };
+    // Delete a user
+    userFactory.deleteRequest = function(station) {
+        return $http.delete('/api/resetRequestManagement/' + station);
+    };
 
     return userFactory; // Return userFactory object
 });

@@ -7759,7 +7759,7 @@ module.exports = function(router) {
                                 if (!account_resets) {
                                     res.json({ success: false, message: 'No report found' }); // Return error
                                 } else {
-                                  account_reset.find({ user_station: req.decoded.police_station }, function(err, account_resets) {
+                                  account_reset.find({ station: req.decoded.police_station }, function(err, account_resets) {
                                     res.json({ success: true, account_resets: account_resets, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
                                   });
                                 }
@@ -7769,6 +7769,68 @@ module.exports = function(router) {
                         }
                     }
                 });
+            }
+        });
+    });
+    // Route to delete a user
+    router.delete('/resetRequestManagement/:station', function(req, res) {
+        var deletedRequest = req.params.station; // Assign the username from request parameters to a variable
+        police_user.findOne({ police_username: req.decoded.police_username }, function(err, mainUser) {
+            if (err) {
+                // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+                var email = {
+                    from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                    to: 'orvtiadeveloper@zoho.com',
+                    subject: 'Error Logged',
+                    text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                    html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                };
+                // Function to send e-mail to myself
+                client.sendMail(email, function(err, info) {
+                    if (err) {
+                        console.log(err); // If error with sending e-mail, log to console/terminal
+                    } else {
+                        console.log(info); // Log success message to console if sent
+                        console.log(user.email); // Display e-mail that it was sent to
+                    }
+                });
+                res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+            } else {
+                // Check if current user was found in database
+                if (!mainUser) {
+                    res.json({ success: false, message: 'No user found' }); // Return error
+                } else {
+                    // Check if curent user has admin access
+                    if (mainUser.police_permission !== 'main' && mainUser.police_permission !== 'station') {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    } else {
+                        // Fine the user that needs to be deleted
+                        account_reset.findOneAndRemove({ station: deletedRequest }, function(err, acc) {
+                            if (err) {
+                                // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
+                                var email = {
+                                    from: 'ORVTIA Team Staff, orvtiateam@zoho.com',
+                                    to: 'orvtiadeveloper@zoho.com',
+                                    subject: 'Error Logged',
+                                    text: 'The following error has been reported in the MEAN Stack Application: ' + err,
+                                    html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                                };
+                                // Function to send e-mail to myself
+                                client.sendMail(email, function(err, info) {
+                                    if (err) {
+                                        console.log(err); // If error with sending e-mail, log to console/terminal
+                                    } else {
+                                        console.log(info); // Log success message to console if sent
+                                        console.log(user.email); // Display e-mail that it was sent to
+                                    }
+                                });
+                                res.json({ success: false, message: 'Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' });
+                            } else {
+                                res.json({ success: true }); // Return success status
+                            }
+                        });
+                    }
+                }
             }
         });
     });

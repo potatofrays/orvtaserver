@@ -40,7 +40,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
         templateUrl: 'app/views/pages/users/reset/username.html',
         controller: 'usernameCtrl',
         controllerAs: 'username',
-        authenticated: true
+        authenticated: false
     })
 
     // Route: Send Password Reset Link to User's E-mail
@@ -48,7 +48,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
         templateUrl: 'app/views/pages/users/reset/password.html',
         controller: 'passwordCtrl',
         controllerAs: 'password',
-        authenticated: true
+        authenticated: false
     })
 
     // Route: User Enter New Password & Confirm
@@ -177,8 +177,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $
             } else if (next.$$route.authenticated === false) {
                 // If authentication is not required, make sure is not logged in
                 if (Auth.isLoggedIn()) {
-                    event.preventDefault(); // If user is logged in, prevent accessing route
-                    $location.path('/dashboard'); // Redirect to profile instead
+                  
                 }
             }
         }

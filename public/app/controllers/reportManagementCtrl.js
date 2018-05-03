@@ -494,7 +494,9 @@ angular.module('reportManagementController', ['reportServices'])
                     // Check if logged in report is an admin or moderator
                     if (data.data.police_permission === 'main') {
                         app.viewAccess = true;
-                    } else if (data.data.police_permission === 'station') {;
+
+                    } else if (data.data.police_permission === 'station') {
+
                     }
                 } else {
                     app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options

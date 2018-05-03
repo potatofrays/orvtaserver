@@ -35,42 +35,43 @@
     <div class="alert alert-danger center-block">{{ resetRequestManagement.showMoreError}}</div>
   </div>
   <div class="md-form" ng-show="searchFilter !== undefined">
-    <p><strong>Total results: </strong>{{ (resetRequestManagement.reset_request | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (resetRequestManagement.reset_request | filter: searchFilter | limitTo: resetRequestManagement.limit).length  }}</p>
+    <p><strong>Total results: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter | limitTo: resetRequestManagement.limit).length  }}</p>
   </div>
   <!-- Table Management -->
 	<table class="table table-hover table-bordered table-sm">
   <thead  class="yellow lighten-4">
 		<tr>
-			<th><b>Forgot Username</b></th>
-			<th><b>Forgot Password</b></th>
-      <th><b>Username</b></th>
-      <th><b>Email</b></th>
+			<th><b>Account Reset Request</b></th>
+			<th><b>Reset Type</th>
       <th><b>Station</b></th>
       <th><b>Date/Time of Request</b></th>
       <th><b>Date/Time Updated</b></th>
-			<th><b>Action</b></th>
+			<th><b>RESET/REQUEST</b></th>
+      <th><b>DELETE</b></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "account in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
-			<td>{{ account.forggotUsername}}</td>
-			<td>{{ account.forgotPassword }}</td>
-      <td>{{ account.resetPassword }}</td>
-      <td>{{ account.requestUsername }}</td>
-      <td>{{ account.user_station }}</td>
-      <td>{{ account.reset_created | date:"MMM d, y '-' h: mma" }}</td>
-      <td>{{ account.reset_updated | date:"MMM d, y '-' h: mma " }}</td><hr>
+		<tr ng-repeat = "acc in resetRequestManagement.account_resets | filter: searchFilter | orderBy: 'reset_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+			<td>{{ acc.account}}</td>
+			<td>{{ acc.resetType }}</td>
+      <td>{{ acc.station }}</td>
+      <td>{{ acc.reset_created | date:"MMM d, y '-' h: mma" }}</td>
+      <td>{{ acc.reset_updated | date:"MMM d, y '-' h: mma " }}</td><hr>
       <td>
-        <a href="/editReset/{{ account._id }}">
-          <button type="button" ng-show="resetRequestManagement.editResetAccess" class="btn btn-red btn-sm">Edit</button>
+        <a href="/resetusername">
+          <button type="button" ng-show="resetRequestManagement.resetRequestPassword" class="btn btn-red btn-sm px-2">PASSWORD</button>
         </a>
-        <a href="#">
-          <button type="button" ng-click="resetRequestManagement.deleteRequest(person.account.resetStatus);" ng-show="resetRequestManagement.deleteRequestAccess" class="btn btn-grey btn-sm">Delete</button>
-        </a>
+        <a href="/resetpassword">
+          <button type="button" ng-show="resetRequestManagement.resetRequestUsername" class="btn btn-grey btn-sm px-2">USERNAME</button></a>
         <a href="#">
           <p ng-show="resetRequestManagement.viewRequestAccess"><strong><b>VIEW ONLY</b></strong></p>
         </a>
       </td>
+    <td>
+      <a href="#">
+          <button type="button" ng-click="resetRequestManagement.deleteRequest(acc.station);" ng-show="resetRequestManagement.deleteRequestAccess" class="btn btn-grey btn-sm px-2">Delete</button>
+      </a>
 		</tr>
 	</table>
   <!-- Table Management -->
 </div>
+<div>

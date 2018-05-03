@@ -20,13 +20,13 @@ angular.module('resetRequestController', ['userServices'])
                   app.accessDenied = false; // Show table
                   // Check if logged in report is an admin or moderator
                   if (data.data.police_permission === 'main') {
-                    app.editResetAccess = false;;
+                    app.resetRequestPassword = false;
+                    app.resetRequestUsername = false;
                     app.deleteRequestAccess = false;
-                    app.viewRequestAccess = true;
                   } else if (data.data.police_permission === 'station') {
-                    app.editResetAccess = true;
+                    app.resetRequestPassword = true;
+                    app.resetRequestUsername = true;
                     app.deleteRequestAccess = true;
-                    app.viewRequestAccess = false;
                   }
               } else {
                   app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options
@@ -57,6 +57,21 @@ angular.module('resetRequestController', ['userServices'])
       app.showMoreError = false; // Clear error message
   };
 
+
+      // Function: Delete a user
+    app.deleteRequest = function(account) {
+       if (confirm('Are you sure you want to delete this?')) {
+         // Run function to delete a user
+         User.deleteRequest(account).then(function(data) {
+             // Check if able to delete user
+             if (data.data.success) {
+                 getRequests(); // Reset users on page
+             } else {
+                 app.showMoreError = data.data.message; // Set error message
+             }
+         });
+       }
+     };
 
   // Function: Perform a basic search function
   app.search = function(searchKeyword, number) {
