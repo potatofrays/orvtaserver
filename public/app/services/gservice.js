@@ -1,6 +1,8 @@
 // Creates the gservice factory. This will be the primary means by which we interact with Google Maps
 angular.module('gservice', [])
-    .factory('gservice', function($rootScope, $http){
+
+    .factory('gservice', function($http, $rootScope){
+
 
         // Initialize Variables
         // -------------------------------------------------------------
@@ -10,7 +12,7 @@ angular.module('gservice', [])
         googleMapService.clickLong = 0;
 
         // Array of locations obtained from API calls
-        var locations = [];
+        var location_coordinates = [];
 
         // Variables we'll use to help us pan to the right spot
         var lastMarker;
@@ -26,7 +28,7 @@ angular.module('gservice', [])
         googleMapService.refresh = function(latitude, longitude, filteredResults){
 
             // Clears the holding array of locations
-            locations = [];
+            location_coordinates = [];
 
             // Set the selected lat and long equal to the ones provided on the refresh() call
             selectedLat = latitude;
@@ -36,7 +38,7 @@ angular.module('gservice', [])
             if (filteredResults){
 
                 // Then convert the filtered results into map points.
-                locations = convertToMapPoints(filteredResults);
+                location_coordinates = convertToMapPoints(filteredResults);
 
                 // Then, initialize the map -- noting that a filter was used (to mark icons yellow)
                 initialize(latitude, longitude, true);
@@ -44,16 +46,16 @@ angular.module('gservice', [])
 
             // If no filter is provided in the refresh() call...
             else {
-
                 // Perform an AJAX call to get all of the records in the db.
                 $http.get('/police_reports').success(function(response){
 
                     // Then convert the results into map points
-                    locations = convertToMapPoints(response);
+                    location_coordinates = convertToMapPoints(response);
 
                     // Then initialize the map -- noting that no filter was used.
                     initialize(latitude, longitude, false);
                 }).error(function(){});
+
             }
         };
 
@@ -64,45 +66,40 @@ angular.module('gservice', [])
         var convertToMapPoints = function(response){
 
             // Clear the locations holder
-            var locations = [];
+            var location_coordinates = [];
 
             // Loop through all of the JSON entries provided in the response
             for(var i= 0; i < response.length; i++) {
                 var police_report = response[i];
 
                 // Create popup windows for each record
-                var  contentString = '<p><b>Accident Type</b>: ' + police_report.accident_type + '<br><b>Accident Cause</b>: ' + police_report.accident_cause + '<br>' + '<b>Commited At</b>: ' + police_report.committed_at + '<br><b>Thoroughfare</b>: ' + police_report.address_thoroughfare + ' <br><b>Station</b>: ' + police_report.address_municipality + '<br><b>Police Username</b>: ' + police_report.police_username + '</p>';
+                var  contentString = '<br><b>Thoroughfare</b>: ' + police_report.address_thoroughfare + ' <br><b>Station</b>: ' + police_report.address_municipality   + ' <br><b>Province</b>: ' + police_report.address_province  +'</p>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note Lat, Lng format).
-                locations.push(new Location(
+                location_coordinates.push(new Location(
                     new google.maps.LatLng(police_report.location_coordinates[1], police_report.location_coordinates[0]),
                     new google.maps.InfoWindow({
                         content: contentString,
                         maxWidth: 320
                     }),
-                  police_report.accident_type,
-                  police_report.accident_cause,
-                  police_report.committed_at,
+
                   police_report.address_thoroughfare,
                   police_report.address_municipality,
-                  police_report.police_username
+                  police_report.address_province
 
-                ))
-            }
+                ));
+            };
             // location is now an array populated with records in Google Maps format
-            return locations;
+            return location_coordinates;
         };
 
         // Constructor for generic location
-        var Location = function(latlon, message, accident_type, accident_cause, committed_at, location_thoroughfare, location_municipality, police_username){
+        var Location = function(latlon, message, address_thoroughfare, address_municipality, address_province){
             this.latlon = latlon;
             this.message = message;
-            this.accident_type = accident_type;
-            this.accident_cause = accident_cause;
-            this.committed_at = committed_at;
-            this.location_thoroughfare = location_thoroughfare;
-            this.location_municipality = location_municipality;
-            this.police_username = police_username;
+            this.address_thoroughfare = address_thoroughfare;
+            this.address_municipality = address_municipality;
+            this.address_province = address_province;
         };
 
         // Initializes the map
@@ -125,14 +122,14 @@ angular.module('gservice', [])
 
             // If a filter was used set the icons yellow, otherwise blue
             if(filter){
-                icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+                icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" ;
             }
             else{
                 icon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
             }
 
             // Loop through each location in the array and place a marker
-            locations.forEach(function(n, i){
+            location_coordinates.forEach(function(n, i){
                var marker = new google.maps.Marker({
                    position: n.latlon,
                    map: map,
@@ -168,7 +165,7 @@ angular.module('gservice', [])
                     position: e.latLng,
                     animation: google.maps.Animation.BOUNCE,
                     map: map,
-                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                 });
 
                 // When a new spot is selected, delete the old red bouncing marker
