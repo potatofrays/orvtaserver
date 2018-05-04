@@ -163,9 +163,9 @@
                <li class="decor">Must be at least 7 characters but no more than 8</li>
              </ul>
             </div>
-            <input class="form-control" type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
-            <input class="form-control" type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
-            <input class="form-control" type=" text" ng-model="addDriver" placeholder=" Driver" style="padding-left: 10px;">
+            <input class="form-control" title='Brand' type=" text" ng-model="addBrand" placeholder=" Brand" style="padding-left: 10px;">
+            <input class="form-control" title='Model' type=" text" ng-model="addModel" placeholder=" Model" style="padding-left: 10px;">
+            <input class="form-control" title='Driver' type=" text" ng-model="addDriver" placeholder=" Driver" style="padding-left: 10px;">
               <button type="submit" class="btn btn-md btn-elegant px-3" ng-click="editReport.addVehicle(addPlateNumber, editReport.formData.vehicle_platenumber.$valid, addBrand, editReport.formData.vehicle_brand.$valid, addVehicleType, editReport.formData.vehicle_type.$valid, addModel, editReport.formData.vehicle_model.$valid, addDriver, editReport.formData.vehicle_driver.$valid)" style="float: right;">SAVE</button>
             </form>
         </div>
