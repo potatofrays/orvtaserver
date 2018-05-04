@@ -125,6 +125,7 @@ module.exports = function(router){
 	router.put('/factual/:id', function(req, res){
 		models.Police_Report.findById(req.params.id, function(err,factual){
 			factual.report_credibility = "Factual";
+			factual.police_username = req.body.police_username;
 			factual.save(function(err, fact){
 			if (err) {
 				res.json(500,err);
@@ -164,7 +165,7 @@ module.exports = function(router){
 					res.json({success: true});
 			});
 		});
-		
+
 		router.post('/forgotpassword', function(req,res){
 			var addRequest = new Account_Reset();
 			addRequest.station = req.body.station;
