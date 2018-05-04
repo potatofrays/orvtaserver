@@ -7,6 +7,9 @@
 .thth{
   font-family: Josefin Slab;
 }
+.decor{
+  list-style: none;
+}
 </style>
 
 <div class="container-fluid">
@@ -27,23 +30,23 @@
     <input class="form-control col-7 tdtd" type=" text" name="people_involved_name" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20" title='Name' ng-model="addName" placeholder="Name" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.pattern) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.minlength) || (!editPeopleInvolved.formData.people_involved_name.$pristine && editPeopleInvolved.formData.people_involved_name.$error.maxlength)"
     class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-        <li>Must have a space in between first and last name</li>
-        <li>Must not contain any special characters</li>
-        <li>Must not contain any numbers</li>
-        <li>Must be at least 3 characters but no more than 20</li>
+        <li class="decor">Must have a space in between first and last name</li>
+        <li class="decor">Must not contain any special characters</li>
+        <li class="decor">Must not contain any numbers</li>
+        <li class="decor">Must be at least 3 characters but no more than 20</li>
     </ul>
     </div>
     <div class="md-form">
     <input class="form-control col-7 tdtd" type=" text" title='Age' ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.pattern) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.minlength) || (!editPeopleInvolved.formData.people_involved_age.$pristine && editPeopleInvolved.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-       <li>1-200 age limit</li>
+       <li class="decor">Must not contain letters</li>
    </ul>
     </div>
     <div class="md-form">
     <input class="form-control col-7 tdtd" type=" text" name="people_involved_citizenship" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="5" ng-maxlength="15" title='Citizenship' ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
     <ul ng-show="(!editPeopleInvolved.formData.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.pattern) || (!editPeopleInvolved.formData.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editPeopleInvolved.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-       <li>Must not contain special characters and numbers</li>
-       <li>Must be at least 10 characters but no more than 15</li>
+       <li class="decor">Must not contain special characters and numbers</li>
+       <li class="decor">Must be at least 10 characters but no more than 15</li>
      </ul>
    </div>
     <select class="browser-default form-control col-7 tdtd" title='Gender' ng-model="addGender">

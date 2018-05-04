@@ -13,7 +13,7 @@ module.exports = function(app) {
    app.get('/police_reports', function(req, res){
 
        // Uses Mongoose schema to run the search (empty conditions)
-       var query = models.Police_Report.find({ $and: [{report_credibility: { $ne: 'Fraud'}}, {report_credibility: { $ne: 'Pending'}}]});
+       var query = models.Police_Report.find({$and: [{report_credibility: { $ne: 'Fraud'}}, {report_credibility: { $ne: 'Pending'}}]});
        query.exec(function(err, police_reports){
            if(err)
                res.send(err);

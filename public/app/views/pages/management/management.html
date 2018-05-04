@@ -25,6 +25,9 @@
   .thth{
     font-family: Josefin Slab;
   }
+  .decor{
+    list-style: none;
+  }
 </style>
 
 <script>
@@ -84,10 +87,10 @@ $('[data-toggle=confirmation]').confirmation({
                          <p class="help-block" ng-show="(!regForm.firstName.$pristine && regForm.firstName.$error.required) || (regForm.$submitted && regForm.firstName.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
                          <ul ng-show="(!regForm.firstName.$pristine && regForm.firstName.$error.pattern) || (!regForm.firstName.$pristine && regForm.firstName.$error.minlength) || (!regForm.firstName.$pristine && regForm.firstName.$error.maxlength)"
                          class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                             <li>Must have a space in between first and last name</li>
-                             <li>Must not contain any special characters</li>
-                             <li>Must not contain any numbers</li>
-                             <li>Must be at least 3 characters but no more than 20</li>
+                             <li class="decor">Must have a space in between first and last name</li>
+                             <li class="decor">Must not contain any special characters</li>
+                             <li class="decor">Must not contain any numbers</li>
+                             <li class="decor">Must be at least 3 characters but no more than 20</li>
                          </ul>
                      </div>
                   </div>
@@ -100,10 +103,10 @@ $('[data-toggle=confirmation]').confirmation({
                          <!-- Last Name Validation -->
                          <p class="help-block" ng-show="(!regForm.lastName.$pristine && regForm.lastName.$error.required) || (regForm.$submitted && regForm.lastName.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
                          <ul ng-show="(!regForm.lastName.$pristine && regForm.lastName.$error.pattern) || (!regForm.lastName.$pristine && regForm.lastName.$error.minlength) || (!regForm.lastName.$pristine && regForm.lastName.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                             <li>Must have a space in between first and last name</li>
-                             <li>Must not contain any special characters</li>
-                             <li>Must not contain any numbers</li>
-                             <li>Must be at least 3 characters but no more than 20</li>
+                             <li class="decor">Must have a space in between first and last name</li>
+                             <li class="decor">Must not contain any special characters</li>
+                             <li class="decor">Must not contain any numbers</li>
+                             <li class="decor">Must be at least 3 characters but no more than 20</li>
                          </ul>
                      </div>
                   </div>
@@ -119,9 +122,9 @@ $('[data-toggle=confirmation]').confirmation({
                          <span ng-show="register.checkingEmail && regForm.police_email.$valid" class="glyphicon glyphicon-repeat"></span>
                          <p class="help-block" ng-show="register.emailMsg && !regForm.police_email.$error.required && regForm.police_email.$valid" style="color: green; font-size: 11px; font-family: Courier New;">{{ register.emailMsg }}</p>
                          <ul ng-show="(!regForm.police_email.$pristine && regForm.police_email.$error.pattern) || (!regForm.police_email.$pristine && regForm.police_email.$error.minlength) || (!regForm.police_email.$pristine && regForm.police_email.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                             <li>Must contain "@"</li>
-                             <li>Must not contain any special characters</li>
-                             <li>Must be at least 3 characters but no more than 25</li>
+                             <li class="decor">Must contain "@"</li>
+                             <li class="decor">Must not contain any special characters</li>
+                             <li class="decor">Must be at least 3 characters but no more than 25</li>
                          </ul>
                      </div>
                    </div>
@@ -137,12 +140,12 @@ $('[data-toggle=confirmation]').confirmation({
                          <span ng-show="register.checkingUsername && regForm.police_username.$valid" class="glyphicon glyphicon-repeat"></span>
                          <p class="help-block" ng-show="register.usernameMsg && !regForm.police_username.$error.required && regForm.police_username.$valid" style="color: green; font-size: 11px; font-family: Courier New;">{{ register.usernameMsg }}</p>
                          <ul ng-show="(!regForm.police_username.$pristine && regForm.police_username.$error.pattern) || (!regForm.police_username.$pristine && regForm.police_username.$error.minlength) || (!regForm.police_username.$pristine && regForm.police_username.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                             <li>Usernames can consist of lowercase, capitals</li>
-                             <li>Usernames can consist of alphanumeric characters</li>
-                             <li>Usernames can consist of underscore and hyphens and spaces</li>
-                             <li>Cannot be two underscores, two hypens or two spaces in a row</li>
-                             <li>Cannot have a underscore, hypen or space at the start or end</li>
-                             <li>Must be at least 3 characters but no more than 25</li>
+                             <li class="decor">Usernames can consist of lowercase, capitals</li>
+                             <li class="decor">Usernames can consist of alphanumeric characters</li>
+                             <li class="decor">Usernames can consist of underscore and hyphens and spaces</li>
+                             <li class="decor">Cannot be two underscores, two hypens or two spaces in a row</li>
+                             <li class="decor">Cannot have a underscore, hypen or space at the start or end</li>
+                             <li class="decor">Must be at least 3 characters but no more than 25</li>
                          </ul>
                      </div>
                   </div>
@@ -156,11 +159,11 @@ $('[data-toggle=confirmation]').confirmation({
                          <!-- Password Validation -->
                          <p class="help-block" ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.required) || (regForm.$submitted && regForm.firstPassword.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
                          <ul ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.pattern) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.minlength) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                             <li>Must contain at least one upper case letter</li>
-                             <li>Must contain at least one lower case letter</li>
-                             <li>Must contain at least one number</li>
-                             <li>Must contain at least one special character</li>
-                             <li>Must contain at least 8 characters but no more than 35</li>
+                             <li class="decor">Must contain at least one upper case letter</li>
+                             <li class="decor">Must contain at least one lower case letter</li>
+                             <li class="decor">Must contain at least one number</li>
+                             <li class="decor">Must contain at least one special character</li>
+                             <li class="decor">Must contain at least 8 characters but no more than 35</li>
                          </ul>
                      </div>
                           <!-- Password Div -->
@@ -189,9 +192,9 @@ $('[data-toggle=confirmation]').confirmation({
                             <!-- Contact Number Validation -->
                             <p class="help-block" ng-show="(!regForm.police_contact.$pristine && regForm.police_contact.$error.required) || (regForm.$submitted && regForm.police_contact.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
                             <ul ng-show="(!regForm.police_contact.$pristine && regForm.police_contact.$error.pattern) || (!regForm.police_contact.$pristine && regForm.police_contact.$error.minlength) || (!regForm.police_contact.$pristine && regForm.police_contact.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-                                <li>Must be a valid ph number</li>
-                                <li>Must not contain any special characters or spaces</li>
-                                <li>Must be 11 numbers (09xxxxxxxxx)</li>
+                                <li class="decor">Must be a valid ph number</li>
+                                <li class="decor">Must not contain any special characters or spaces</li>
+                                <li class="decor">Must be 11 numbers (09xxxxxxxxx)</li>
                             </ul>
                         </div>
                      </div>

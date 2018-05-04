@@ -19,8 +19,8 @@ angular.module('gservice', [])
         var currentSelectedMarker;
 
         // User Selected Location (initialize to center of Pangasinan)
-        var selectedLat = 15.7961094;
-        var selectedLong = 120.386395;
+        var selectedLat = 16.005987;
+        var selectedLong = 120.239734;
 
         // Functions
         // --------------------------------------------------------------

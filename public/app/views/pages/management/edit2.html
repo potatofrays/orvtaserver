@@ -8,6 +8,9 @@
 .thth{
   font-family: Josefin Slab;
 }
+.thth{
+  font-family: Josefin Slab;
+}
 </style>
 
 
@@ -25,17 +28,16 @@
 	</div>
 <form name="edit.formData" ng-submit="edit.updatePolice(editName,edit.formData.police_name.$valid, editEmail,edit.formData.police_email.$valid, editUsername,edit.formData.police_username.$valid, editContact, edit.formData.police_contact.$valid,editAddress,edit.formData.police_address.$valid,editStation,edit.formData.police_station.$valid,editPermission, edit.formData.police_permission.$valid)" >
 <input type="hidden" class="form-control col-7 tdtd" type=" text" ng-model="showId" style="padding-left: 15px;">
-	<div class="left">
 	<div class="md-form">
     <div ng-class="{ 'has-success':(edit.formData.police_name.$valid && !edit.formData.police_name.$pristine), 'has-error':(!edit.formData.police_name.$valid && !edit.formData.police_name.$pristine) || (!edit.formData.police_name.$valid && edit.formData.$submitted) }">
     	<input class="form-control col-7 tdtd tdtd" name="police_name" title='Please Enter Police Name' type=" text" ng-model="editName" placeholder="Name" style="padding-left: 15px;" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="3" ng-maxlength="20">
      <p class="help-block" ng-show="(!edit.formData.police_name.$pristine && edit.formData.police_name.$error.required) || (edit.formData.$submitted && edit.formData.police_name.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
      <ul ng-show="(!edit.formData.police_name.$pristine && edit.formData.police_name.$error.pattern) || (!edit.formData.police_name.$pristine && edit.formData.police_name.$error.minlength) || (!edit.formData.police_name.$pristine && edit.formData.police_name.$error.maxlength)"
      class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-         <li>Must have a space in between first and last name</li>
-         <li>Must not contain any special characters</li>
-         <li>Must not contain any numbers</li>
-         <li>Must be at least 3 characters but no more than 20</li>
+         <li class="decor">Must have a space in between first and last name</li>
+         <li class="decor">Must not contain any special characters</li>
+         <li class="decor">Must not contain any numbers</li>
+         <li class="decor">Must be at least 3 characters but no more than 20</li>
      </ul>
     </div>
   </div>
@@ -46,9 +48,9 @@
       <span ng-show="register.checkingEmail && edit.formData.police_email.$valid" class="glyphicon glyphicon-repeat"></span>
       <p class="help-block" ng-show="register.emailMsg && !edit.formData.police_email.$error.required && edit.formData.police_email.$valid" style="color: green; font-size: 11px; font-family: Courier New;">{{ edit.emailMsg }}</p>
       <ul ng-show="(!edit.formData.police_email.$pristine && edit.formData.police_email.$error.pattern) || (!edit.formData.police_email.$pristine && edit.formData.police_email.$error.minlength) || (!edit.formData.police_email.$pristine && edit.formData.police_email.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-          <li>Must contain "@"</li>
-          <li>Must not contain any special characters</li>
-          <li>Must be at least 3 characters but no more than 25</li>
+          <li class="decor">Must contain "@"</li>
+          <li class="decor">Must not contain any special characters</li>
+          <li class="decor">Must be at least 3 characters but no more than 25</li>
       </ul>
   </div>
   </div>
@@ -59,12 +61,12 @@
       <span ng-show="register.checkingUsername && edit.formData.police_username.$valid" class="glyphicon glyphicon-repeat"></span>
       <p class="help-block" ng-show="register.usernameMsg && !edit.formData.police_username.$error.required && edit.formData.police_username.$valid" style="color: green; font-size: 11px; font-family: Courier New;">{{ edit.usernameMsg }}</p>
       <ul ng-show="(!edit.formData.police_username.$pristine && edit.formData.police_username.$error.pattern) || (!edit.formData.police_username.$pristine && edit.formData.police_username.$error.minlength) || (!edit.formData.police_username.$pristine && edit.formData.police_username.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-          <li>Usernames can consist of lowercase and capitals</li>
-          <li>Usernames can consist of alphanumeric characters</li>
-          <li>Usernames can consist of underscore and hyphens and spaces</li>
-          <li>Cannot be two underscores, two hypens or two spaces in a row</li>
-          <li>Cannot have a underscore, hypen or space at the start or end</li>
-          <li>Must be at least 3 characters but no more than 25</li>
+          <li class="decor">Usernames can consist of lowercase and capitals</li>
+          <li class="decor">Usernames can consist of alphanumeric characters</li>
+          <li class="decor">Usernames can consist of underscore and hyphens and spaces</li>
+          <li class="decor">Cannot be two underscores, two hypens or two spaces in a row</li>
+          <li class="decor">Cannot have a underscore, hypen or space at the start or end</li>
+          <li class="decor">Must be at least 3 characters but no more than 25</li>
       </ul>
      </div>
   </div>
@@ -73,9 +75,9 @@
       	<input class="form-control col-7 tdtd" name="police_contact" ng-pattern="/^(09)\d{9}$/" title='Please Enter Police Contact Number' type=" text" ng-model="editContact" placeholder="Contact" style="padding-left: 15px;">
         <p class="help-block" ng-show="(!edit.formData.police_contact.$pristine && edit.formData.police_contact.$error.required) || (edit.formData.$submitted && edit.formData.police_contact.$error.required)" style="color: red; font-size: 11px; font-family: Courier New;">This field is required</p>
         <ul ng-show="(!edit.formData.police_contact.$pristine && edit.formData.police_contact.$error.pattern) || (!edit.formData.police_contact.$pristine && edit.formData.police_contact.$error.minlength) || (!edit.formData.police_contact.$pristine && edit.formData.police_contact.$error.maxlength)" class="help-block" style="color: red; font-size: 11px; font-family: Courier New;">
-            <li>Must be a valid ph number</li>
-            <li>Must not contain any special characters or spaces</li>
-            <li>Must be 11 numbers (09xxxxxxxxx)</li>
+            <li class="decor">Must be a valid ph number</li>
+            <li class="decor">Must not contain any special characters or spaces</li>
+            <li class="decor">Must be 11 numbers (09xxxxxxxxx)</li>
         </ul>
     </div>
   </div>

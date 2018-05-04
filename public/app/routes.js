@@ -15,6 +15,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
     .when('/about', {
         templateUrl: 'app/views/pages/about.html'
     })
+    // Route: About Us (for testing purposes)
+    .when('/sample', {
+        templateUrl: 'app/views/pages/users/reset/sample.html'
+    })
 
     // Route: User Registration
     .when('/register', {
@@ -150,7 +154,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
         controllerAs: 'add',
         authenticated: true
     })
-    .otherwise({ redirectTo: '/dashboard' }); // If user tries to access any other route, redirect to home page
+    .otherwise({ redirectTo: '/' }); // If user tries to access any other route, redirect to home page
 
     $locationProvider.html5Mode({ enabled: true, requireBase: false }); // Required to remove AngularJS hash from URL (no base is required in index file)
 });

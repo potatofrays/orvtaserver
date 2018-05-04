@@ -57,42 +57,40 @@
             <p style="color: grey; font-size: 12px;">Date and Time Transpired:</p>
              <input datetime-picker hour="12" minute='59' class="form-control "placeholder="Click to Enter Date/Time" date-format="yyyy-MM-dd HH:mm:ss" ng-model="formData.committed_at" style="padding-left: 10px;">
          </div>
+          <input list="accidentTypes" name="accidentType" title='Accident Type' placeholder="Accident Type" title='Accident Type' ng-model="formData.cause" style="padding-left: 20px;" class="form-control tdtd">
+           <datalist id="accidentTypes">
+             <option value="Head-On Collision">Head-On Collision</option>
+             <option value="High Speeding Collision of Animals">High Speeding Collision of Animals</option>
+             <option value="High Speeding Crashes with Pedestrians or Bicyclists">High Speeding Crashes with Pedestrians or Bicyclists</option>
+             <option value="Rear-End Collisions">Rear-End Collisions</option>
+             <option value="Roll Over">Roll Over</option>
+             <option value="Side/Roadside Collision">Side/Roadside Collision</option>
+             <option value="Stationary Collisions">Stationary Collisions</option>
+           </datalist>
 
-         <select class="browser-default form-control" id="cause" ng-model="formData.cause" style="padding-left: 10px;">
-              <option value="" disabled selected>Select Accident Cause</option>
-              <option value="Distracted Driving"> Distracted Driving</option>
-              <option value="Speeding"> Speeding</option>
-              <option value="Drunk Driving">Drunk Driving</option>
-              <option value="Reckless Driving">Reckless Driving</option>
-              <option value="Rain">Rain</option>
-              <option value="Running Red Lights">Running Red Lights</option>
-              <option value="Teenage Drivers">Teenage Drivers</option>
-              <option value="Resign Defect">Resign Defect</option>
-              <option value="Teenage Drivers">Teenage Drivers</option>
-              <option value="Resign Drivers">Resign Drivers</option>
-              <option value="Unsafe lane Changes">Unsafe lane Changes</option>
-              <option value="Wrong-Way Driving">Wrong-Way Driving</option>
-              <option value="Improper Turns">Improper Turns</option>
-              <option value="Tailgaiting">Tailgaiting</option>
-              <option value="Driving Under Influence of Drugs">Driving Under Influence of Drugs</option>
-              <option value="Road Rage">Road Rage</option>
-              <option value="Tires Blowouts">Tires Blowouts</option>
-              <option value="Deadly Curves">Deadly Curves</option>
-              <option value="Animal Crossings">Animal Crossings</option>
-              <option value="Street Racing">Street Racing</option>
-          </select>
-          <select class="browser-default form-control" id="type" ng-model="formData.type" style="padding-left: 10px;">
-              <option value="" disabled selected>Select Accident Type</option>
-              <option value="Rear-End Collision">Rear-End Collision</option>
-    					<option value="Side/Roadside Collision">Side/Roadside Collision</option>
-    					<option value="Rollover">Rollover</option>
-    					<option value="Head-On Collision">Head-On Collision</option>
-    					<option value="High Speeding Collision">   High Speeding Collision</option>
-    					<option value="High Speeding Fixed Object Crashes">High Speeding Fixed Object Crashes</option>
-    					<option value="Teenage Drivers">High speeding crashes with pedestrians</option>
-    					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
-    					<option value="Stationary Collision">Stationary Collision</option>
-          </select>
+
+
+          <input list="browsers" name="browser" title='Accident Cause' placeholder="Accident Cause" ng-model="formData.type" style="padding-left: 20px;" class="form-control tdtd">
+           <datalist id="browsers">
+   					<option value="Animal Crossings">Animal Crossings</option>
+   					<option value="Deadly Curves">Deadly Curves</option>
+   					<option value="Defective Breaks">Defective Breaks</option>
+   					<option value="Design Defects">Design Defects</option>
+   					<option value="Distracted Driving">Distracted Driving</option>
+   					<option value="Drunk Driving">Drunk Driving</option>
+   					<option value="Driving Under Influence of Drugs">Driving Under Influence of Drugs</option>
+   					<option value="Resign Defect">Resign Defect</option>
+   					<option value="Rain">Rain</option>
+   					<option value="Reckless Driving">Reckless Driving</option>
+   					<option value="Road Rage">Road Rage</option>
+   					<option value="Running Red Lights">Running Red Lights</option>
+   					<option value="Running Stop Signs">Running Stop Signs</option>
+   					<option value="Speeding">Speeding</option>
+   					<option value="Street Racing">Street Racing</option>
+   					<option value="Tailgating">Tailgating</option>
+   					<option value="Tire Blowouts">Tire Blowouts</option>
+   					<option value="Unsafe Lane Changes">Unsafe Lane Changes</option>
+           </datalist>
          <!--
         <div class="md-form">
            <label>Police On Duty:</label>
