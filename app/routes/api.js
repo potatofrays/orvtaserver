@@ -6804,7 +6804,6 @@ module.exports = function(router) {
         if (err) {
           res.json(500, err);
         } else {
-          vehicle.vehicle_platenumber = req.body.vehicle_platenumber;
           vehicle.vehicle_brand = req.body.vehicle_brand;
           vehicle.vehicle_model = req.body.vehicle_model;
           vehicle.vehicle_type = req.body.vehicle_type;
@@ -6816,6 +6815,7 @@ module.exports = function(router) {
                 res.json({success: true, message: 'Updated', vehicle: vehicle});
              }
            });
+
           }
        });
       }
