@@ -135,7 +135,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                     app.isLoggedIn = false; // Variable to deactivate ng-show on index
                     Auth.logout();
                     app.isLoggedIn = false;
-                    $location.path('/');
+                    $location.path('/dashboard');
                 } else {
                     app.isLoggedIn = true; // Variable to activate ng-show on index
                     app.police_username = data.data.police_username; // Get the user name for use in index
