@@ -26,7 +26,7 @@
     <script src="app/controllers/reportManagementCtrl.js"></script>
     <script src="app/controllers/addCtrl.js"></script>
     <script src="app/controllers/resetRequestCtrl.js"></script>
-
+    <script src="app/controllers/generateCtrl.js"></script>
     <script src="app/controllers/datetimepicker.js"></script>
 
 
@@ -36,6 +36,7 @@
     <script src="app/services/reportServices.js"></script>
     <script src="app/services/gservice.js"></script>
     <script src="app/services/citizenReportServices.js"></script>
+    <script src="app/services/generateServices.js"></script>
 
 
     <!-- Cascade Style Sheets -->
@@ -82,6 +83,8 @@
               <ul class="collapsible collapsible-accordion" style="margin-top: 85px">
                 <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/dashboard"><i class=" fa fa-dashboard"></i>Dashboard</a>
                   </li>
+                  <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/generateReport"><i class=" fa fa-folder"></i>Generate Reports</a>
+                    </li>
                   <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn && main.authorized" href="/management"><i class="fa fa-user"></i>Police User Management</a>
                   </li>
                   <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn && main.authorized"><i class="fa fa-folder"></i> Manage Reports<i class="fa fa-angle-down rotate-icon"></i></a>
@@ -111,7 +114,7 @@
       </div>
       <!-- Breadcrumb-->
       <div class="breadcrumb-dn mr-auto" ng-show="main.isLoggedIn">
-          <p style="font-family: Rockwell; font-size: 15px;">ORVTA |  &nbsp;<i class="fa fa-home"></i> {{main.police_station}} Police Station</p>
+          <p style="font-family: Rockwell; font-size: 15px;">ORVTA |  &nbsp;<i class="fa fa-home"></i> {{main.police_station}} Station</p>
       </div>
       <ul class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item">

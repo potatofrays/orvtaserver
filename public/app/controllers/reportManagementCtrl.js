@@ -500,7 +500,7 @@ angular.module('reportManagementController', ['reportServices'])
 
                     } else if (data.data.police_permission === 'station') {
                         app.viewAccess = false;
-                        app.updateCitizenReportAccess = false;
+                        app.updateCitizenReportAccess = true;
                     }
                 } else {
                     app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options

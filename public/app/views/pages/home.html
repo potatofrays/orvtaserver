@@ -1,27 +1,23 @@
-
 <!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
 <style>
 #map{
   height: 600px;
-  width: 755px;
-  float: left;
-  margin-left: 7px;
-  position:absolute;
-  padding-left: 10px;
-  padding-right: 10px;
+  width: 749px;
+  float: right;
+  overflow: hidden;
+  position: relative;
 }
 .containerForm{
-  float: right;
+  float: left;
   height: 600px;
-  margin-left: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 370px;
+  width: 380px;
   background-color:	#d9d9d9;
 
   padding-top: 28px;
-  position: relative;
+  position: absolute;
 }
 .tdtd{
   font-family: Lato ;
@@ -43,10 +39,10 @@
   </div>
   <div class="md-form container text-center">
   <div class="show-hide-message"  ng-show="main.successMsg">
-    <div class="alert alert-success tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 200px; height: 50px;">{{ main.successMsg }}</div>
+    <div class="alert alert-success tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 290px; height: 50px;">{{ main.successMsg }}</div>
   </div>
   <div class="show-hide-message" ng-show="main.errorMsg">
-    <div class="alert alert-danger tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 200px; height: 50px;">{{ main.errorMsg }}</div>
+    <div class="alert alert-danger tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width:290px; height: 50px;">{{ main.errorMsg }}</div>
   </div>
 </div>
   <form class="form-signin" ng-submit="main.doLogin(loginData);">
@@ -56,8 +52,9 @@
       <div class="md-form">
           <input type="password" placeholder="Password" class="md-form form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">
       </div>
-          <button class="btn btn-sm btn-elegant px-2" type="submit" style="float: right"><i class="fa fa-home prefix"></i> Login</button>
-      <div style="float: left">
+      <div align="center">
+          <button class="btn btn-sm btn-elegant px-2" type="submit"><i class="fa fa-home prefix"></i> Login</button>
+        </div>
           <a href="/resetpassword">
             <label style="color: grey; font-size: 13px; font-family: Courier New;">Forgot Password</label>
           </a> &nbsp;<strong><br></strong>

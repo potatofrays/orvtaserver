@@ -65,7 +65,7 @@
       <td class="tdtd">{{ report.report_credibility }}</td>
 			<td class="tdtd">
         <a href="/editReport/{{ report._id }}">
-          <button type="button" class="btn btn-grey btn-sm px-2" title='Update Citizen Report' on-click="show()">Update</button>
+          <button type="button" class="btn btn-grey btn-sm px-2" ng-show="citizenReportManagement.updateCitizenReportAccess" title='Update Citizen Report' on-click="show()">Update</button>
         </a>
         <a href="#">
           <label ng-show="citizenReportManagement.viewAccess"><strong><b>VIEW ONLY</b></strong></label>

@@ -1,0 +1,173 @@
+<style type="text/css">
+
+.type{
+  padding: 10px 10px 10px 10px;
+  background-color: #f1f1f1;
+  width: 1020px;
+  height: 150px;
+  margin: 0px 5px 5px 0px;
+}
+.type1{
+  padding: 10px 10px 10px 10px;
+  background-color: #f1f1f1;
+  width: 1020px;
+  height: 370px;
+  margin: 0px 5px 5px 0px;
+  overflow: auto;
+}
+</style>
+<div class="container-fluid">
+  <h2> <b>GENERATED REPORTS</b></h2><br>
+  <div align="center">
+    <div class="type jumbotron">
+      <div ng-repeat = "fraud in generate.fraud | filter:query as fraudResults"></div>
+      <div ng-repeat = "factual in generate.factual | filter:query as factualResults"></div>
+      <center><h5><strong>Citizen Report Credibility</strong></h5></center>
+      <table class="table table-hover">
+      <thead>
+        <tr style="background-color: #696969; color: white;">
+          <th><b>FRAUD</b></th>
+          <th><b>FACTUAL</b></th>
+        </tr>
+      </thead>
+        <tr>
+          <td>{{fraudResults.length / (fraudResults.length+ factualResults.length) * 100 | number : 1}}%</td>
+          <td>{{factualResults.length / (fraudResults.length+ factualResults.length) * 100 | number : 1}}%</td>
+        </tr>
+      </table>
+    </div>
+  </div><br>
+  <div align="center">
+    <div class="type1 jumbotron">
+      <div ng-repeat = "Bus in generate.Bus | filter:query as BusResults"></div>
+      <div ng-repeat = "Bicycle in generate.Bicycle | filter:query as BicycleResults"></div>
+      <div ng-repeat = "Car in generate.Bicycle | filter:query as CarResults"></div>
+      <div ng-repeat = "Jeep in generate.Jeep | filter:query as JeepResults"></div>
+      <div ng-repeat = "Motorcycle in generate.Motorcycle | filter:query as MotorcycleResults"></div>
+      <div ng-repeat = "Tricycle in generate.Tricycle | filter:query as TricycleResults"></div>
+      <div ng-repeat = "Truck in generate.Truck | filter:query as TruckResults"></div>
+      <div ng-repeat = "Van in generate.Motorcycle | filter:query as VanResults"></div>
+      <center><h5><strong>Vehicle Type</strong></h5></center>
+      <table class="table table-hover">
+      <thead>
+        <tr style="background-color: #696969; color: white;">
+          <th style="padding-left: 40px;"><b>VEHICLE TYPE</b></th><th><b>NUMBER</b></th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr><td>Bus</td><td>{{BusResults.length}}</td></tr>
+          <tr><td>Bicycle</td><td>{{BicycleResults.length}}</td></tr>
+          <tr><td>Car</td><td>{{CarResults.length}}</td></tr>
+          <tr><td>Jeep</td><td>{{JeepResults.length}}</td></tr>
+          <tr><td>Motorcycle</td><td>{{MotorcycleResults.length}}</td></tr>
+          <tr><td>Tricycle</td><td>{{TricycleResults.length}}</td></tr>
+          <tr><td>Truck</td><td>{{TruckResults.length}}</td></tr>
+          <tr><td>Van</td><td>{{VanResults.length}}</td></tr>
+        </tbody>
+    </table>
+    </div>
+  </div><br>
+  <div align="center">
+    <div class="type1 jumbotron">
+      <div ng-repeat = "Negligence in generate.Negligence | filter:query as NegligenceResults"></div>
+      <div ng-repeat = "Recklessness in generate.Recklessness | filter:query as RecklessnessResults"></div>
+      <div ng-repeat = "Intentional in generate.Intentional | filter:query as IntentionalResults"></div>
+      <div ng-repeat = "Liability in generate.Liability | filter:query as LiabilityResults"></div>
+
+      <center><h5><strong>Violation Type</strong></h5></center>
+      <table class="table table-hover">
+      <thead>
+        <tr  style="background-color: #696969; color: white;">
+          <th style="padding-left: 40px;"><b>VIOLATION TYPE</b></th><th><b>NUMBER</b></th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr><td>Intentional Misconduct</td><td>{{IntentionalResults.length}}</td></tr>
+          <tr><td>Negligence</td><td>{{NegligenceResults.length}}</td></tr>
+          <tr><td>Recklessness or wanton conduct</td><td>{{RecklessnessResults.length}}</td></tr>
+          <tr><td>Strict Liability</td><td>{{LiabilityResults.length}}</td></tr>
+        </tbody>
+    </table>
+    </div>
+  </div><br>
+  <div align="center">
+    <div class="type1 jumbotron">
+      <div ng-repeat = "HeadOn in generate.HeadOn | filter:query as HeadOnResults"></div>
+      <div ng-repeat = "animals in generate.animals | filter:query as animalsResults"></div>
+      <div ng-repeat = "Pedestrians in generate.Pedestrians | filter:query as PedestriansOnResults"></div>
+      <div ng-repeat = "RearEnd in generate.RearEnd | filter:query as RearEndResults"></div>
+      <div ng-repeat = "RollOver in generate.RollOver | filter:query as RollOverResults"></div>
+      <div ng-repeat = "SideRoadside in generate.SideRoadside | filter:query as SideRoadsideResults"></div>
+      <div ng-repeat = "Stationary in generate.Stationary | filter:query as StationaryResults"></div>
+
+      <center><h5><strong>Accident Type</strong></h5></center>
+      <table class="table table-hover">
+        <thead>
+          <tr  style="background-color: #696969; color: white;">
+            <th style="padding-left: 40px;"><b>ACCIDENT TYPE</b></th><th><b>NUMBER</b></th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr><td>Head-On Collision</td><td>{{HeadOnResults.length}}</td></tr>
+            <tr><td>High Speeding Collision of Animals</td><td>{{animalsResults.length}}</td></tr>
+            <tr><td>High Speeding Crashes with Pedestrians or Bicyclists</td><td>{{PedestriansOnResults.length}}</td></tr>
+            <tr><td>Rear-End Collisions</td><td>{{RearEndResults.length}}</td></tr>
+            <tr><td>Roll Over</td><td>{{RollOverResults.length}}</td></tr>
+            <tr><td>Side/Roadside Collision</td><td>{{SideRoadsideResults.length}}</td></tr>
+            <tr><td>Stationary Collisions</td><td>{{StationaryResults.length}}</td></tr>
+          </tbody>
+      </table>
+    </div>
+  </div><br>
+  <div align="center">
+    <div class="type1 jumbotron">
+      <div ng-repeat = "AnimalCrossings in generate.AnimalCrossings | filter:query as AnimalCrossingsResults"></div>
+      <div ng-repeat = "DeadlyCurves in generate.DeadlyCurves | filter:query as DeadlyCurvesResults"></div>
+      <div ng-repeat = "DefectiveBreaks in generate.DefectiveBreaks | filter:query as DefectiveBreaksResults"></div>
+      <div ng-repeat = "DesignDefects in generate.DesignDefects | filter:query as DesignDefectsResults"></div>
+      <div ng-repeat = "DistractedDriving in generate.DistractedDriving | filter:query as DistractedDrivingResults"></div>
+      <div ng-repeat = "DrunkDriving in generate.DrunkDriving | filter:query as DrunkDrivingResults"></div>
+      <div ng-repeat = "DrugInfluence in generate.DrugInfluence | filter:query as DrugInfluenceResults"></div>
+      <div ng-repeat = "ImproperTurns in generate.ImproperTurns | filter:query as ImproperTurnsResults"></div>
+      <div ng-repeat = "Rain in generate.Rain | filter:query as RainResults"></div>
+      <div ng-repeat = "RecklessDriving in generate.RecklessDriving | filter:query as RecklessDrivingResults"></div>
+      <div ng-repeat = "RoadRage in generate.RoadRage | filter:query as RoadRageResults"></div>
+      <div ng-repeat = "RunningRedLights in generate.RunningRedLights | filter:query as RunningRedLightsResults"></div>
+      <div ng-repeat = "RunningStopSigns in generate.RunningStopSigns | filter:query as RunningStopSignsResults"></div>
+      <div ng-repeat = "Speeding in generate.Speeding | filter:query as SpeedingResults"></div>
+      <div ng-repeat = "StreetRacing in generate.StreetRacing | filter:query as StreetRacingResults"></div>
+      <div ng-repeat = "Tailgating in generate.Tailgating | filter:query as TailgatingResults"></div>
+      <div ng-repeat = "TireBlowouts in generate.TireBlowouts | filter:query as TireBlowoutsResults"></div>
+      <div ng-repeat = "UnsafeLaneChanges in generate.UnsafeLaneChanges | filter:query as UnsafeLaneChangesResults"></div>
+      <center><h5><strong>Accident Cause</strong></h5></center>
+       <table class="table table-hover">
+        <thead>
+          <tr  style="background-color: #696969; color: white;">
+            <th style="padding-left: 40px;"><b>ACCIDENT CAUSE</b></th><th><b>NUMBER</b></th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr><td>Animal Crossings</td><td>{{AnimalCrossingsResults.length}}</td></tr>
+            <tr><td>Deadly Curves</td><td>{{DeadlyCurvesResults.length}}</td></tr>
+            <tr><td>Defective Breaks</td><td>{{DefectiveBreaksResults.length}}</td></tr>
+            <tr><td>Design Defects</td><td>{{DesignDefectsResults.length}}</td></tr>
+            <tr><td>Distracted Driving</td><td>{{DistractedDrivingResults.length}}</td></tr>
+            <tr><td>Drunk Driving</td><td>{{DrunkDrivingResults.length}}</td></tr>
+            <tr><td>Driving Under Influence of Drugs</td><td>{{DrugInfluenceResults.length}}</td></tr>
+            <tr><td>Improper Turns</td><td>{{ImproperTurnsResults.length}}</td></tr>
+            <tr><td>Rain</td><td>{{RainResults.length}}</td></tr>
+            <tr><td>Reckless Driving</td><td>{{RecklessDrivingResults.length}}</td></tr>
+            <tr><td>Road Rage</td><td>{{RoadRageResults.length}}</td></tr>
+            <tr><td>Running Red Lights</td><td>{{RunningRedLightsResults.length}}</td></tr>
+            <tr><td>Running Stop Signs</td><td>{{RunningStopSignsResults.length}}</td></tr>
+            <tr><td>Speeding</td><td>{{SpeedingResults.length}}</td></tr>
+            <tr><td>Street Racing</td><td>{{StreetRacingResults.length}}</td></tr>
+            <tr><td>Tailgating</td><td>{{TailgatingResults.length}}</td></tr>
+            <tr><td>Tire Blowouts</td><td>{{TireBlowoutsResults.length}}</td></tr>
+            <tr><td>Unsafe Lane Changes</td><td>{{UnsafeLaneChangesResults.length}}</td></tr>
+          </tbody>
+      </table>
+    </div>
+  </div><br>
+
+</div>

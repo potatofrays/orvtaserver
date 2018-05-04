@@ -24,9 +24,6 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
         $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
         $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
 
-        // Display message confirming that the coordinates verified.
-        $scope.formData.htmlverified = "Please click anywhere in the map before adding a report!";
-
         gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
 
     });
@@ -52,7 +49,6 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
 
             $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
             $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
-            $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
             gservice.refresh(coords.lat, coords.long);
         });
     };
@@ -106,8 +102,7 @@ $scope.formData.police_username = document.getElementById('Username').value;
             address_province: $scope.formData.address_province,
             location_coordinates: [$scope.formData.longitude, $scope.formData.latitude],
             committed_at: $scope.formData.committed_at,
-            police_username: document.getElementById('Username').value,
-            htmlverified: $scope.formData.htmlverified
+            police_username: document.getElementById('Username').value
 
         };
 

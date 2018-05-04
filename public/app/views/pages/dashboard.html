@@ -1,47 +1,12 @@
 <!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRXGkNUJ7ibYPMtrqm3fEUilG9jh0vOhE"></script>
-<div class= "jumbotron text-center">
-  <a href="/login">
-    <p class="section-subheading text-muted" style="font-family: Courier New">Welcome to our web server!</p>
-  </a>
-    <button type="button" class="btn btn-blue-grey btn-md" data-toggle="modal" ng-show="reportManagement.addWalkInAccess" data-target="#modalAddReport">Add Walk-In Report  &nbsp;<i class="fa fa-plus-circle prefix fa-md"></i></button>
-</div>
 <style>
 #map{
   height: 550px;
-  width: 850px;
-  float: left;
+  width: 100%
   overflow: hidden;
 }
-
-#legendContainer{
-  padding: 20px 80px 20px 0px;
-  background-color: #ECEFF1;
-  float: right;
-}
-/* basic positioning */
-.legend h6{ font-weight: normal; }
-.legend { list-style: none; font-size: 15px; font-weight: normal;}
-.legend li { float: left;}
-.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 3px ; }
-/* your colors */
-.legend .superawesome { background-color: #FF0000 ; }
-.legend .awesome { background-color: #FF6600; }
-.legend .kindaawesome { background-color: #33CC00; }
-.legend .notawesome { background-color: #FFFF33; }
-
 </style>
-
-<div class="jumbotron text-center float-left ">
-<div align="center">
-  <ul class="legend">
-    <h6>Accident Prone Areas</h6><br>
-    <li><span class="superawesome"></span> 100%</li><br><br>
-    <li><span class="awesome"></span> 50%</li><br><br>
-    <li><span class="kindaawesome"></span> 0%</li>
-  </ul>
-</div>
-</div>
 
 <div class="container-fluid text-center" >
     <button type="button" class="btn btn-blue-grey btn-md" data-toggle="modal" ng-show="addReport.addWalkInAccess" data-target="#modalAddReport">Add Walk-In Report  &nbsp;<i class="fa fa-plus-circle prefix fa-md"></i></button>

@@ -96,6 +96,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
         controllerAs: 'reportManagement',
         authenticated: true
     })
+    // Route: User Registration
+    .when('/generateReport', {
+        templateUrl: 'app/views/pages/generate.html',
+        controller: 'generateCtrl',
+        controllerAs: 'generate',
+        authenticated: true
+    })
     // Route: Edit a User
     .when('/editReport2/:id', {
         templateUrl: 'app/views/pages/report/editReport2.html',

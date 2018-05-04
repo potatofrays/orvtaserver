@@ -128,7 +128,7 @@ angular.module('gservice', [])
                 icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
             }
             else{
-                icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+                icon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
             }
 
             // Loop through each location in the array and place a marker
@@ -155,7 +155,7 @@ angular.module('gservice', [])
                 position: initialLocation,
                 animation: google.maps.Animation.BOUNCE,
                 map: map,
-                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             });
             lastMarker = marker;
 

@@ -1,18 +1,6 @@
 <link rel="stylesheet" href="assets/css/compiled.min.css" type="text/css" >
 <link rel="stylesheet" href="assets/css/style2.css" type="text/css" >
 <style>
-.left{
-  float:left;
-  width: 550px;
-  height: 100%;
-  margin-left: 10px;
-}
-.right{
-    float:right;
-    width: 550px;
-    height: 100%;
-    margin-right:: 10px;
-}
 .tdtd{
   font-family: Lato ;
 }
@@ -21,24 +9,20 @@
 }
 </style>
 <div class="container-fluid">
+  <div align="center">
   <a href="/citizenReportManagement" style="float: right; color: grey; padding-left: 70%;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>&nbsp;All Citizen Reports</a><br>
   <a href="/reportManagement" style="float: right; padding-left: 70%;color: grey; " class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>&nbsp;All Reports</a><br>
-  <h3><strong><b>EDIT REPORTS</b></strong></h3><hr style="height:40px; color: red;">
-  <div align="center">
+  <h3><strong><b>EDIT CITIZEN REPORTS</b></strong></h3><hr style="height:40px; color: red;">
+
     <div class="show-hide-message" ng-show="editReport.successMsg">
      <div class="alert alert-success center-block">{{editReport.successMsg}}</div>
     </div>
     <div class="show-hide-message" ng-show="editReport.errorMsg">
     	<div class="alert alert-danger center-block">{{ editReport.errorMsg }}</div>
     </div>
-  </div>
-</div>
-  <div>
-    <br>
   	<form name="editReport.formData" ng-submit="editReport.updateCitizenReport(editCommittedAt, editReport.formData.committed_at, editAccidentType, editReport.formData.accident_type.$valid, editAccidentCause, editReport.formData.accident_cause.$valid, editThoroughfare, editReport.formData.address_thoroughfare.$valid, editMunicipality, editReport.formData.address_municipality.$valid, editProvince, editReport.formData.address_province.$valid)">
-      <div class="left">
         <input type="hidden" ng-model="showId" readonly>
-			  <select class="browser-default form-control col-lg tdtd" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;">
+			  <select class="browser-default form-control col-6 tdtd" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;">
 					<option value="" disabled selected>Accident Type</option>
 					<option value="Rear-End Collision">Rear-End Collision</option>
 					<option value="Side/Roadside Collision">Side/Roadside Collision</option>
@@ -50,7 +34,7 @@
 					<option value="High speeding crashes with bicyclists">High speeding crashes with bicyclists</option>
 					<option value="Stationary Collision">Stationary Collision</option>
 			  </select>
-			  <select class="browser-default form-control col-lg tdtd"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
+			  <select class="browser-default form-control col-6 tdtd"  title='Accident Cause' ng-model="editAccidentCause" style="padding-left: 20px;">
 					<option value="" disabled selected> Cause of Accident</option>
 					<option value="Distracted Driving"> Distracted Driving</option>
 					<option value="Speeding"> Speeding</option>
@@ -73,27 +57,24 @@
 					<option value="Animal Crossings">Animal Crossings</option>
 					<option value="Street Racing">Street Racing</option>
 			  </select>
-          <select class="browser-default form-control col-lg tdtd"  title='Report Credibility' ng-model="editCredibility" style="padding-left: 20px;">
+          <select class="browser-default form-control col-6 tdtd"  title='Report Credibility' ng-model="editCredibility" style="padding-left: 20px;">
   					<option value="" disabled selected>Report Credibility</option>
   					<option value="Factual">Factual</option>
   					<option value="Fraud"> Fraud</option>
             <option value="Pending">  Pending</option>
   			  </select>
-          <input type=" text" id="username" title='Police Informant' class="form-control col-lg tdtd" value="{{main.police_username}}" style="padding-left: 10px;" readonly>
-            <input class="form-control col-lg tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
+          <input type=" text" id="username" title='Police Informant' class="form-control col-6 tdtd" value="{{main.police_username}}" style="padding-left: 10px;" readonly>
+            <input class="form-control col-6 tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt" style="padding-left: 10px;">
             <a href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New; color: grey"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add New People Involved</a><br>
-        </div>
-        <div class="right">
-        <input class="form-control col-lg tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
-  			<input class="form-control col-lg tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;" readonly>
-  			<input class="form-control col-lg tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;" readonly>
-        <input type=" text" id="onDuty" title='On Duty' class="form-control col-lg tdtd" value="{{main.police_permission}}" style="padding-left: 10px;" readonly>
+        <input class="form-control col-6 tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
+  			<input class="form-control col-6 tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;" readonly>
+  			<input class="form-control col-6 tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;" readonly>
+        <input type=" text" id="onDuty" title='On Duty' class="form-control col-6 tdtd" value="{{main.police_permission}}" style="padding-left: 10px;" readonly>
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
-        </div>
-
-        <button class="btn btn-elegant btn-md px-2"  type="submit" style="float: right;">Save Changes</button>
+        <button class="btn btn-elegant btn-md px-2"  type="submit">Save Changes</button>
 		</form>
   </div>
+</div>
   <div ng-controller=" editReportCtrl as editReport" class="modal fade" id="modalPeople" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
       <div class="modal-dialog cascading-modal " role="document">
      <!--Content-->

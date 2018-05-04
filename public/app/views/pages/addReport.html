@@ -4,18 +4,18 @@
 #map{
   height: 900px;
   width: 700px;
-  float: left;
+  float: right;
   overflow:hidden;
-  position: absolute;
+  position: relative;
 }
 .containerForm{
-  float: right;
+  float: left;
   height: 900px;
   padding-left: 29px;
   padding-right: 29px;
   width:450px;
   background-color: #F5F5F5;
-  position: relative;
+  position: absolute;
 
 }
 .tdtd{
@@ -29,13 +29,8 @@
 <script src="angularjs-datetime-picker.js"></script>
 
 <div class="containerForm" ><br>
-<a href="/reportManagement" style="float: right; padding-left: 50%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>  Back to Reports</a><br><hr>
+<a href="/reportManagement" style="float: left; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"  onclick="javascript:window.location.reload()"></i>  Back to Reports</a><br><hr>
      <form name ="addForm"  novalidate><br>
-
-         <div class="md-form form-sm">
-           <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
-           <input type="text" id="verified" ng-model="formData.htmlverified" readonly>
-         </div>
 
          <!--text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
          <div class="md-form form-sm">
