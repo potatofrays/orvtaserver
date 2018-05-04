@@ -24,7 +24,7 @@
     </div>
   	<form name="editReport.formData" ng-submit="editReport.updateReport(editCommittedAt, editReport.formData.committed_at, editAccidentType, editReport.formData.accident_type.$valid, editAccidentCause, editReport.formData.accident_cause.$valid, editThoroughfare, editReport.formData.address_thoroughfare.$valid, editMunicipality, editReport.formData.address_municipality.$valid, editProvince, editReport.formData.address_province.$valid)">
         <input type="hidden" ng-model="showId" readonly>
-        <input list="accidentTypes" name="accidentType" title='Accident Type' placeholder="Accident Type" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;" class="form-control col-7 tdtd">
+        <input list="accidentTypes" name="accidentType" title='Accident Type' placeholder="Accident Type" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;" class="form-control col-6 tdtd">
          <datalist id="accidentTypes">
            <option value="Head-On Collision">Head-On Collision</option>
            <option value="High Speeding Collision of Animals">High Speeding Collision of Animals</option>
@@ -34,7 +34,7 @@
            <option value="Side/Roadside Collision">Side/Roadside Collision</option>
            <option value="Stationary Collisions">Stationary Collisions</option>
          </datalist>
-        <input list="browsers" name="browser" title='Accident Cause' placeholder="Accident Cause" ng-model="editAccidentCause" style="padding-left: 20px;" class="form-control col-7 tdtd">
+        <input list="browsers" name="browser" title='Accident Cause' placeholder="Accident Cause" ng-model="editAccidentCause" style="padding-left: 20px;" class="form-control col-6 tdtd">
          <datalist id="browsers">
            <option value="Animal Crossings">Animal Crossings</option>
            <option value="Deadly Curves">Deadly Curves</option>
@@ -55,11 +55,11 @@
            <option value="Tire Blowouts">Tire Blowouts</option>
            <option value="Unsafe Lane Changes">Unsafe Lane Changes</option>
          </datalist>
-           <input  style="padding-left: 10px;" class="form-control col-7 tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt">
+           <input  style="padding-left: 10px;" class="form-control col-6 tdtd" datetime-picker hour="12" minute='59' date-format="yyyy-MM-dd HH:mm:ss" ng-model="editCommittedAt">
           <a href="#" data-toggle="modal" data-target="#modalPeople" style="font-family: Courier New; color: grey"><i class="fa fa-plus-square" aria-hidden="true" ></i> Click to Add New People Involved</a><br>
-        <input class="form-control col-7 tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
-  			<input class="form-control col-7 tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;" readonly>
-  			<input class="form-control col-7 tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;" readonly>
+        <input class="form-control col-6 tdtd"  title='Street' type=" text" ng-model="editThoroughfare"  placeholder="  Thoroughfare" style="padding-left: 20px;">
+  			<input class="form-control col-6 tdtd"  title='Municipality' type=" text" ng-model="editMunicipality" placeholder="  Municipality" style="padding-left: 20px; padding-bottom: 8px;" readonly>
+  			<input class="form-control col-6 tdtd"  title='Province' type=" text" ng-model="editProvince" placeholder="  Province" style="padding-left: 20px; padding-bottom: 5px;" readonly>
         <a href="#" data-toggle="modal" data-target="#modalVehicle" style="font-family: Courier New; color: grey;"><i class="fa fa-plus-square" aria-hidden="true"></i> Click to Add Vehicle</a>
         <br><button class="btn btn-elegant btn-md px-3" type="submit">Save Changes</button>
 		</form>
@@ -91,7 +91,7 @@
                 <div class="md-form">
                 <input class="form-control" type=" text" ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" style="padding-left: 10px;">
                 <ul ng-show="(!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.pattern) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.minlength) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-                   <li class="decor">1-200 age limit</li>
+                   <li class="decor">Must not contain special characters and letters</li>
                </ul>
               </div>
               <div class="md-form">

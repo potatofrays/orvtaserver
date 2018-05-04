@@ -26,7 +26,7 @@
     </div>
   	<form name="editReport.formData" ng-submit="editReport.updateCitizenReport(editCommittedAt, editReport.formData.committed_at, editAccidentType, editReport.formData.accident_type.$valid, editAccidentCause, editReport.formData.accident_cause.$valid, editThoroughfare, editReport.formData.address_thoroughfare.$valid, editMunicipality, editReport.formData.address_municipality.$valid, editProvince, editReport.formData.address_province.$valid)">
         <input type="hidden" ng-model="showId" readonly>
-        <input list="accidentTypes" name="accidentType" title='Accident Type' placeholder="Accident Type" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;" class="form-control col-7 tdtd">
+        <input list="accidentTypes" name="accidentType" title='Accident Type' placeholder="Accident Type" title='Accident Type' ng-model="editAccidentType" style="padding-left: 20px;" class="form-control col-6 tdtd">
          <datalist id="accidentTypes">
            <option value="Head-On Collision">Head-On Collision</option>
            <option value="High Speeding Collision of Animals">High Speeding Collision of Animals</option>
@@ -36,7 +36,7 @@
            <option value="Side/Roadside Collision">Side/Roadside Collision</option>
            <option value="Stationary Collisions">Stationary Collisions</option>
          </datalist>
-        <input list="browsers" name="browser" title='Accident Cause' placeholder="Accident Cause" ng-model="editAccidentCause" style="padding-left: 20px;" class="form-control col-7 tdtd">
+        <input list="browsers" name="browser" title='Accident Cause' placeholder="Accident Cause" ng-model="editAccidentCause" style="padding-left: 20px;" class="form-control col-6 tdtd">
          <datalist id="browsers">
            <option value="Animal Crossings">Animal Crossings</option>
            <option value="Deadly Curves">Deadly Curves</option>
@@ -103,14 +103,13 @@
                 <div class="md-form">
                 <input class="form-control" type=" text" ng-model="addAge" placeholder="Age" name="people_involved_age" ng-minlength="1" ng-maxlength="3" ng-pattern="/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/" ng-model="addAge" style="padding-left: 10px;">
                 <ul ng-show="(!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.pattern) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.minlength) || (!editReport.formData.people_involved_age.$pristine && editReport.formData.people_involved_age.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
-                   <li class="decor">1-200 age limit</li>
+                   <li class="decor">Must not contain special characters and letters</li>
                </ul>
               </div>
               <div class="md-form">
-              <input class="form-control" type=" text" name="people_involved_citizenship" ng-pattern="/^[a-zA-Z\s]+$/" ng-minlength="5" ng-maxlength="15" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
+              <input class="form-control" type=" text" name="people_involved_citizenship" ng-pattern="/^[a-zA-Z\s]+$/" ng-model="addCitizenship" placeholder=" Citizenship" style="padding-left: 10px;">
               <ul ng-show="(!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.pattern) || (!editReport.formData.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.minlength) || (!editVehicle.people_involved_citizenship.$pristine && editReport.formData.people_involved_citizenship.$error.maxlength)" class="help-block" style="color: red; font-size: 13px;">
                  <li class="decor">Must not contain special characters and numbers</li>
-                 <li class="decor">Must be at least 10 characters but no more than 15</li>
                </ul>
              </div>
               <select class="browser-default form-control" ng-model="addGender">
