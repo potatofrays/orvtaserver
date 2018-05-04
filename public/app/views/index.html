@@ -83,8 +83,6 @@
               <ul class="collapsible collapsible-accordion" style="margin-top: 85px">
                 <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/dashboard"><i class=" fa fa-dashboard"></i>Dashboard</a>
                   </li>
-                  <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/generateReport"><i class=" fa fa-folder"></i>Generate Reports</a>
-                    </li>
                   <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn && main.authorized" href="/management"><i class="fa fa-user"></i>Police User Management</a>
                   </li>
                   <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn && main.authorized"><i class="fa fa-folder"></i> Manage Reports<i class="fa fa-angle-down rotate-icon"></i></a>
@@ -97,6 +95,8 @@
                           </ul>
                       </div>
                   </li>
+                  <li><a class="collapsible-header waves-effect arrow-r" ng-show="main.isLoggedIn" href="/generateReport"><i class=" fa fa-folder"></i>Generate Reports</a>
+                    </li>
                   <li><a class="collapsible-header waves-effect arrow-r" href="/about" ng-show="main.isLoggedIn && main.authorized" href=""><i class="fa fa-info-circle"></i>About Us</a>
                   </li>
               </ul>
