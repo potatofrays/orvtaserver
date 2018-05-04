@@ -50,17 +50,17 @@
   </div>
 
   <!-- Table reportManagement -->
-	<table class="table table-hover table-bordered table-sm">
+	<table class="table table-bordered table-responsive-md overflow-auto">
 	<thead class="yellow lighten-4">
 		<tr><strong>
 			<th class="thth"><strong>Date/Time Transpired</strong></th>
 			<th class="thth"><strong>Date/Time Reported</strong></th>
       <th class="thth"><strong>Accident Type</strong></th>
       <th class="thth"><strong>Accident Cause</strong></th>
-      <th class="thth" ng-show="reportManagement.editPeopleInvolved"><strong>People Involved</strong></th>
-      <th class="thth"  ng-show="reportManagement.editVehicleType"><strong>Vehicle Type</strong></th>
       <th class="thth"><strong>People Involved</strong></th>
       <th class="thth"><strong>Vehicle Type</strong></th>
+      <th class="thth" ng-show="reportManagement.editPeopleInvolved"><strong>People Involved</strong></th>
+      <th class="thth" ng-show="reportManagement.editVehicleType"><strong>Vehicle Type</strong></th>
       <th ng-show="reportManagement.stationView" class="thth"><strong>Station</strong></th>
       <th class="thth"><strong>Street</strong></th>
       <th class="thth"><strong>Police Informant</strong></th>
@@ -68,12 +68,12 @@
 		</tr>
 	</thead>
 		<tr ng-repeat = "report in reportManagement.police_reports | filter: searchKeyword | orderBy: 'reported_at': true | date: 'MMM-d-y h: mma'" >
-			<td class="tdtd" style="color: black;"><b>{{report.committed_at | date: 'MMM-d-y h: mma ' : 'UTC'}}</b></td>
-      <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM-d-y h: mma'}}</strong></td>
+			<td class="tdtd" style="color: black;"><b>{{report.committed_at | date: 'MMM d y h: mma ' : 'UTC'}}</b></td>
+      <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM d y h: mma'}}</strong></td>
       <td class="tdtd">{{report.accident_type}}</td>
       <td class="tdtd">{{report.accident_cause}}</td>
-      <td class="tdtd"><p ng-repeat="vehicle in report.vehicle_id">{{vehicle.vehicle_type}}</p></td>
       <td class="tdtd"><p ng-repeat="people in report.people_involved_id">{{people.people_involved_name}}</p></td>
+      <td class="tdtd"><p ng-repeat="vehicle in report.vehicle_id">{{vehicle.vehicle_type}}</p></td>
       <td class="tdtd" ng-show="reportManagement.editPeopleInvolved"><p ng-repeat="people in report.people_involved_id"><a title='Edit people inlvolved' href="/editPeopleInvolved/{{people._id}}">{{people.people_involved_name}}</a><p></td>
       <td class="tdtd" ng-show="reportManagement.editVehicleType"><p ng-repeat="vehicle in report.vehicle_id"><a title='Edit Vehicle Details' href="/editVehicle/{{vehicle._id}}">{{vehicle.vehicle_type}}</strong></a><p><br></td>
       <td ng-show="reportManagement.stationView" class="tdtd">{{report.address_municipality}}</td>

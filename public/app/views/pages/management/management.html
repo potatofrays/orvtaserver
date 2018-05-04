@@ -306,7 +306,7 @@ $('[data-toggle=confirmation]').confirmation({
     <p><strong>Total results: </strong>{{ (management.police_users | filter: searchKeyword).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (management.police_users | filter: searchFilter | limitTo: management.limit).length  }}</p>
   </div>
   <!-- Table Management -->
-	<table class="table table-hover table-bordered table-sm">
+	<table class="table table-bordered table-responsive-md overflow-auto">
   <thead  class="yellow lighten-4">
 		<tr>
 			<th class="thth"><b>Name</b></th>

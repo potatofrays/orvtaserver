@@ -17,7 +17,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
     })
     // Route: About Us (for testing purposes)
     .when('/sample', {
-        templateUrl: 'app/views/pages/users/reset/sample.html'
+        templateUrl: 'app/views/pages/generateReports.html'
     })
 
     // Route: User Registration

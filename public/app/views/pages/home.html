@@ -11,8 +11,8 @@
 .containerForm{
   float: left;
   height: 660px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   width: 385px;
   background-color:	#eff0f2;
 
@@ -29,7 +29,7 @@
 
 <div class=" container-fluid text-center">
 <div class="containerForm jumbotron" ng-controller="mainCtrl as main">
-  <div align="center"><img src="assets/img/orvtia_logo.png" style="height: 200px; width: 300px;"class="img-fluid flex-center"></div>
+  <div align="center"><img src="assets/img/orvtia_logo.png" style="height: 220px; width: 300px;"class="img-fluid flex-center"></div>
   <h4 style="font-family: Courier New; font-size: 20px;">LOGIN</h4>
 
   <!--alert-->
@@ -39,25 +39,27 @@
   </div>
   <div class="md-form container text-center">
   <div class="show-hide-message"  ng-show="main.successMsg">
-    <div class="alert alert-success tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 290px; height: 50px;">{{ main.successMsg }}</div>
+    <div class="alert alert-success tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width: 291px; height: 50px;">{{ main.successMsg }}</div>
   </div>
   <div class="show-hide-message" ng-show="main.errorMsg">
-    <div class="alert alert-danger tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width:290px; height: 50px;">{{ main.errorMsg }}</div>
+    <div class="alert alert-danger tdtd" style=" font-family: Courier New; font-size: 13px; color: black; width:291Px; height: 50px;">{{ main.errorMsg }}</div>
   </div>
 </div>
   <form class="form-signin" ng-submit="main.doLogin(loginData);">
       <div class="md-form">
-          <input type="text" placeholder="Username" class="md-form form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username">
+          <input type="text" id="defaultForm-uname" class="form-control col-lg tdtd " name="police_username" ng-model="main.loginData.police_username">
+          <label for="defaultForm-uname">Username</label>
       </div>
       <div class="md-form">
-          <input type="password" placeholder="Password" class="md-form form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">
+          <input type="password" class="form-control col-lg tdtd " name="police_password" ng-model="main.loginData.police_password">
+          <label for="defaultForm-pass">Your password</label>
       </div>
       <div align="center">
-          <button class="btn btn-sm btn-elegant px-2" type="submit"><i class="fa fa-home prefix"></i> Login</button>
+          <button class="btn btn-sm btn-elegant px-3" type="submit"><i class="fa fa-home prefix"></i> Login</button>
         </div>
           <a href="/resetpassword">
             <label style="color: grey; font-size: 13px; font-family: Courier New;">Forgot Password</label>
-          </a> &nbsp;<strong><br></strong>
+          </a><br>
           <a href="/resetusername">
               <label style="color: grey; font-size: 13px; font-family: Courier New;">Forgot Username</label>
           </a>

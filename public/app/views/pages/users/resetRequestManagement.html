@@ -44,7 +44,7 @@
     <p><strong>Total results: </strong>{{ (resetRequestManagement.account_resets | filter: searchKeyword).length }} &nbsp; &nbsp;<strong>Showing: </strong>{{ (resetRequestManagement.account_resets | filter: searchFilter | limitTo: resetRequestManagement.limit).length  }}</p>
   </div>
   <!-- Table Management -->
-	<table class="table table-hover table-bordered table-sm">
+	<table class="table table-bordered table-responsive-md overflow-auto">
   <thead  class="yellow lighten-4">
 		<tr>
 			<th class="thth"><b>Account Reset Request</b></th>

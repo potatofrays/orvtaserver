@@ -1,26 +1,39 @@
+<style type="text/css">
+  .searchCon{
+    height: 10px;
+    width:300px;
+    float: left;
+  }
+  .tdtd{
+    font-family: Lato ;
+  }
+  .thth{
+    font-family: Josefin Slab;
+  }
+</style>
 <div class="container-fluid">
   <div class="panel panel-primary">
   	<div class="panel-heading">
-  		<h3><strong>{{main.police_name}} 's Profile</strong></h3>
+  		<h3><strong>{{main.police_name}}</strong></h3>
   	</div>
   </div>
   <br>
-      <table class="table table-hover table-bordered table-sm">
+      <table class="table table-bordered table-responsive-md">
         <thead class="yellow lighten-3">
           <tr>
-            <td><strong>Username</strong></td>
-            <td><strong>Email Address</strong></td>
-            <td><strong>Police Station</strong></td>
-            <td><strong>User Type</strong></td>
-            <td><strong>Password</strong></td>
+            <td class="tdtd"><strong>Username</strong></td>
+            <td class="tdtd"><strong>Email Address</strong></td>
+            <td class="tdtd"><strong>Police Station</strong></td>
+            <td class="tdtd"><strong>User Type</strong></td>
+            <td class="tdtd"><strong>Password</strong></td>
           </tr>
         </thead>
           <tr>
-            <td>{{ main.police_username }}</td>
-            <td>{{ main.police_email }}</td>
-            <td>{{ main.police_station }}</td>
-            <td>{{ main.police_permission }}</td>
-            <td>****************</td>
+            <td class="tdtd">{{ main.police_username }}</td>
+            <td class="tdtd">{{ main.police_email }}</td>
+            <td class="tdtd">{{ main.police_station }}</td>
+            <td class="tdtd">{{ main.police_permission }}</td>
+            <td class="tdtd">****************</td>
           </tr>
       </table>
 </div>

@@ -10,6 +10,8 @@ angular.module('reportManagementController', ['reportServices'])
     app.editReportAccess = false; // Clear access on load
     app.limit = 3; // Set a default limit to ng-repeat
     app.searchLimit = 0; // Set the default search page results limit to zero
+    app.editPeopleInvolved = false;
+    app.editVehicleType = false;
 
       function getFind(){
       Report.getFind().then(function(data){
