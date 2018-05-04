@@ -6617,7 +6617,17 @@ module.exports = function(router) {
                              if (!police_reports) {
                                  res.json({ success: false, message: 'No report found' }); // Return error
                              } else {
-                                 res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
+                               models.Police_Report.find({ $and: [{report_credibility: { $ne: 'Fraud'}}, {report_credibility: { $ne: 'Pending'}}]})
+                               .populate({path:"people_involved_id", model:"People_Involved"})
+                               .populate({path:"vehicle_id", model:"Vehicle"})
+                               .exec(function(err,police_reports){
+                               if (err) {
+                                        res.json(500,err);
+                                } else {
+                                   res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
+                               }
+                           });
+
                              }
                          } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
                              if (!police_reports) {
@@ -6804,17 +6814,23 @@ module.exports = function(router) {
         if (err) {
           res.json(500, err);
         } else {
-          vehicle.vehicle_brand = req.body.vehicle_brand;
-          vehicle.vehicle_model = req.body.vehicle_model;
-          vehicle.vehicle_type = req.body.vehicle_type;
-          vehicle.vehicle_driver = req.body.vehicle_driver;
-          vehicle.save(function(err){
-            if (err) {
-                 res.json(500, err);
-             } else {
-                res.json({success: true, message: 'Updated', vehicle: vehicle});
-             }
-           });
+          if (req.body.vehicle_type === 'Bicycle'){
+            vehicle.vehicle_platenumber = req.body.vehicle_platenumber;
+            vehicle.vehicle_brand = req.body.vehicle_brand;
+            vehicle.vehicle_model = req.body.vehicle_model;
+            vehicle.vehicle_type = '';
+            vehicle.vehicle_driver = req.body.vehicle_driver;
+            vehicle.save(function(err){
+              if (err) {
+                   res.json(500, err);
+               } else {
+                  res.json({success: true, message: 'Updated', vehicle: vehicle});
+               }
+             });
+          } else {
+            vehicle.vehicle_platenumber = req.body.vehicle_platenumber;
+
+          }
 
           }
        });
@@ -6874,7 +6890,9 @@ module.exports = function(router) {
                                 if (!police_reports) {
                                     res.json({ success: false, message: 'No report found' }); // Return error
                                 } else {
-                                    res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission }); // Return users, along with current user's permission
+                                  models.Police_Report.find({ $or: [{report_credibility: 'Fraud'}, {report_credibility: 'Pending'}] }, function(err, police_reports) {
+                                    res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
+                                  });
                                 }
                             } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
                                 if (!police_reports) {

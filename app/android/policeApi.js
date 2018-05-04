@@ -141,7 +141,6 @@ module.exports = function(router){
 			updateReport.committed_at = req.body.committed_at;
 			updateReport.accident_type = req.body.accident_type;
 			updateReport.accident_cause = req.body.accident_cause;
-			updateReport.police_username = req.body.police_username;
 			updateReport.save(function(err, report){
 				if(err){
 					res.json(500,err);
