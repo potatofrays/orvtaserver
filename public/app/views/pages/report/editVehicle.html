@@ -14,8 +14,7 @@
 <div class="container-fluid">
 <div align="center">
 <a href="/reportManagement" style="float: right; padding-left: 70%; color: grey;" class="thth"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Reports</a><br>
-<h3><strong><b>EDIT VEHICLE DETAILS</b></strong></h3><hr style="height:40px; color: red;">
-</a><br>
+<h3><strong><b>EDIT VEHICLE DETAILS</b></strong></h3><hr style="height:40px; color: red;"></a>
   <div class="show-hide-message" ng-show="editVehicle.successMsg">
    <div class="alert alert-success center-block">{{editVehicle.successMsg}}</div>
   </div>
@@ -23,7 +22,7 @@
   	<div class="alert alert-danger center-block">{{ editVehicle.errorMsg }}</div>
   </div>
 <div class="md-form form-md">
-  <form name= "editVehicle.formData" ng-submit="editVehicle.updateVehicle(addPlateNumber, editVehicle.formData.vehicle_platenumber.$valid, addBrand, editVehicle.formData.vehicle_brand.$valid, addVehicleType, editVehicle.formData.vehicle_type.$valid, addModel, editVehicle.formData.vehicle_model.$valid)">
+  <form name= "editVehicle.formData" ng-submit="editVehicle.updateVehicle(addPlateNumber, editVehicle.formData.vehicle_platenumber.$valid, addBrand, editVehicle.formData.vehicle_brand.$valid, addVehicleType, editVehicle.formData.vehicle_type.$valid, addModel, editVehicle.formData.vehicle_model.$valid, addDriver, editVehicle.formData.vehicle_driver.$valid)">
     <input type="hidden" ng-model="showId" style="padding-left: 10px;" readonly>
     <input list="vehicleTypes" name="vehicleType" ng-model="addVehicleType" class="form-control col-6"  style="padding-left: 10px;">
      <datalist id="vehicleTypes">
@@ -46,6 +45,7 @@
     </div>
     <input class="form-control col-6 tdtd" title='Vehicle Brand' type=" text" ng-model="addBrand" placeholder="Brand" style="padding-left: 10px;">
     <input class="form-control col-6 tdtd" title='Vehicle Model' type=" text" ng-model="addModel" placeholder="Model" style="padding-left: 10px;">
+      <input class="form-control col-6 tdtd" type=" text" ng-model="addDriver" placeholder=" Driver" 'Vehicle Driver' style="padding-left: 10px;">
     <button type="submit" class="btn btn-md btn-elegant px-2"> SAVE CHANGES</button>
     </form>
 </div>

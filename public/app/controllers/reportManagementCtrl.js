@@ -236,6 +236,7 @@ angular.module('reportManagementController', ['reportServices'])
             vehicleObject.vehicle_brand = $scope.addBrand;
             vehicleObject.vehicle_type = $scope.addVehicleType;
             vehicleObject.vehicle_model = $scope.addModel;
+            vehicleObject.vehicle_driver = $scope.addDriver;
 
         Report.saveVehicle(vehicleObject).then(function(data){
             if(data.data.success){
@@ -243,6 +244,7 @@ angular.module('reportManagementController', ['reportServices'])
                 $scope.addBrand = "";
                 $scope.addVehicleType = "";
                 $scope.addModel = "";
+                $scope.addDriver = "";
             }
         });
       }
@@ -337,7 +339,7 @@ angular.module('reportManagementController', ['reportServices'])
       }
     }
 
-    app.addVehicle = function(valid, showIdVehicle, addPlateNumber, addBrand, addVehicleType, addModel){
+    app.addVehicle = function(valid, showIdVehicle, addPlateNumber, addBrand, addVehicleType, addModel, addDriver){
         if(valid){
             var vehicleObject ={};
             vehicleObject._id = $scope.showId;
@@ -345,6 +347,7 @@ angular.module('reportManagementController', ['reportServices'])
             vehicleObject.vehicle_brand = $scope.addBrand;
             vehicleObject.vehicle_type = $scope.addVehicleType;
             vehicleObject.vehicle_model = $scope.addModel;
+            vehicleObject.vehicle_driver = $scope.addDriver;
 
         Report.saveVehicle(vehicleObject).then(function(data){
             if(data.data.success){
@@ -352,6 +355,7 @@ angular.module('reportManagementController', ['reportServices'])
                 $scope.addBrand = "";
                 $scope.addVehicleType = "";
                 $scope.addModel = "";
+                $scope.addDriver = "";
             }
         });
       }
@@ -426,20 +430,22 @@ angular.module('reportManagementController', ['reportServices'])
              $scope.addBrand = data.data.vehicle.vehicle_brand; // Display age in scope
              $scope.addVehicleType = data.data.vehicle.vehicle_type; // Display gender in scope
              $scope.addModel = data.data.vehicle.vehicle_model; // Display citizenship in scope
+             $scope.addDriver = data.data.vehicle.vehicle_driver; // Display citizenship in scope
              $scope.showId = data.data.vehicle._id; // Get report's _id for update functions
          } else {
              app.errorMsg = data.data.message; // Set error message
              $scope.alert = 'alert alert-danger'; // Set class for message
          }
      });
-     app.updateVehicle = function(valid, addPlateNumber, addBrand, addVehicleType, addModel){
+     app.updateVehicle = function(valid, addPlateNumber, addBrand, addVehicleType, addModel, addDriver){
         if(valid){
            var vehicleObject = {};
            vehicleObject._id = $scope.showId;
            vehicleObject.vehicle_platenumber = $scope.addPlateNumber;
            vehicleObject.vehicle_brand = $scope.addBrand;
            vehicleObject.vehicle_model= $scope.addModel;
-           vehicleObject.vehicle_type = $scope.addVehicleType
+           vehicleObject.vehicle_type = $scope.addVehicleType;
+           vehicleObject.vehicle_driver = $scope.addDriver;
 
           Report.vehicleChanges(vehicleObject).then(function(data){
             if (data.data.success) {

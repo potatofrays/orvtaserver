@@ -54,6 +54,7 @@ module.exports = function(app) {
                addVehicle.vehicle_type = req.body.vehicle_type;
                addVehicle.vehicle_brand = req.body.vehicle_brand;
                addVehicle.vehicle_model = req.body.vehicle_model;
+               addVehicle.vehicle_driver = req.body.vehicle_driver;
                addVehicle.save();
                if(err){
                    res.json(500, err);

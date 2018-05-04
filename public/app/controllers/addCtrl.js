@@ -154,13 +154,15 @@ $scope.formData.police_username = document.getElementById('Username').value;
         vehicleObj.vehicle_type = $scope.addVehicleType;
         vehicleObj.vehicle_brand = $scope.addBrand;
         vehicleObj.vehicle_model = $scope.addModel;
+        vehicleObj.vehicle_driver = $scope.addDriver;
 
         $http.put('/addVehicle', vehicleObj)
         .success(function(data){
             $scope.addPlatenumber = "";
             $scope.addVehicleType = "";
             $scope.addBrand = "";
-            $scope.addModel = ""
+            $scope.addModel = "";
+            $scope.addDriver = ""
 
         })
     }

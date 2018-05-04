@@ -17,7 +17,8 @@ var vehicleSchema = new Schema({
 	vehicle_platenumber : {type: String},
 	vehicle_type : {type: String},
 	vehicle_brand: {type: String},
-	vehicle_model : {type: String}
+	vehicle_model : {type: String},
+	vehicle_driver: {type: String}
 
 });
 
