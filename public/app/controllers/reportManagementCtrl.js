@@ -27,6 +27,8 @@ angular.module('reportManagementController', ['reportServices'])
                       app.viewAccess = true;
                       app.createReportBtn = false;
                       app.stationView = true;
+                      app.editPeopleInvolved = false;
+                      app.editVehicleType = false;
                     } else if (data.data.police_permission === 'station') {
                       app.editReportAccess = true; // Show edit button
                       app.permissionAccess = false;
@@ -35,6 +37,8 @@ angular.module('reportManagementController', ['reportServices'])
                       app.generateReportAccess = true;
                       app.createReportBtn = true;
                       app.stationView = false;
+                      app.editPeopleInvolved = true;
+                      app.editVehicleType = true;
                     }
                 } else {
                     app.errorMsg = 'Insufficient Permissions'; // Reject edit and delete options
