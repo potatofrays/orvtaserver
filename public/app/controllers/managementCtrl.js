@@ -83,7 +83,6 @@ angular.module('managementController', [])
                         app.Urbiztondo = true;
                         app.Urdaneta = true;
                         app.Villasis = false;
-                        app.viewAccess = true;
                         app.disabledOption = true;
                     } else if (data.data.police_permission === 'station' && data.data.police_station === 'Agno') {
                         app.disabledOption = true;
