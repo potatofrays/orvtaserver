@@ -30,8 +30,8 @@ angular.module('managementController', [])
                     app.accessDenied = false; // Show table
                     // Check if logged in user is an admin or moderator
                     if (data.data.police_permission === 'main') {
-                        app.editAccess = false; // Show edit button
-                        app.deleteUserAccess = false; // Show delete button
+                        app.editAccess = true; // Show edit button
+                        app.deleteUserAccess = true; // Show delete button
                         app.permissionAccess = true;
                         app.stationAccess = true;
                         app.mainAccess = true;
