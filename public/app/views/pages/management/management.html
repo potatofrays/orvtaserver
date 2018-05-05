@@ -322,7 +322,7 @@ $('[data-toggle=confirmation]').confirmation({
 			<th class="thth"><b>Action</b></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "person in management.police_users | filter: searchKeyword | orderBy: 'police_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+		<tr ng-repeat = "person in management.police_users |  filter: searchKeyword | orderBy: 'police_createdAt': true " ng-class-odd ="'odd'" ng-class-even="'even'">
 			<td class="tdtd">{{ person.police_name }}</td>
 			<td class="tdtd">{{ person.police_email }}</td>
       <td class="tdtd">{{ person.police_username }}</td>
@@ -331,8 +331,8 @@ $('[data-toggle=confirmation]').confirmation({
       <td class="tdtd">{{ person.police_address}}</td>
       <td class="tdtd" style="color: blue;">{{ person.police_station}}</td>
       <td class="tdtd" style="color: red;">{{ person.police_permission }}</td>
-      <td class="tdtd">{{ person.police_createdAt | date:'MMM-d-y h: mma' }}</td>
-      <td class="tdtd">{{ person.police_updatedAt | date: 'MMM-d-y h: mma' }}</td><hr>
+      <td class="tdtd">{{ person.police_createdAt | date:'MMM d y h: mma' }}</td>
+      <td class="tdtd">{{ person.police_updatedAt | date: 'MMM d y h: mma' }}</td><hr>
 			<td class="tdtd">
 				<a href="/edit2/{{ person._id }}">
 					<button type="button" ng-show="management.editAccess" title='Edit Police User' class="btn btn-info btn-grey btn-sm px-3">Edit</button>

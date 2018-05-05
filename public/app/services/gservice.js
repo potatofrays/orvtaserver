@@ -47,7 +47,7 @@ angular.module('gservice', [])
             // If no filter is provided in the refresh() call...
             else {
                 // Perform an AJAX call to get all of the records in the db.
-                $http.get('/police_reports').success(function(response){
+                $http.get('/reports').success(function(response){
 
                     // Then convert the results into map points
                     location_coordinates = convertToMapPoints(response);

@@ -6893,6 +6893,7 @@ module.exports = function(router) {
                                   models.Police_Report.find({ $or: [{report_credibility: 'Fraud'}, {report_credibility: 'Pending'}] }, function(err, police_reports) {
                                     res.json({ success: true, police_reports: police_reports, police_permission: mainUser.police_permission, police_station: mainUser.police_station}); // Return users, along with current user's permission
                                   });
+
                                 }
                             } else if (mainUser.police_permission === 'station' && mainUser.police_station === req.decoded.police_station){
                                 if (!police_reports) {

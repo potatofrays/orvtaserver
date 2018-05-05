@@ -57,8 +57,8 @@
 			<th class="thth"><strong>Date/Time Reported</strong></th>
       <th class="thth"><strong>Accident Type</strong></th>
       <th class="thth"><strong>Accident Cause</strong></th>
-      <th class="thth"><strong>People Involved</strong></th>
-      <th class="thth"><strong>Vehicle Type</strong></th>
+      <th class="thth" ng-show="report.editPeopleInvolved2"><strong>People Involved</strong></th>
+      <th class="thth" ng-show="reportManagement.editVehicleType2"><strong>Vehicle Type</strong></th>
       <th class="thth" ng-show="reportManagement.editPeopleInvolved"><strong>People Involved</strong></th>
       <th class="thth" ng-show="reportManagement.editVehicleType"><strong>Vehicle Type</strong></th>
       <th ng-show="reportManagement.stationView" class="thth"><strong>Station</strong></th>
@@ -72,8 +72,8 @@
       <td class="tdtd" style="color: grey;"><strong>{{report.reported_at | date: 'MMM d y h: mma'}}</strong></td>
       <td class="tdtd">{{report.accident_type}}</td>
       <td class="tdtd">{{report.accident_cause}}</td>
-      <td class="tdtd"><p ng-repeat="people in report.people_involved_id">{{people.people_involved_name}}</p></td>
-      <td class="tdtd"><p ng-repeat="vehicle in report.vehicle_id">{{vehicle.vehicle_type}}</p></td>
+      <td class="tdtd" ng-show="report.editPeopleInvolved2"><p ng-repeat="people in report.people_involved_id">{{people.people_involved_name}}</p></td>
+      <td class="tdtd" ng-show="reportManagement.editVehicleType2"><p ng-repeat="vehicle in report.vehicle_id">{{vehicle.vehicle_type}}</p></td>
       <td class="tdtd" ng-show="reportManagement.editPeopleInvolved"><p ng-repeat="people in report.people_involved_id"><a title='Edit people inlvolved' href="/editPeopleInvolved/{{people._id}}">{{people.people_involved_name}}</a><p></td>
       <td class="tdtd" ng-show="reportManagement.editVehicleType"><p ng-repeat="vehicle in report.vehicle_id"><a title='Edit Vehicle Details' href="/editVehicle/{{vehicle._id}}">{{vehicle.vehicle_type}}</strong></a><p><br></td>
       <td ng-show="reportManagement.stationView" class="tdtd">{{report.address_municipality}}</td>

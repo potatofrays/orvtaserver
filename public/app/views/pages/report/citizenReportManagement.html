@@ -58,7 +58,7 @@
       <th class="thth"><strong>Action</strong></th>
 		</tr>
 	</thead>
-		<tr ng-repeat = "report in citizenReportManagement.police_reports | filter: searchKeyword | orderBy: 'citizen_reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
+		<tr ng-repeat = "report in citizenReportManagement.police_reports | filter: searchKeyword | orderBy: 'reported_at': true " ng-class-odd ="'odd'" ng-class-even="'even'">
       <td class="tdtd">{{ report.address_thoroughfare }}</td>
       <td class="tdtd">{{ report.address_municipality }}</td>
       <td class="tdtd">{{ report.address_province }}</td>

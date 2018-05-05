@@ -34,6 +34,7 @@ var policeReport = new Schema({
 	address_municipality:{type: String},
 	address_province:{type: String},
 	report_credibility:{type: String},
+	report_status:{type: String},
 	people_involved_id: [{ type: Schema.Types.ObjectId, ref: 'People_Involved' }],
 	vehicle_id: [{ type: Schema.Types.ObjectId, ref: 'Vehicle' }]
     //image_id

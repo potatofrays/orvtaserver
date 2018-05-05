@@ -107,7 +107,7 @@ $scope.formData.police_username = document.getElementById('Username').value;
         };
 
         // Saves the user data to the db
-        $http.post('/police_reports', reportData)
+        $http.post('/reports', reportData)
             .success(function (data) {
               app.clickView = true;
               // Refresh the map with new data
